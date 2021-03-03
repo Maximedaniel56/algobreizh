@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import javafx.util.*;
 import javafx.scene.layout.AnchorPane;
 
+import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
 public class Controller {
@@ -23,6 +24,10 @@ public class Controller {
     @FXML private TextField inscription_email;
     @FXML private PasswordField inscription_mdp;
     @FXML private PasswordField inscription_mdp2;
+    @FXML private PasswordField password;
+    @FXML private TextField login;
+
+
 
     public TextField getInscription_identifiant() {
         return inscription_identifiant;
@@ -126,6 +131,18 @@ public class Controller {
 
     }
 
+    @FXML
+    void final_btn_connexion_pressed(ActionEvent event) throws SQLException {
+        bdd.login(login,password);
+
+    }
+    @FXML
+     void closeButtonAction(ActionEvent event){
+        // get a handle to the stage
+        Stage primaryStage = (Stage) btn_exit.getScene().getWindow();
+        // do what you have to do
+        primaryStage.close();
+    }
 
     private void setTranslate(AnchorPane pane, int duration, int value){
 

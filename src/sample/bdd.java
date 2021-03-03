@@ -2,7 +2,6 @@ package sample;
 
 import java.sql.*;
 
-import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -10,15 +9,7 @@ import javafx.scene.control.TextField;
 public class bdd extends Controller {
 
 
-  /*  public static getid(){
-        ResultSet res = null;
 
-        StringBuilder requete = new StringBuilder();
-        requete.append("SELECT id FROM commercial");
-        execute(requete.toString());
-        res=getResult
-    }
-*/
 
     public static void createAccount(TextField identifiant,TextField email, PasswordField mdp){
 
@@ -31,6 +22,17 @@ public class bdd extends Controller {
 
     }
 
+    public static void login(TextField identifiant, PasswordField mdp) throws SQLException {
+
+
+        StringBuilder requete = new StringBuilder();
+        requete.append("SELECT id from commercial where login = '"+ identifiant.getText()+"' AND password = '"+mdp.getCharacters()+"'");
+        ResultSet res = execute(requete.toString());
+        res.next();
+        System.out.println(res.getInt("id"));
+
+
+    }
 
 
 
@@ -45,6 +47,7 @@ public class bdd extends Controller {
         try {
             connexion = DriverManager.getConnection ("jdbc:mysql://localhost:3306/algobreizh","root","");
             stmt = connexion.createStatement();
+            System.out.println("connexion établie");
             if(stmt.execute(requete)) {
                 System.out.println("connexion établie");
                 res = stmt.getResultSet();
