@@ -10,15 +10,15 @@ import javafx.scene.control.TextField;
 public class bdd extends Controller {
 
 
-    public static int getid(){
-      /*  ResultSet res = null;
+  /*  public static getid(){
+        ResultSet res = null;
 
         StringBuilder requete = new StringBuilder();
         requete.append("SELECT id FROM commercial");
         execute(requete.toString());
-        res=getResult*/
+        res=getResult
     }
-
+*/
 
     public static void createAccount(TextField identifiant,TextField email, PasswordField mdp){
 
