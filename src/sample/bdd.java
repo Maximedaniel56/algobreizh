@@ -6,7 +6,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 
-public class bdd extends Controller {
+public class bdd extends login_controller {
 
 
 
@@ -22,15 +22,22 @@ public class bdd extends Controller {
 
     }
 
-    public static void login(TextField identifiant, PasswordField mdp) throws SQLException {
+    public static int login(TextField ident, PasswordField mdp) {
 
+        try {
 
-        StringBuilder requete = new StringBuilder();
-        requete.append("SELECT id from commercial where login = '"+ identifiant.getText()+"' AND password = '"+mdp.getCharacters()+"'");
-        ResultSet res = execute(requete.toString());
-        res.next();
-        System.out.println(res.getInt("id"));
+            StringBuilder requete = new StringBuilder();
+            requete.append("SELECT id from commercial where login = '" + ident.getText() + "' AND password = '" + mdp.getCharacters() + "'");
+            ResultSet res = execute(requete.toString());
+            res.next();
+            System.out.println(res.getInt("id"));
+            return res.getInt("id");
 
+        } catch(Exception e){
+
+        }
+
+        return 0;
 
     }
 

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="950" prefWidth="1600" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.login_controller">
+   <children>
+      <Pane layoutX="-7.0" layoutY="106.0" prefHeight="860.0" prefWidth="380.0" style="-fx-background-color: linear-gradient(to right top, #051937, #0c1b3b, #141d3f, #1a1f42, #212146);;">
+
+      </Pane>
+      <Pane layoutX="-8.0" layoutY="-5.0" prefHeight="112.0" prefWidth="1623.0" style="-fx-background-color: linear-gradient(to right top, #397fe7, #3c76e7, #436de6, #4c62e4, #5757e1);;">
+         <children>
+            <Label layoutX="36.0" layoutY="13.0" text="ALGOBREIZH" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="60.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="371.0" layoutY="107.0" prefHeight="858.0" prefWidth="1244.0" style="-fx-background-color: linear-gradient(to right top, #ffffff, #f7f7f7, #eeeef0, #e6e6e8, #dedee1);;" />
+   </children>
+</AnchorPane>

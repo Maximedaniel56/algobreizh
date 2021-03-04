@@ -1,10 +1,15 @@
 package sample;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -15,7 +20,7 @@ import javafx.scene.layout.AnchorPane;
 import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
-public class Controller {
+public class login_controller {
 
      boolean inscription_panel_deployed =false;
      boolean connect_panel_deployed =false;
@@ -39,6 +44,9 @@ public class Controller {
 
     @FXML
     private AnchorPane fond_blanc_connect;
+
+    @FXML
+    private AnchorPane fondPrincipal;
 
     @FXML
     private JFXButton btn_log;
@@ -132,18 +140,53 @@ public class Controller {
     }
 
     @FXML
-    void final_btn_connexion_pressed(ActionEvent event) throws SQLException {
-        bdd.login(login,password);
+    void final_btn_connexion_pressed(ActionEvent event) {
+        if(bdd.login(login,password)==0){
+            System.out.println("Mauvais login/mot de passe");
+        }
+        else if (bdd.login(login,password)>0){
+
+            System.out.println("connecté");
+            btn_log.setText("connecté");
+            btn_log.setStyle("-fx-background-color: green ; -fx-background-radius: 10em;");
+
+            System.out.println(bdd.login(login,password));
+
+
+
+            FadeTransition ft = new FadeTransition(Duration.millis(1000), fondPrincipal);
+            ft.setFromValue(1.0);
+            ft.setToValue(0);
+            ft.setOnFinished(e -> exit());
+            ft.play();
+
+
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main.fxml"));
+                Parent root1 = (Parent) fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root1));
+                stage.show();
+                System.out.println("gdfg");
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+
+        }
+
 
     }
     @FXML
      void closeButtonAction(ActionEvent event){
-        // get a handle to the stage
-        Stage primaryStage = (Stage) btn_exit.getScene().getWindow();
-        // do what you have to do
-        primaryStage.close();
+        exit();
     }
 
+
+    private void exit(){
+
+        Stage primaryStage = (Stage) btn_exit.getScene().getWindow();
+        primaryStage.close();
+    }
     private void setTranslate(AnchorPane pane, int duration, int value){
 
         TranslateTransition rt = new TranslateTransition(Duration.millis(duration), pane);
@@ -154,5 +197,13 @@ public class Controller {
 
 
     }
+
+
+
+
+
+
+
+
 
 }
