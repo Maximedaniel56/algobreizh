@@ -6,7 +6,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 
-public class bdd extends login_controller {
+public class bdd extends loginController {
 
 
 

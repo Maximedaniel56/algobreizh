@@ -20,7 +20,7 @@ import javafx.scene.layout.AnchorPane;
 import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
-public class login_controller {
+public class loginController {
 
      boolean inscription_panel_deployed =false;
      boolean connect_panel_deployed =false;
@@ -140,7 +140,7 @@ public class login_controller {
     }
 
     @FXML
-    void final_btn_connexion_pressed(ActionEvent event) {
+    public void final_btn_connexion_pressed(ActionEvent event) {
         if(bdd.login(login,password)==0){
             System.out.println("Mauvais login/mot de passe");
         }
@@ -149,10 +149,6 @@ public class login_controller {
             System.out.println("connecté");
             btn_log.setText("connecté");
             btn_log.setStyle("-fx-background-color: green ; -fx-background-radius: 10em;");
-
-            System.out.println(bdd.login(login,password));
-
-
 
             FadeTransition ft = new FadeTransition(Duration.millis(1000), fondPrincipal);
             ft.setFromValue(1.0);
@@ -168,6 +164,9 @@ public class login_controller {
                 stage.setScene(new Scene(root1));
                 stage.show();
                 System.out.println("gdfg");
+
+
+
             } catch (Exception e){
                 System.out.println(e.getMessage());
             }
