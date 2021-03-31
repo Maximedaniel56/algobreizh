@@ -1,11 +1,23 @@
 package sample;
 
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
+import javafx.scene.control.DatePicker;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+
+import java.time.ZoneId;
+import java.util.Date;
 
 
 public class mainController {
@@ -27,12 +39,26 @@ public class mainController {
     private Button btnClients;
     @FXML
     private Button test;
+    @FXML
+    private JFXComboBox<?> selecteurClient;
 
+    @FXML
+    private JFXCheckBox creneau1;
 
+    @FXML
+    private JFXCheckBox creneau2;
 
+    @FXML
+    private JFXCheckBox creneau3;
 
+    @FXML
+    private JFXCheckBox creneau4;
 
+    @FXML
+    private JFXButton boutonValiderAjoutRdv;
 
+    @FXML
+    private DatePicker datePicker;
 
 
 
@@ -48,8 +74,16 @@ public class mainController {
 
     }
 
+    @FXML
+    void boutonValiderAjoutRdvPressed(ActionEvent event){
+        ZoneId defaultZoneId = ZoneId.systemDefault();
 
+        System.out.println("test");
+        System.out.println(datePicker.getValue());
+        Date date = Date.from(datePicker.getValue().atStartOfDay(defaultZoneId).toInstant());
+        System.out.println(date);
 
+    }
 
 
 
@@ -76,6 +110,23 @@ public class mainController {
     void test_pressed(ActionEvent event){
 
         cell00.setStyle("-fx-background-color:  #420D73;");
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdv.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.show();
+            System.out.println("gdfg");
+            ((mainController)fxmlLoader.getController()).initialisation();
+
+
+
+
+
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
 
     }
 

@@ -20,7 +20,7 @@ import javafx.scene.layout.AnchorPane;
 import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
-public class loginController {
+public class loginController extends mainController{
 
      boolean inscription_panel_deployed =false;
      boolean connect_panel_deployed =false;
@@ -126,7 +126,6 @@ public class loginController {
 
     }
 
-
     @FXML
     void btn_exit_pressed(ActionEvent event) {
 
@@ -138,6 +137,9 @@ public class loginController {
         bdd.createAccount(inscription_identifiant, inscription_email, inscription_mdp);
 
     }
+
+
+
 
     @FXML
     public void final_btn_connexion_pressed(ActionEvent event) {
@@ -158,12 +160,15 @@ public class loginController {
 
 
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/main.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root1));
                 stage.show();
                 System.out.println("gdfg");
+                ((mainController)fxmlLoader.getController()).initialisation();
+
+
 
 
 

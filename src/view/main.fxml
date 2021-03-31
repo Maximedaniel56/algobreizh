@@ -12,9 +12,9 @@
    <children>
       <Pane id="planningPanel" layoutX="493.0" layoutY="131.0" prefHeight="834.0" prefWidth="1122.0" style="-fx-background-color: linear-gradient(to right top, #ffffff, #f7f7f7, #eeeef0, #e6e6e8, #dedee1);;">
          <children>
-            <Pane id="rdvPannel" prefHeight="834.0" prefWidth="1122.0" style="-fx-background-color: linear-gradient(to right top, #ffffff, #f7f7f7, #eeeef0, #e6e6e8, #dedee1);;" />
-            <Pane id="clientsPanel" prefHeight="834.0" prefWidth="1122.0" style="-fx-background-color: linear-gradient(to right top, #ffffff, #f7f7f7, #eeeef0, #e6e6e8, #dedee1);;" />
-            <Pane id="planningPanel" prefHeight="834.0" prefWidth="1122.0" style="-fx-background-color: linear-gradient(to right top, #ffffff, #f7f7f7, #eeeef0, #e6e6e8, #dedee1);;">
+            <Pane fx:id="rdvPannel" prefHeight="834.0" prefWidth="1122.0" style="-fx-background-color: linear-gradient(to right top, #ffffff, #f7f7f7, #eeeef0, #e6e6e8, #dedee1);;" />
+            <Pane fx:id="clientsPanel" prefHeight="834.0" prefWidth="1122.0" style="-fx-background-color: linear-gradient(to right top, #ffffff, #f7f7f7, #eeeef0, #e6e6e8, #dedee1);;" />
+            <Pane fx:id="planningPanel" prefHeight="834.0" prefWidth="1122.0" style="-fx-background-color: linear-gradient(to right top, #ffffff, #f7f7f7, #eeeef0, #e6e6e8, #dedee1);;">
                <children>
                   <Pane layoutX="150.0" layoutY="55.0" prefHeight="79.0" prefWidth="180.0" style="-fx-background-color: #420D73;">
                      <children>
@@ -117,6 +117,10 @@
                   <Pane fx:id="cell32" layoutX="530.0" layoutY="630.0" prefHeight="149.0" prefWidth="180.0" style="-fx-background-color: #D1D1D1;" />
                   <Pane fx:id="cell33" layoutX="720.0" layoutY="630.0" prefHeight="149.0" prefWidth="180.0" style="-fx-background-color: #D1D1D1;" />
                   <Pane fx:id="cell34" layoutX="910.0" layoutY="630.0" prefHeight="149.0" prefWidth="180.0" style="-fx-background-color: #D1D1D1;" />
+                  <Button fx:id="test" layoutX="13.0" layoutY="14.0" mnemonicParsing="false" onAction="#test_pressed" prefHeight="86.0" prefWidth="120.0" style="-fx-background-color: #420D73;" text="+" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="59.0" />
+                     </font></Button>
                </children>
             </Pane>
          </children></Pane>
@@ -136,19 +140,19 @@
                   <Font name="System Bold" size="32.0" />
                </font>
             </Button>
-            <Button fx:id="btnRdv" layoutX="95.0" layoutY="243.0" mnemonicParsing="false" onAction="#btnRdvPressed" prefHeight="94.0" prefWidth="392.0" style="-fx-background-color: transparent;" text="Prochains rendez-vous" textFill="WHITE">
+            <Button fx:id="btnRdv" layoutX="95.0" layoutY="243.0" mnemonicParsing="false" onAction="#btnRdvPressed" prefHeight="94.0" prefWidth="392.0" style="-fx-background-color: transparent;" text="Visites recommandées" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="32.0" />
                </font>
             </Button>
             <ImageView fitHeight="79.0" fitWidth="89.0" layoutX="21.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Pictures/appointment-scheduling.png" />
+                  <Image url="@../ressources/planning.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="79.0" fitWidth="89.0" layoutX="21.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Pictures/planning.png" />
+                  <Image url="@../ressources/rdv.png" />
                </image>
             </ImageView>
             <Button fx:id="btnClients" layoutX="108.0" layoutY="346.0" mnemonicParsing="false" onAction="#btnClientsPressed" prefHeight="94.0" prefWidth="392.0" style="-fx-background-color: transparent;" text="Mes clients" textFill="WHITE">
@@ -158,10 +162,9 @@
             </Button>
             <ImageView fitHeight="101.0" fitWidth="95.0" layoutX="13.0" layoutY="346.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Pictures/users_group_customers_clients_icon-icons.com_72448.png" />
+                  <Image url="@../ressources/clients.png" />
                </image>
             </ImageView>
          </children></Pane>
-      <Button fx:id="test" layoutX="947.0" layoutY="27.0" mnemonicParsing="false" onAction="#test_pressed" prefHeight="79.0" prefWidth="215.0" text="Button" />
    </children>
 </AnchorPane>
