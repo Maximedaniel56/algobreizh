@@ -3,16 +3,16 @@ package sample;
 public class Client {
 
     private String raisonSociale;
-    private String contactPrenom;
-    private String contactNom;
+    private String Prenom;
+    private String Nom;
     private String mail;
     private int numeroTel;
 
 
-    public Client(String raisonSociale, String Prenom, String contactNom, String mail, int numeroTel) {
+    public Client(String raisonSociale, String Prenom, String Nom, String mail, int numeroTel) {
         this.raisonSociale = raisonSociale;
-        this.contactPrenom = contactPrenom;
-        this.contactNom = contactNom;
+        this.Prenom = Prenom;
+        this.Nom = Nom;
         this.mail = mail;
         this.numeroTel = numeroTel;
     }
@@ -26,19 +26,19 @@ public class Client {
     }
 
     public String getContactPrenom() {
-        return contactPrenom;
+        return Nom;
     }
 
     public void setContactPrenom(String contactPrenom) {
-        this.contactPrenom = contactPrenom;
+        this.Prenom = contactPrenom;
     }
 
     public String getContactNom() {
-        return contactNom;
+        return Nom;
     }
 
     public void setContactNom(String contactNom) {
-        this.contactNom = contactNom;
+        this.Nom = contactNom;
     }
 
     public String getMail() {

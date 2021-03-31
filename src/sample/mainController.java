@@ -4,7 +4,6 @@ package sample;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXDatePicker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -39,39 +39,44 @@ public class mainController {
     @FXML
     private Button btnClients;
     @FXML
-    private Button test;
-    @FXML
     private JFXComboBox<?> selecteurClient;
-
+    @FXML
+    private Button btn_exitMain;
     @FXML
     private JFXCheckBox creneau1;
-
     @FXML
     private JFXCheckBox creneau2;
-
     @FXML
     private JFXCheckBox creneau3;
-
     @FXML
     private JFXCheckBox creneau4;
-
     @FXML
     private JFXButton boutonValiderAjoutRdv;
-
     @FXML
     private DatePicker datePicker;
+    @FXML
+    private Button btnAddClients;
+    @FXML
+    private Label labelBienvenueFixe;
+    @FXML
+    private Label labelBienvenueDynamique;
 
 
 
 
 
 
-
-
+    @FXML
     public void initialisation(){
         rdvPannel.setVisible(false);
         clientsPanel.setVisible(false);
         planningPanel.setVisible(true);
+        Commercial commercial = new Commercial("Paul", "albert","fdsfd@carrefour.fr",06054);
+        commercial.setPrenom("Julien");
+        labelBienvenueDynamique.setText(commercial.getPrenom());
+
+
+
 
     }
 
@@ -79,7 +84,6 @@ public class mainController {
     void boutonValiderAjoutRdvPressed(ActionEvent event){
         ZoneId defaultZoneId = ZoneId.systemDefault();
 
-        System.out.println("test");
         System.out.println(datePicker.getValue());
         Date date = (Date) Date.from(datePicker.getValue().atStartOfDay(defaultZoneId).toInstant());
 
@@ -91,12 +95,15 @@ public class mainController {
 
 
 
-
     @FXML
     void btnClientsPressed(ActionEvent event) {
 
     }
 
+    @FXML
+    void btnAddClientsPressed(ActionEvent event) {
+
+    }
     @FXML
     void btnPlanningSemainePressed(ActionEvent event) {
 
@@ -107,10 +114,20 @@ public class mainController {
 
     }
 
-
+    @FXML
+    void closeButtonAction(ActionEvent event){
+        exit();
+    }
 
     @FXML
-    void test_pressed(ActionEvent event){
+    private void exit(){
+
+        Stage stage = (Stage) btn_exitMain.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    void addRdvPressed(ActionEvent event){
 
         cell00.setStyle("-fx-background-color:  #420D73;");
 
@@ -120,7 +137,6 @@ public class mainController {
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.show();
-            System.out.println("gdfg");
             ((mainController)fxmlLoader.getController()).initialisation();
 
 

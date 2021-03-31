@@ -34,7 +34,8 @@ public class bdd extends loginController {
             requete.append("SELECT id from commercial where login = '" + ident.getText() + "' AND password = '" + mdp.getCharacters() + "'");
             ResultSet res = execute(requete.toString());
             res.next();
-            System.out.println(res.getInt("id"));
+            int tmpID = (res.getInt("id"));
+
             return res.getInt("id");
 
         } catch(Exception e){

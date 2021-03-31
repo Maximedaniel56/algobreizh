@@ -117,7 +117,7 @@
                   <Pane fx:id="cell32" layoutX="530.0" layoutY="630.0" prefHeight="149.0" prefWidth="180.0" style="-fx-background-color: #D1D1D1;" />
                   <Pane fx:id="cell33" layoutX="720.0" layoutY="630.0" prefHeight="149.0" prefWidth="180.0" style="-fx-background-color: #D1D1D1;" />
                   <Pane fx:id="cell34" layoutX="910.0" layoutY="630.0" prefHeight="149.0" prefWidth="180.0" style="-fx-background-color: #D1D1D1;" />
-                  <Button fx:id="test" layoutX="13.0" layoutY="14.0" mnemonicParsing="false" onAction="#test_pressed" prefHeight="86.0" prefWidth="120.0" style="-fx-background-color: #420D73;" text="+" textFill="WHITE">
+                  <Button fx:id="addRdv" layoutX="13.0" layoutY="14.0" mnemonicParsing="false" onAction="#addRdvPressed" prefHeight="86.0" prefWidth="120.0" style="-fx-background-color: #420D73;" text="+" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="59.0" />
                      </font></Button>
@@ -131,9 +131,11 @@
                   <Font name="System Bold" size="45.0" />
                </font>
             </Label>
+            <Button fx:id="btn_exitMain" layoutX="27.0" layoutY="22.0" maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" mnemonicParsing="false" onAction="#closeButtonAction" opacity="0.79" prefHeight="15.0" prefWidth="15.0" style="-fx-background-radius: 10; -fx-background-color: #FF2525;" />
+            <Button fx:id="btn_rdc" layoutX="51.0" layoutY="22.0" maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="15.0" style="-fx-background-radius: 10; -fx-background-color: #F4DF00;" />
          </children>
       </Pane>
-      <Pane id="menuPanel" layoutY="131.0" prefHeight="834.0" prefWidth="493.0" style="-fx-background-color: #420D73;">
+      <Pane id="menuPanel" layoutX="-6.0" layoutY="131.0" prefHeight="834.0" prefWidth="493.0" style="-fx-background-color: #420D73;">
          <children>
             <Button fx:id="btnPlanningSemaine" layoutX="89.0" layoutY="131.0" mnemonicParsing="false" onAction="#btnPlanningSemainePressed" prefHeight="94.0" prefWidth="403.0" style="-fx-background-color: transparent;" text="Planing de la semaine" textFill="WHITE">
                <font>
@@ -160,11 +162,31 @@
                   <Font name="System Bold" size="32.0" />
                </font>
             </Button>
-            <ImageView fitHeight="101.0" fitWidth="95.0" layoutX="13.0" layoutY="346.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="114.0" fitWidth="122.0" layoutX="9.0" layoutY="336.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../ressources/clients.png" />
                </image>
             </ImageView>
+            <Button fx:id="btnAddClients" layoutX="108.0" layoutY="441.0" mnemonicParsing="false" onAction="#btnAddClientsPressed" prefHeight="94.0" prefWidth="392.0" style="-fx-background-color: transparent;" text="Ajouter client" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="114.0" fitWidth="128.0" layoutX="9.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../ressources/addClients.png" />
+               </image>
+            </ImageView>
          </children></Pane>
+      <Label fx:id="labelBienvenueFixe" layoutX="718.0" layoutY="32.0" text="Bienvenue " textFill="#838383">
+         <font>
+            <Font name="System Bold" size="46.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelBienvenueDynamique" layoutX="957.0" layoutY="32.0" textFill="#838383">
+         <font>
+            <Font name="System Bold" size="46.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

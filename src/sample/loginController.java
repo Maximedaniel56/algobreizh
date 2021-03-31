@@ -13,7 +13,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.*;
 import javafx.scene.layout.AnchorPane;
 
@@ -143,7 +145,7 @@ public class loginController extends mainController{
 
     @FXML
     public void final_btn_connexion_pressed(ActionEvent event) {
-       /* if(bdd.login(login,password)==0){
+        if(bdd.login(login,password)==0){
             System.out.println("Mauvais login/mot de passe");
         }
         else if (bdd.login(login,password)>0){
@@ -156,14 +158,16 @@ public class loginController extends mainController{
             ft.setFromValue(1.0);
             ft.setToValue(0);
             ft.setOnFinished(e -> exit());
-            ft.play();*/
+            ft.play();
 
 
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/main.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
                 Stage stage = new Stage();
-                stage.setScene(new Scene(root1));
+                Scene scene = new Scene(root1);
+                stage.setScene(scene);
+                stage.initStyle(StageStyle.TRANSPARENT);
                 stage.show();
                 System.out.println("gdfg");
                 ((mainController)fxmlLoader.getController()).initialisation();
@@ -176,7 +180,7 @@ public class loginController extends mainController{
                 System.out.println(e.getMessage());
             }
 
-     /*   }*/
+        }
 
 
     }
