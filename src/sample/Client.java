@@ -6,10 +6,10 @@ public class Client {
     private String contactPrenom;
     private String contactNom;
     private String mail;
-    private String numeroTel;
+    private int numeroTel;
 
 
-    public Client(String raisonSociale, String contactPrenom, String contactNom, String mail, String numeroTel) {
+    public Client(String raisonSociale, String Prenom, String contactNom, String mail, int numeroTel) {
         this.raisonSociale = raisonSociale;
         this.contactPrenom = contactPrenom;
         this.contactNom = contactNom;
@@ -49,11 +49,11 @@ public class Client {
         this.mail = mail;
     }
 
-    public String getNumeroTel() {
+    public int getNumeroTel() {
         return numeroTel;
     }
 
-    public void setNumeroTel(String numeroTel) {
+    public void setNumeroTel(int numeroTel) {
         this.numeroTel = numeroTel;
     }
 }

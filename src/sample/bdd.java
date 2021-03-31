@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 public class bdd extends loginController {
 
 
-    public static void createRendezVous(LocalDate date, Client client, boolean c1, boolean c2, boolean c3, boolean c4){
+    public static void createRendezVous(Date date, Client client, int creneau){
 
 
     }

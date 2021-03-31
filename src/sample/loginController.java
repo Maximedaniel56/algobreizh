@@ -143,7 +143,7 @@ public class loginController extends mainController{
 
     @FXML
     public void final_btn_connexion_pressed(ActionEvent event) {
-        if(bdd.login(login,password)==0){
+       /* if(bdd.login(login,password)==0){
             System.out.println("Mauvais login/mot de passe");
         }
         else if (bdd.login(login,password)>0){
@@ -156,7 +156,7 @@ public class loginController extends mainController{
             ft.setFromValue(1.0);
             ft.setToValue(0);
             ft.setOnFinished(e -> exit());
-            ft.play();
+            ft.play();*/
 
 
             try {
@@ -176,7 +176,7 @@ public class loginController extends mainController{
                 System.out.println(e.getMessage());
             }
 
-        }
+     /*   }*/
 
 
     }

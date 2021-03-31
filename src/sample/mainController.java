@@ -16,8 +16,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.sql.Date;
 import java.time.ZoneId;
-import java.util.Date;
+
 
 
 public class mainController {
@@ -80,8 +81,10 @@ public class mainController {
 
         System.out.println("test");
         System.out.println(datePicker.getValue());
-        Date date = Date.from(datePicker.getValue().atStartOfDay(defaultZoneId).toInstant());
-        System.out.println(date);
+        Date date = (Date) Date.from(datePicker.getValue().atStartOfDay(defaultZoneId).toInstant());
+
+        Client test = new Client("carrefour", "paul", "albert","fdsfd@carrefour.fr",06054);
+        bdd.createRendezVous(date,test,1 );
 
     }
 
