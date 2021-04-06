@@ -4,9 +4,12 @@ package sample;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,6 +20,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.time.ZoneId;
 
 
@@ -60,7 +64,23 @@ public class mainController {
     private Label labelBienvenueFixe;
     @FXML
     private Label labelBienvenueDynamique;
+    @FXML
+    private JFXButton BoutonValiderAddClient;
+    @FXML
+    private JFXTextField textFieldPrenom;
+    @FXML
+    private Pane addClientsPanel;
+    @FXML
+    private JFXTextField textFieldNom;
 
+    @FXML
+    private JFXTextField textFieldRaisonSociale;
+
+    @FXML
+    private JFXTextField textFieldMail;
+
+    @FXML
+    private JFXTextField textFieldNumtel;
 
 
 
@@ -74,11 +94,31 @@ public class mainController {
         Commercial commercial = new Commercial("Paul", "albert","fdsfd@carrefour.fr",06054);
         commercial.setPrenom("Julien");
         labelBienvenueDynamique.setText(commercial.getPrenom());
+        btnAddClients.setCursor(Cursor.HAND);
+
 
 
 
 
     }
+
+
+
+    @FXML
+    void mouseOver (ActionEvent event){
+        btnClients.setText("test");
+    }
+
+    @FXML
+    void BoutonValiderAddClient_pressed(ActionEvent event) {
+
+        Client client = new Client(textFieldPrenom.getText(),textFieldPrenom.getText(), textFieldNom.getText(), textFieldMail.getText(),textFieldNumtel.getAnchor());
+
+        bdd.createClient(textFieldNom,textFieldPrenom,textFieldRaisonSociale,textFieldMail,textFieldNumtel);
+  }
+
+
+
 
     @FXML
     void boutonValiderAjoutRdvPressed(ActionEvent event){
@@ -96,22 +136,42 @@ public class mainController {
 
 
     @FXML
-    void btnClientsPressed(ActionEvent event) {
+    void btnClientsPressed(ActionEvent event) throws SQLException {
+
+        System.out.println(bdd.getListeClients());
+        rdvPannel.setVisible(false);
+        clientsPanel.setVisible(false);
+        planningPanel.setVisible(false);
+        clientsPanel.setVisible(true);
+
 
     }
 
     @FXML
     void btnAddClientsPressed(ActionEvent event) {
 
+        rdvPannel.setVisible(false);
+        clientsPanel.setVisible(false);
+        planningPanel.setVisible(false);
+        addClientsPanel.setVisible(true);
+
     }
     @FXML
     void btnPlanningSemainePressed(ActionEvent event) {
 
+        rdvPannel.setVisible(false);
+        clientsPanel.setVisible(false);
+        planningPanel.setVisible(true);
+        addClientsPanel.setVisible(false);
     }
 
     @FXML
     void btnRdvPressed(ActionEvent event) {
 
+        rdvPannel.setVisible(true);
+        clientsPanel.setVisible(false);
+        planningPanel.setVisible(false);
+        addClientsPanel.setVisible(false);
     }
 
     @FXML

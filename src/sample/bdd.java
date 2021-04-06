@@ -2,7 +2,9 @@ package sample;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
+import com.mysql.cj.protocol.Resultset;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -15,16 +17,52 @@ public class bdd extends loginController {
 
     }
 
+
+    public static ArrayList<Client> getListeClients() throws SQLException {
+
+        StringBuilder requete = new StringBuilder();
+        requete.append("Select * from Client");
+        ResultSet res = execute(requete.toString());
+        ArrayList liste = new ArrayList();
+        while (res.next()){
+
+            Client clientTmp=new Client();
+            clientTmp.setContactPrenom(res.getString("Prenom"));
+            clientTmp.setContactNom(res.getString("nom"));
+            clientTmp.setRaisonSociale(res.getString("nom"));
+            liste.add(clientTmp);
+            }
+
+
+        return liste;
+    }
+
     public static void createAccount(TextField identifiant,TextField email, PasswordField mdp){
 
 
         StringBuilder requete = new StringBuilder();
         requete.append("INSERT INTO commercial (login,email,password) VALUES ('"+ identifiant.getText()+"','"+email.getText()+"','"+mdp.getCharacters()+"')");
+        ResultSet res =execute (requete.toString());
+        System.out.println("done");
+
+
+    }
+
+    public static void createClient(TextField Prenom,TextField Nom, TextField raisonSociale,TextField mail, TextField Num){
+
+
+        StringBuilder requete = new StringBuilder();
+        requete.append("INSERT INTO CLIENT (prenom,nom,raisonSociale, mail, tel) VALUES ('"+ Prenom.getText()+"','"+Nom.getText()+"','"+raisonSociale.getText()+"','"+mail.getText()+"','"+Num.getAnchor()+"')");
         execute(requete.toString());
         System.out.println("done");
 
 
     }
+
+
+
+
+
 
     public static int login(TextField ident, PasswordField mdp) {
 
@@ -59,9 +97,7 @@ public class bdd extends loginController {
         try {
             connexion = DriverManager.getConnection ("jdbc:mysql://localhost:3306/algobreizh","root","");
             stmt = connexion.createStatement();
-            System.out.println("connexion établie");
             if(stmt.execute(requete)) {
-                System.out.println("connexion établie");
                 res = stmt.getResultSet();
             }
         } catch (SQLException e) {

@@ -8,6 +8,9 @@ public class Client {
     private String mail;
     private int numeroTel;
 
+    public Client() {
+
+    }
 
     public Client(String raisonSociale, String Prenom, String Nom, String mail, int numeroTel) {
         this.raisonSociale = raisonSociale;
@@ -55,6 +58,17 @@ public class Client {
 
     public void setNumeroTel(int numeroTel) {
         this.numeroTel = numeroTel;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "raisonSociale='" + raisonSociale + '\'' +
+                ", Prenom='" + Prenom + '\'' +
+                ", Nom='" + Nom + '\'' +
+                ", mail='" + mail + '\'' +
+                ", numeroTel=" + numeroTel +
+                '}';
     }
 }
 
