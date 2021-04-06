@@ -5,7 +5,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,13 +15,20 @@ import javafx.scene.control.Button;
 
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.ZoneId;
-
+import java.time.temporal.IsoFields;
+import java.time.temporal.TemporalAdjusters;
+import java.time.temporal.WeekFields;
+import java.util.Locale;
 
 
 public class mainController {
@@ -81,13 +87,31 @@ public class mainController {
 
     @FXML
     private JFXTextField textFieldNumtel;
+    @FXML
+    private Label labelNumeroSemaineDynamique;
+    @FXML
+    private Label lundiDate;
+    @FXML
+    private Label mardiDate;
+    @FXML
+    private Label mercrediDate;
+    @FXML
+    private Label jeudiDate;
+    @FXML
+    private Label vendrediDate;
+    private int numeroSemaine;
 
+    public int getNumeroSemaine() {
+        return numeroSemaine;
+    }
 
-
-
+    public void setNumeroSemaine(int numeroSemaine) {
+        this.numeroSemaine = numeroSemaine;
+    }
 
     @FXML
     public void initialisation(){
+        labelNumeroSemaineDynamique.setText("gfsf");
         rdvPannel.setVisible(false);
         clientsPanel.setVisible(false);
         planningPanel.setVisible(true);
@@ -95,19 +119,29 @@ public class mainController {
         commercial.setPrenom("Julien");
         labelBienvenueDynamique.setText(commercial.getPrenom());
         btnAddClients.setCursor(Cursor.HAND);
+        setNumeroSemaine(getSemaineActuelle());
+        labelNumeroSemaineDynamique.setText(""+numeroSemaine);
+        datesSemaineIntilialisation(numeroSemaine);
 
 
+    }
+
+    public void datesSemaineIntilialisation(int week){
+
+        final long calendarWeek = week;
+        LocalDate desiredDate = LocalDate.now()
+                .with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, calendarWeek)
+                .with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+        lundiDate.setText(""+desiredDate);
+        mardiDate.setText(""+desiredDate.plusDays(1));
+        mercrediDate.setText(""+desiredDate.plusDays(2));
+        jeudiDate.setText(""+desiredDate.plusDays(3));
+        vendrediDate.setText(""+desiredDate.plusDays(4));
 
 
 
     }
 
-
-
-    @FXML
-    void mouseOver (ActionEvent event){
-        btnClients.setText("test");
-    }
 
     @FXML
     void BoutonValiderAddClient_pressed(ActionEvent event) {
@@ -186,6 +220,46 @@ public class mainController {
         stage.close();
     }
 
+
+    @FXML
+    void flecheDecrementerPressed(MouseEvent event) {
+
+        if (numeroSemaine>1) {
+            datesSemaineIntilialisation(numeroSemaine - 1);
+            numeroSemaine = numeroSemaine - 1;
+            labelNumeroSemaineDynamique.setText("" + numeroSemaine);
+        }
+        else{
+            setNumeroSemaine(52);
+            datesSemaineIntilialisation(numeroSemaine);
+            labelNumeroSemaineDynamique.setText("" + numeroSemaine);
+
+        }
+
+
+
+    }
+
+    @FXML
+
+
+    void flecheIncrementerPressed(MouseEvent event) {
+
+
+        if (numeroSemaine<52) {
+            datesSemaineIntilialisation(numeroSemaine + 1);
+            numeroSemaine = numeroSemaine + 1;
+            labelNumeroSemaineDynamique.setText("" + numeroSemaine);
+        }
+        else{
+            setNumeroSemaine(1);
+            datesSemaineIntilialisation(numeroSemaine);
+            labelNumeroSemaineDynamique.setText("" + numeroSemaine);
+
+        }
+    }
+
+
     @FXML
     void addRdvPressed(ActionEvent event){
 
@@ -209,6 +283,13 @@ public class mainController {
 
     }
 
+    public LocalDate getDateActuelle(){
+        return java.time.LocalDate.now();
+    }
 
-
+    public int getSemaineActuelle(){
+        WeekFields weekFields = WeekFields.of(Locale.getDefault());
+        int weekNumber = getDateActuelle().get(weekFields.weekOfWeekBasedYear());
+        return weekNumber;
+    }
 }

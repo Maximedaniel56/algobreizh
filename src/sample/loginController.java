@@ -8,17 +8,21 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.*;
 import javafx.scene.layout.AnchorPane;
 
+import javax.swing.event.DocumentEvent;
 import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
@@ -43,6 +47,8 @@ public class loginController extends mainController{
     public void setInscription_identifiant(TextField inscription_identifiant) {
         this.inscription_identifiant = inscription_identifiant;
     }
+    @FXML
+    private Label labelErreur;
 
     @FXML
     private AnchorPane fond_blanc_connect;
@@ -63,7 +69,7 @@ public class loginController extends mainController{
     private JFXButton btn_connect;
 
     @FXML
-    private JFXButton btn_inscript;
+    private JFXButton btn_inscription_final;
 
     @FXML
     private Button btn_exit;
@@ -76,6 +82,7 @@ public class loginController extends mainController{
     @FXML
     void btn_connect_pressed(ActionEvent event) throws InterruptedException {
 
+        labelErreur.setAlignment(Pos.CENTER);
 
         if(inscription_panel_deployed==true){
 
@@ -102,6 +109,9 @@ public class loginController extends mainController{
     }
     @FXML
     void btn_inscription_pressed(ActionEvent event) {
+
+        labelErreur.setAlignment(Pos.CENTER);
+
 
         if(connect_panel_deployed==true){
 
@@ -136,7 +146,37 @@ public class loginController extends mainController{
 
     @FXML
     void final_btn_inscription_pressed(ActionEvent event) {
-        bdd.createAccount(inscription_identifiant, inscription_email, inscription_mdp);
+
+        if (inscription_email.getText().isEmpty()){ labelErreur.setTextFill(Color.RED);labelErreur.setText("Veuillez entrer une adresse email"); }
+        else if (inscription_identifiant.getText().isEmpty()){ labelErreur.setTextFill(Color.RED);labelErreur.setText("Veuillez entrer un identifiant");}
+        else if (inscription_mdp.getCharacters().isEmpty()){ labelErreur.setTextFill(Color.RED);labelErreur.setText("Veuillez entrer un mot de passe");}
+        else if (inscription_mdp2.getCharacters().isEmpty()){ labelErreur.setTextFill(Color.RED);labelErreur.setText("Veuillez entrer le second mot de passe");}
+        else if (inscription_mdp.getCharacters().toString().equals(inscription_mdp2.getCharacters().toString())){
+            if(bdd.checkLoginExist(inscription_identifiant.getText())>0){
+                labelErreur.setTextFill(Color.RED);labelErreur.setText("identifiant déjà utilisé");
+            }
+            else if (bdd.checkMailExist(inscription_email.getText())>0){
+
+                labelErreur.setTextFill(Color.RED);labelErreur.setText("mail déjà utilisé");}
+            else if (bdd.checkMailExist(inscription_email.getText())==0&&bdd.checkLoginExist(inscription_identifiant.getText())==0){
+                System.out.println(bdd.checkMailExist(inscription_email.getText()));
+                System.out.println(bdd.checkLoginExist(inscription_identifiant.getText()));
+
+
+
+
+                bdd.createAccount(inscription_identifiant, inscription_email, inscription_mdp);
+                labelErreur.setTextFill(Color.GREEN);
+                labelErreur.setText("Compte créé avec succès");
+            }
+        }
+            else {
+            labelErreur.setTextFill(Color.RED);
+            labelErreur.setText("Les mots de passe ne correspondent pas"); }
+        System.out.println(inscription_mdp.getCharacters());
+        System.out.println(inscription_mdp2.getCharacters());
+
+
 
     }
 
@@ -185,9 +225,10 @@ public class loginController extends mainController{
 
     }
     @FXML
-     void closeButtonAction(ActionEvent event){
+    void closeButtonAction(ActionEvent event){
         exit();
     }
+
 
 
     private void exit(){
@@ -205,12 +246,6 @@ public class loginController extends mainController{
 
 
     }
-
-
-
-
-
-
 
 
 

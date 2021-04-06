@@ -62,6 +62,51 @@ public class bdd extends loginController {
 
 
 
+    public static int checkLoginExist(String identifiant) {
+
+        try {
+
+            StringBuilder requete = new StringBuilder();
+            requete.append("SELECT id FROM commercial where login = '"+ identifiant+"'");
+            ResultSet res = execute(requete.toString());
+            res.next();
+            int tmpID = (res.getInt("id"));
+            return res.getInt("id");
+        }
+
+
+          catch(Exception e){
+
+        }
+
+        return 0;
+
+    }
+
+
+
+    public static int checkMailExist(String mail){
+        try {
+
+            StringBuilder requete = new StringBuilder();
+            requete.append("SELECT id FROM commercial where email = '"+mail+"'");
+            ResultSet res = execute(requete.toString());
+            res.next();
+            int tmpID = (res.getInt("id"));
+            return res.getInt("id");
+        }
+
+
+        catch(Exception e){
+
+        }
+
+        return 0;
+
+    }
+
+
+
 
 
     public static int login(TextField ident, PasswordField mdp) {
