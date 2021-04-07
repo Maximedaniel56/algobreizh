@@ -5,6 +5,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -49,17 +52,13 @@ public class mainController {
     @FXML
     private Button btnClients;
     @FXML
-    private JFXComboBox<?> selecteurClient;
-    @FXML
     private Button btn_exitMain;
     @FXML
-    private JFXCheckBox creneau1;
+    private ComboBox<?> selecteurCreneau;
+
     @FXML
-    private JFXCheckBox creneau2;
-    @FXML
-    private JFXCheckBox creneau3;
-    @FXML
-    private JFXCheckBox creneau4;
+    private ComboBox<String> selecteurClients;
+
     @FXML
     private JFXButton boutonValiderAjoutRdv;
     @FXML
@@ -78,7 +77,11 @@ public class mainController {
     private Pane addClientsPanel;
     @FXML
     private JFXTextField textFieldNom;
+    /*@FXML
+    private ComboBox<int> selecteurCreneau;
 
+    @FXML
+    private ComboBox<Client> selecteurClients;*/
     @FXML
     private JFXTextField textFieldRaisonSociale;
 
@@ -100,6 +103,7 @@ public class mainController {
     @FXML
     private Label vendrediDate;
     private int numeroSemaine;
+    private Commercial activeSession;
 
     public int getNumeroSemaine() {
         return numeroSemaine;
@@ -110,14 +114,14 @@ public class mainController {
     }
 
     @FXML
-    public void initialisation(){
+    public void initialisation() throws SQLException {
         labelNumeroSemaineDynamique.setText("gfsf");
         rdvPannel.setVisible(false);
         clientsPanel.setVisible(false);
         planningPanel.setVisible(true);
-        Commercial commercial = new Commercial("Paul", "albert","fdsfd@carrefour.fr",06054);
-        commercial.setPrenom("Julien");
-        labelBienvenueDynamique.setText(commercial.getPrenom());
+        activeSession = new Commercial("Paul", "albert","fdsfd@carrefour.fr",06054);
+        activeSession.setPrenom("Julien");
+        labelBienvenueDynamique.setText(activeSession.getPrenom());
         btnAddClients.setCursor(Cursor.HAND);
         setNumeroSemaine(getSemaineActuelle());
         labelNumeroSemaineDynamique.setText(""+numeroSemaine);
@@ -261,9 +265,15 @@ public class mainController {
 
 
     @FXML
-    void addRdvPressed(ActionEvent event){
+    void addRdvPressed(ActionEvent event) throws SQLException {
 
         cell00.setStyle("-fx-background-color:  #420D73;");
+        activeSession.setListeClients(bdd.getListeClients());
+        System.out.println(activeSession.getListeClients().get(0).toString());
+
+        selecteurClients = new ComboBox<String>();
+        //selecteurClients.getItems().add("activeSession.getListeClients().get(0).toString()");
+
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdv.fxml"));
@@ -271,7 +281,7 @@ public class mainController {
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.show();
-            ((mainController)fxmlLoader.getController()).initialisation();
+            //((mainController)fxmlLoader.getController()).initialisation();
 
 
 

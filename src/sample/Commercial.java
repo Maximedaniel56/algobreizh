@@ -1,5 +1,7 @@
 package sample;
 
+import java.util.ArrayList;
+
 public class Commercial {
 
     private double id;
@@ -9,12 +11,34 @@ public class Commercial {
     private String email;
     private String motdepasse;
     private String identifiant;
+    private ArrayList<Client> listeClients;
+    private ArrayList<rdv> listeRdv;
+
 
     public Commercial(String email, String motdepasse, String identifiant, int id) {
         this.email = email;
         this.motdepasse = motdepasse;
         this.identifiant = identifiant;
         this.id=id;
+        ArrayList liste = new ArrayList();
+
+
+    }
+
+    public ArrayList<Client> getListeClients() {
+        return listeClients;
+    }
+
+    public void setListeClients(ArrayList<Client> listeClients) {
+        this.listeClients = listeClients;
+    }
+
+    public ArrayList<rdv> getListeRdv() {
+        return listeRdv;
+    }
+
+    public void setListeRdv(ArrayList<rdv> listeRdv) {
+        this.listeRdv = listeRdv;
     }
 
     public String getVille() {

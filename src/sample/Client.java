@@ -1,5 +1,8 @@
 package sample;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Client {
 
     private String raisonSociale;
@@ -7,6 +10,7 @@ public class Client {
     private String Nom;
     private String mail;
     private int numeroTel;
+
 
     public Client() {
 

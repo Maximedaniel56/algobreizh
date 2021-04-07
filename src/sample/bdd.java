@@ -52,7 +52,7 @@ public class bdd extends loginController {
 
 
         StringBuilder requete = new StringBuilder();
-        requete.append("INSERT INTO CLIENT (prenom,nom,raisonSociale, mail, tel) VALUES ('"+ Prenom.getText()+"','"+Nom.getText()+"','"+raisonSociale.getText()+"','"+mail.getText()+"','"+Num.getAnchor()+"')");
+        requete.append("INSERT INTO CLIENT (prenom,nom,raisonSociale, mail, numeroTel) VALUES ('"+ Prenom.getText()+"','"+Nom.getText()+"','"+raisonSociale.getText()+"','"+mail.getText()+"','"+Num.getAnchor()+"')");
         execute(requete.toString());
         System.out.println("done");
 
