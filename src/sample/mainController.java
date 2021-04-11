@@ -31,11 +31,14 @@ import java.time.ZoneId;
 import java.time.temporal.IsoFields;
 import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.WeekFields;
+import java.util.ArrayList;
 import java.util.Locale;
 
 
 public class mainController {
 
+    @FXML
+    private Pane paneTest;
 
     @FXML
     private Pane rdvPannel;
@@ -56,13 +59,11 @@ public class mainController {
     @FXML
     private ComboBox<?> selecteurCreneau;
 
-    @FXML
-    private ComboBox<String> selecteurClients;
+
 
     @FXML
     private JFXButton boutonValiderAjoutRdv;
-    @FXML
-    private DatePicker datePicker;
+
     @FXML
     private Button btnAddClients;
     @FXML
@@ -77,11 +78,7 @@ public class mainController {
     private Pane addClientsPanel;
     @FXML
     private JFXTextField textFieldNom;
-    /*@FXML
-    private ComboBox<int> selecteurCreneau;
 
-    @FXML
-    private ComboBox<Client> selecteurClients;*/
     @FXML
     private JFXTextField textFieldRaisonSociale;
 
@@ -111,6 +108,14 @@ public class mainController {
 
     public void setNumeroSemaine(int numeroSemaine) {
         this.numeroSemaine = numeroSemaine;
+    }
+
+    public Commercial getActiveSession() {
+        return activeSession;
+    }
+
+    public void setActiveSession(Commercial activeSession) {
+        this.activeSession = activeSession;
     }
 
     @FXML
@@ -158,17 +163,6 @@ public class mainController {
 
 
 
-    @FXML
-    void boutonValiderAjoutRdvPressed(ActionEvent event){
-        ZoneId defaultZoneId = ZoneId.systemDefault();
-
-        System.out.println(datePicker.getValue());
-        Date date = (Date) Date.from(datePicker.getValue().atStartOfDay(defaultZoneId).toInstant());
-
-        Client test = new Client("carrefour", "paul", "albert","fdsfd@carrefour.fr",06054);
-        bdd.createRendezVous(date,test,1 );
-
-    }
 
 
 
@@ -245,8 +239,6 @@ public class mainController {
     }
 
     @FXML
-
-
     void flecheIncrementerPressed(MouseEvent event) {
 
 
@@ -264,15 +256,14 @@ public class mainController {
     }
 
 
+
     @FXML
     void addRdvPressed(ActionEvent event) throws SQLException {
 
-        cell00.setStyle("-fx-background-color:  #420D73;");
-        activeSession.setListeClients(bdd.getListeClients());
-        System.out.println(activeSession.getListeClients().get(0).toString());
+        cell00.setStyle("-fx-background-color:  #650D73;");
 
-        selecteurClients = new ComboBox<String>();
-        //selecteurClients.getItems().add("activeSession.getListeClients().get(0).toString()");
+
+
 
 
         try {
@@ -281,7 +272,11 @@ public class mainController {
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.show();
-            //((mainController)fxmlLoader.getController()).initialisation();
+            ((rdvController)fxmlLoader.getController()).addRdvInit();
+
+
+
+
 
 
 
@@ -290,6 +285,8 @@ public class mainController {
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
+
+
 
     }
 
