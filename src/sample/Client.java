@@ -10,6 +10,8 @@ public class Client {
     private String Nom;
     private String mail;
     private int numeroTel;
+    private double id;
+
 
 
     public Client() {
@@ -22,6 +24,30 @@ public class Client {
         this.Nom = Nom;
         this.mail = mail;
         this.numeroTel = numeroTel;
+    }
+
+    public String getPrenom() {
+        return Prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        Prenom = prenom;
+    }
+
+    public String getNom() {
+        return Nom;
+    }
+
+    public void setNom(String nom) {
+        Nom = nom;
+    }
+
+    public double getId() {
+        return id;
+    }
+
+    public void setId(double id) {
+        this.id = id;
     }
 
     public String getRaisonSociale() {

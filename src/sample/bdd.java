@@ -119,6 +119,7 @@ public class bdd extends loginController {
             res.next();
             int tmpID = (res.getInt("id"));
 
+
             return res.getInt("id");
 
         } catch(Exception e){
@@ -128,6 +129,90 @@ public class bdd extends loginController {
         return 0;
 
     }
+
+    public static String getPrenom(int id) {
+
+        try {
+
+            StringBuilder requete = new StringBuilder();
+            requete.append("SELECT prenom from commercial where id = '"+id+"'");
+            ResultSet res = execute(requete.toString());
+            res.next();
+
+            return res.getString("prenom");
+
+        } catch(Exception e){
+
+        }
+
+        return "null";
+
+    }
+
+    public static String getNom(int id) {
+
+        try {
+
+            StringBuilder requete = new StringBuilder();
+            requete.append("SELECT nom from commercial where id = '"+id+"'");
+            ResultSet res = execute(requete.toString());
+            res.next();
+
+
+            return res.getString("nom");
+
+        } catch(Exception e){
+
+        }
+
+        return "null";
+
+    }
+
+    public static String getVille(int id) {
+
+        try {
+
+            StringBuilder requete = new StringBuilder();
+            requete.append("SELECT ville from commercial where id = '"+id+"'");
+            ResultSet res = execute(requete.toString());
+            res.next();
+
+
+            return res.getString("ville");
+
+        } catch(Exception e){
+
+        }
+
+        return "null";
+
+    }
+
+
+    public static String getMail(int id) {
+
+        try {
+
+            StringBuilder requete = new StringBuilder();
+            requete.append("SELECT email from commercial where id = '"+id+"'");
+            ResultSet res = execute(requete.toString());
+            res.next();
+
+
+
+            return res.getString("email");
+
+        } catch(Exception e){
+
+        }
+
+        return "null";
+
+    }
+
+
+
 
 
 

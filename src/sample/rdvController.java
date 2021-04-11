@@ -12,23 +12,31 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.time.ZoneId;
 
+
 public class rdvController {
 
+
+    private Commercial activeSession;
     @FXML
     private Pane paneTest;
     @FXML
-    private ComboBox<String> selecteurClients;
+    private ComboBox<Client> selecteurClients;
     @FXML
     private DatePicker datePicker;
 
+    public Commercial getActiveSession() {
+        return activeSession;
+    }
 
+    public void setActiveSession(Commercial activeSession) {
+        this.activeSession = activeSession;
+    }
 
     @FXML
     void addRdvInit() throws SQLException {
 
 
-        paneTest.setStyle("-fx-background-color:  #650D73;");
-        selecteurClients.getItems().addAll();
+        selecteurClients.getItems().addAll(activeSession.getListeClients().get(0));
 
 
     }
@@ -39,7 +47,6 @@ public class rdvController {
        /* ObservableList<String> observableList = FXCollections.observableList();*/
 
 
-        paneTest.setStyle("-fx-background-color:  #200D73;");
 
 /*
         ZoneId defaultZoneId = ZoneId.systemDefault();

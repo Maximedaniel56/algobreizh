@@ -209,8 +209,8 @@ public class loginController extends mainController{
                 stage.setScene(scene);
                 stage.initStyle(StageStyle.TRANSPARENT);
                 stage.show();
-                System.out.println("gdfg");
-                ((mainController)fxmlLoader.getController()).initialisation();
+                ((mainController)fxmlLoader.getController()).initialisation(bdd.login(login,password));
+
 
 
 

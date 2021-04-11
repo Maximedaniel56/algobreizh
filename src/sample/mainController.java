@@ -119,18 +119,27 @@ public class mainController {
     }
 
     @FXML
-    public void initialisation() throws SQLException {
+    public void initialisation(int id) throws SQLException {
         labelNumeroSemaineDynamique.setText("gfsf");
         rdvPannel.setVisible(false);
         clientsPanel.setVisible(false);
         planningPanel.setVisible(true);
-        activeSession = new Commercial("Paul", "albert","fdsfd@carrefour.fr",06054);
-        activeSession.setPrenom("Julien");
+        activeSession = new Commercial(bdd.getPrenom(id), bdd.getNom(id),bdd.getVille(id),bdd.getMail(id));
+        activeSession.setId(id);
+        System.out.println(activeSession.getPrenom());
+        System.out.println(activeSession.getNom());
+        System.out.println(activeSession.getVille());
+        System.out.println(activeSession.getEmail());
         labelBienvenueDynamique.setText(activeSession.getPrenom());
         btnAddClients.setCursor(Cursor.HAND);
+        btnClients.setCursor(Cursor.HAND);
+        btnRdv.setCursor(Cursor.HAND);
+        btnPlanningSemaine.setCursor(Cursor.HAND);
         setNumeroSemaine(getSemaineActuelle());
         labelNumeroSemaineDynamique.setText(""+numeroSemaine);
         datesSemaineIntilialisation(numeroSemaine);
+        System.out.println("Id de session : "+activeSession.getId());
+
 
 
     }
@@ -156,6 +165,7 @@ public class mainController {
     void BoutonValiderAddClient_pressed(ActionEvent event) {
 
         Client client = new Client(textFieldPrenom.getText(),textFieldPrenom.getText(), textFieldNom.getText(), textFieldMail.getText(),textFieldNumtel.getAnchor());
+        activeSession.getListeClients().add(client);
 
         bdd.createClient(textFieldNom,textFieldPrenom,textFieldRaisonSociale,textFieldMail,textFieldNumtel);
   }
@@ -272,21 +282,13 @@ public class mainController {
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.show();
+            ((rdvController)fxmlLoader.getController()).setActiveSession(this.activeSession);
             ((rdvController)fxmlLoader.getController()).addRdvInit();
-
-
-
-
-
-
-
 
 
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
-
-
 
     }
 

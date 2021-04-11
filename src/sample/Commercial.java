@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Commercial {
 
-    private double id;
+    private int id;
     private String prenom;
     private String nom;
     private String ville;
@@ -15,14 +15,25 @@ public class Commercial {
     private ArrayList<rdv> listeRdv;
 
 
-    public Commercial(String email, String motdepasse, String identifiant, int id) {
-        this.email = email;
-        this.motdepasse = motdepasse;
-        this.identifiant = identifiant;
-        this.id=id;
-        ArrayList liste = new ArrayList();
+    public Commercial(String prenom, String nom, String ville, String mail) {
+        this.email = mail;
+        this.prenom = prenom;
+        this.nom = nom;
+        this.ville = ville;
+
+        listeRdv = new ArrayList();
+        listeClients = new ArrayList();
 
 
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public ArrayList<Client> getListeClients() {
