@@ -18,18 +18,22 @@ public class bdd extends loginController {
     }
 
 
-    public static ArrayList<Client> getListeClients() throws SQLException {
+    public static ArrayList<Client> getListeClients(int id) throws SQLException {
 
         StringBuilder requete = new StringBuilder();
-        requete.append("Select * from Client");
+        requete.append("Select * from Client Where idFkCOmmercial = "+id);
         ResultSet res = execute(requete.toString());
         ArrayList liste = new ArrayList();
         while (res.next()){
 
             Client clientTmp=new Client();
+            clientTmp.setId(res.getInt("id"));
             clientTmp.setContactPrenom(res.getString("Prenom"));
             clientTmp.setContactNom(res.getString("nom"));
-            clientTmp.setRaisonSociale(res.getString("nom"));
+            clientTmp.setRaisonSociale(res.getString("raisonSociale"));
+            clientTmp.setRaisonSociale(res.getString("raisonSociale"));
+            clientTmp.setIdFkCommercial(res.getInt("idFkCommercial"));
+
             liste.add(clientTmp);
             }
 
@@ -48,11 +52,11 @@ public class bdd extends loginController {
 
     }
 
-    public static void createClient(TextField Prenom,TextField Nom, TextField raisonSociale,TextField mail, TextField Num){
+    public static void createClient(int id,TextField Prenom,TextField Nom, TextField raisonSociale,TextField mail, TextField Num){
 
 
         StringBuilder requete = new StringBuilder();
-        requete.append("INSERT INTO CLIENT (prenom,nom,raisonSociale, mail, numeroTel) VALUES ('"+ Prenom.getText()+"','"+Nom.getText()+"','"+raisonSociale.getText()+"','"+mail.getText()+"','"+Num.getAnchor()+"')");
+        requete.append("INSERT INTO CLIENT (idFkCOmmercial,prenom,nom,raisonSociale, mail, numeroTel) VALUES ('"+id+"','"+Prenom.getText()+"','"+Nom.getText()+"','"+raisonSociale.getText()+"','"+mail.getText()+"','"+Num.getAnchor()+"')");
         execute(requete.toString());
         System.out.println("done");
 
@@ -130,7 +134,7 @@ public class bdd extends loginController {
 
     }
 
-    public static String getPrenom(int id) {
+    public static String getPrenomCommercial(int id) {
 
         try {
 
@@ -149,7 +153,28 @@ public class bdd extends loginController {
 
     }
 
-    public static String getNom(int id) {
+
+    public static void setPrenomCommercial(int id, String prenom) {
+
+        try {
+
+            StringBuilder requete = new StringBuilder();
+            requete.append("UPDATE `algobreizh`.`commercial` SET `prenom` = '"+prenom+"' WHERE `commercial`.`id` = "+id);
+            ResultSet res = execute(requete.toString());
+            res.next();
+
+
+
+        } catch(Exception e){
+
+        }
+
+
+    }
+
+
+
+    public static String getNomCommercial(int id) {
 
         try {
 
@@ -169,7 +194,25 @@ public class bdd extends loginController {
 
     }
 
-    public static String getVille(int id) {
+    public static void setNomCommercial(int id, String nom) {
+
+        try {
+
+            StringBuilder requete = new StringBuilder();
+            requete.append("UPDATE `algobreizh`.`commercial` SET `nom` = '"+nom+"' WHERE `commercial`.`id` = "+id);
+            ResultSet res = execute(requete.toString());
+            res.next();
+
+
+
+        } catch(Exception e){
+
+        }
+
+
+    }
+
+    public static String getVilleCommercial(int id) {
 
         try {
 
@@ -189,8 +232,26 @@ public class bdd extends loginController {
 
     }
 
+    public static void setVilleCommercial(int id, String ville) {
 
-    public static String getMail(int id) {
+        try {
+
+            StringBuilder requete = new StringBuilder();
+            requete.append("UPDATE `algobreizh`.`commercial` SET `ville` = '"+ville+"' WHERE `commercial`.`id` = "+id);
+            ResultSet res = execute(requete.toString());
+            res.next();
+
+
+
+        } catch(Exception e){
+
+        }
+
+
+    }
+
+
+    public static String getMailCommercial(int id) {
 
         try {
 
@@ -208,6 +269,24 @@ public class bdd extends loginController {
         }
 
         return "null";
+
+    }
+
+    public static void setEmailCommercial(int id, String mail) {
+
+        try {
+
+            StringBuilder requete = new StringBuilder();
+            requete.append("UPDATE `algobreizh`.`commercial` SET `email` = '"+mail+"' WHERE `commercial`.`id` = "+id);
+            ResultSet res = execute(requete.toString());
+            res.next();
+
+
+
+        } catch(Exception e){
+
+        }
+
 
     }
 

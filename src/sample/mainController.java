@@ -2,11 +2,8 @@ package sample;
 
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXCheckBox;
-import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,22 +13,21 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import javax.swing.*;
-import java.sql.Date;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.Style;
 import java.sql.SQLException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.temporal.IsoFields;
 import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Locale;
 
 
@@ -39,7 +35,24 @@ public class mainController {
 
     @FXML
     private Pane paneTest;
+    @FXML
+    private Pane monComptePanel;
+    @FXML
+    private JFXTextField textefieldPrenomMonCompte;
+    @FXML
+    private JFXTextField textefieldNomMonCompte;
+    @FXML
+    private JFXListView<Client> ListeClientsPanelClients;
 
+
+    @FXML
+    private JFXTextField textefieldMailMonCompte;
+
+    @FXML
+    private JFXTextField textefieldVilleMonCompte;
+
+    @FXML
+    private JFXButton boutonValiderMonCompte;
     @FXML
     private Pane rdvPannel;
     @FXML
@@ -58,8 +71,6 @@ public class mainController {
     private Button btn_exitMain;
     @FXML
     private ComboBox<?> selecteurCreneau;
-
-
 
     @FXML
     private JFXButton boutonValiderAjoutRdv;
@@ -123,8 +134,12 @@ public class mainController {
         labelNumeroSemaineDynamique.setText("gfsf");
         rdvPannel.setVisible(false);
         clientsPanel.setVisible(false);
+        monComptePanel.setVisible(false);
+        addClientsPanel.setVisible(false);
         planningPanel.setVisible(true);
-        activeSession = new Commercial(bdd.getPrenom(id), bdd.getNom(id),bdd.getVille(id),bdd.getMail(id));
+
+        activeSession = new Commercial(bdd.getPrenomCommercial(id), bdd.getNomCommercial(id),bdd.getVilleCommercial(id),bdd.getMailCommercial(id));
+        activeSession.setListeClients(bdd.getListeClients(id));
         activeSession.setId(id);
         System.out.println(activeSession.getPrenom());
         System.out.println(activeSession.getNom());
@@ -167,24 +182,90 @@ public class mainController {
         Client client = new Client(textFieldPrenom.getText(),textFieldPrenom.getText(), textFieldNom.getText(), textFieldMail.getText(),textFieldNumtel.getAnchor());
         activeSession.getListeClients().add(client);
 
-        bdd.createClient(textFieldNom,textFieldPrenom,textFieldRaisonSociale,textFieldMail,textFieldNumtel);
-  }
+        bdd.createClient(activeSession.getId(),textFieldNom,textFieldPrenom,textFieldRaisonSociale,textFieldMail,textFieldNumtel);
+        textFieldNom.clear();
+        textFieldPrenom.clear();
+        textFieldRaisonSociale.clear();
+        textFieldMail.clear();
+        textFieldNumtel.clear();
+
+    }
 
 
 
+    @FXML
+    void btnMonComptePressed(ActionEvent event) {
+
+        rdvPannel.setVisible(false);
+        clientsPanel.setVisible(false);
+        monComptePanel.setVisible(true);
+        addClientsPanel.setVisible(false);
+        planningPanel.setVisible(false);
+        textefieldPrenomMonCompte.setPromptText(bdd.getPrenomCommercial(activeSession.getId()));
+        textefieldNomMonCompte.setPromptText(bdd.getNomCommercial(activeSession.getId()));
+        textefieldMailMonCompte.setPromptText(bdd.getMailCommercial(activeSession.getId()));
+        textefieldVilleMonCompte.setPromptText(bdd.getVilleCommercial(activeSession.getId()));
 
 
+
+    }
+
+    @FXML
+    void boutonValiderMonComptePressed(ActionEvent event) {
+        if(!textefieldPrenomMonCompte.getText().isEmpty()){
+            bdd.setPrenomCommercial(activeSession.getId(),textefieldPrenomMonCompte.getText());
+        }
+
+        if(!textefieldNomMonCompte.getText().isEmpty()){
+            bdd.setNomCommercial(activeSession.getId(),textefieldNomMonCompte.getText());
+        }
+
+        if(!textefieldMailMonCompte.getText().isEmpty()){
+            bdd.setEmailCommercial(activeSession.getId(),textefieldMailMonCompte.getText());
+        }
+
+        if(!textefieldVilleMonCompte.getText().isEmpty()){
+            bdd.setVilleCommercial(activeSession.getId(),textefieldVilleMonCompte.getText());
+        }
+
+        textefieldPrenomMonCompte.clear();
+        textefieldNomMonCompte.clear();
+        textefieldMailMonCompte.clear();
+        textefieldVilleMonCompte.clear();
+        textefieldPrenomMonCompte.setPromptText(bdd.getPrenomCommercial(activeSession.getId()));
+        textefieldNomMonCompte.setPromptText(bdd.getNomCommercial(activeSession.getId()));
+        textefieldMailMonCompte.setPromptText(bdd.getMailCommercial(activeSession.getId()));
+        textefieldVilleMonCompte.setPromptText(bdd.getVilleCommercial(activeSession.getId()));
+
+
+
+    }
 
 
 
     @FXML
     void btnClientsPressed(ActionEvent event) throws SQLException {
 
-        System.out.println(bdd.getListeClients());
         rdvPannel.setVisible(false);
         clientsPanel.setVisible(false);
         planningPanel.setVisible(false);
+        monComptePanel.setVisible(false);
         clientsPanel.setVisible(true);
+        ListeClientsPanelClients.getItems().clear();
+        activeSession.setListeClients(bdd.getListeClients(activeSession.getId()));
+
+
+        for (Client client : activeSession.getListeClients()){
+
+            ListeClientsPanelClients.getItems().add(client);
+
+        }
+
+
+
+
+
+
 
 
     }
@@ -196,6 +277,14 @@ public class mainController {
         clientsPanel.setVisible(false);
         planningPanel.setVisible(false);
         addClientsPanel.setVisible(true);
+        monComptePanel.setVisible(false);
+        textFieldNom.clear();
+        textFieldPrenom.clear();
+        textFieldRaisonSociale.clear();
+        textFieldMail.clear();
+        textFieldNumtel.clear();
+
+
 
     }
     @FXML
@@ -204,7 +293,9 @@ public class mainController {
         rdvPannel.setVisible(false);
         clientsPanel.setVisible(false);
         planningPanel.setVisible(true);
+        monComptePanel.setVisible(false);
         addClientsPanel.setVisible(false);
+
     }
 
     @FXML
@@ -214,6 +305,8 @@ public class mainController {
         clientsPanel.setVisible(false);
         planningPanel.setVisible(false);
         addClientsPanel.setVisible(false);
+        monComptePanel.setVisible(false);
+
     }
 
     @FXML

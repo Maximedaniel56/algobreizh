@@ -1,8 +1,5 @@
 package sample;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Client {
 
     private String raisonSociale;
@@ -10,7 +7,8 @@ public class Client {
     private String Nom;
     private String mail;
     private int numeroTel;
-    private double id;
+    private int id;
+    private int idFkCommercial;
 
 
 
@@ -30,6 +28,14 @@ public class Client {
         return Prenom;
     }
 
+    public int getIdFkCommercial() {
+        return idFkCommercial;
+    }
+
+    public void setIdFkCommercial(int idFkCommercial) {
+        this.idFkCommercial = idFkCommercial;
+    }
+
     public void setPrenom(String prenom) {
         Prenom = prenom;
     }
@@ -42,11 +48,11 @@ public class Client {
         Nom = nom;
     }
 
-    public double getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(double id) {
+    public void setId(int id) {
         this.id = id;
     }
 

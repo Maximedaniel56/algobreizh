@@ -186,11 +186,11 @@ public class loginController extends mainController{
     @FXML
     public void final_btn_connexion_pressed(ActionEvent event) {
         if(bdd.login(login,password)==0){
-            System.out.println("Mauvais login/mot de passe");
+            labelErreur.setTextFill(Color.RED);
+            labelErreur.setText("Mauvais identifiants");
         }
         else if (bdd.login(login,password)>0){
-
-            System.out.println("connecté");
+            labelErreur.setTextFill(Color.GREEN);
             btn_log.setText("connecté");
             btn_log.setStyle("-fx-background-color: green ; -fx-background-radius: 10em;");
 
