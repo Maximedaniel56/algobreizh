@@ -15,11 +15,12 @@ public class Commercial {
     private ArrayList<rdv> listeRdv;
 
 
-    public Commercial(String prenom, String nom, String ville, String mail) {
+    public Commercial(String prenom, String nom, String ville, String mail, int id) {
         this.email = mail;
         this.prenom = prenom;
         this.nom = nom;
         this.ville = ville;
+        this.id=id;
 
         listeRdv = new ArrayList();
         listeClients = new ArrayList();

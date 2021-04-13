@@ -110,41 +110,20 @@ public class mainController {
     private Label jeudiDate;
     @FXML
     private Label vendrediDate;
+
     private int numeroSemaine;
     private Commercial activeSession;
 
-    public int getNumeroSemaine() {
-        return numeroSemaine;
-    }
 
-    public void setNumeroSemaine(int numeroSemaine) {
-        this.numeroSemaine = numeroSemaine;
-    }
 
-    public Commercial getActiveSession() {
-        return activeSession;
-    }
 
-    public void setActiveSession(Commercial activeSession) {
-        this.activeSession = activeSession;
-    }
 
     @FXML
     public void initialisation(int id) throws SQLException {
         labelNumeroSemaineDynamique.setText("gfsf");
-        rdvPannel.setVisible(false);
-        clientsPanel.setVisible(false);
-        monComptePanel.setVisible(false);
-        addClientsPanel.setVisible(false);
-        planningPanel.setVisible(true);
-
-        activeSession = new Commercial(bdd.getPrenomCommercial(id), bdd.getNomCommercial(id),bdd.getVilleCommercial(id),bdd.getMailCommercial(id));
+        affichagePanel(true,false,false,false,false);
+        activeSession = new Commercial(bdd.getPrenomCommercial(id), bdd.getNomCommercial(id),bdd.getVilleCommercial(id),bdd.getMailCommercial(id), id);
         activeSession.setListeClients(bdd.getListeClients(id));
-        activeSession.setId(id);
-        System.out.println(activeSession.getPrenom());
-        System.out.println(activeSession.getNom());
-        System.out.println(activeSession.getVille());
-        System.out.println(activeSession.getEmail());
         labelBienvenueDynamique.setText(activeSession.getPrenom());
         btnAddClients.setCursor(Cursor.HAND);
         btnClients.setCursor(Cursor.HAND);
@@ -155,9 +134,21 @@ public class mainController {
         datesSemaineIntilialisation(numeroSemaine);
         System.out.println("Id de session : "+activeSession.getId());
 
-
-
     }
+
+
+
+
+
+
+    @FXML
+    void closeButtonAction(ActionEvent event){
+        exit();
+    }
+
+
+
+
 
     public void datesSemaineIntilialisation(int week){
 
@@ -171,9 +162,9 @@ public class mainController {
         jeudiDate.setText(""+desiredDate.plusDays(3));
         vendrediDate.setText(""+desiredDate.plusDays(4));
 
-
-
     }
+
+
 
 
     @FXML
@@ -196,19 +187,15 @@ public class mainController {
     @FXML
     void btnMonComptePressed(ActionEvent event) {
 
-        rdvPannel.setVisible(false);
-        clientsPanel.setVisible(false);
-        monComptePanel.setVisible(true);
-        addClientsPanel.setVisible(false);
-        planningPanel.setVisible(false);
+        affichagePanel(false,false,false,false,true);
         textefieldPrenomMonCompte.setPromptText(bdd.getPrenomCommercial(activeSession.getId()));
         textefieldNomMonCompte.setPromptText(bdd.getNomCommercial(activeSession.getId()));
         textefieldMailMonCompte.setPromptText(bdd.getMailCommercial(activeSession.getId()));
         textefieldVilleMonCompte.setPromptText(bdd.getVilleCommercial(activeSession.getId()));
 
-
-
     }
+
+
 
     @FXML
     void boutonValiderMonComptePressed(ActionEvent event) {
@@ -237,8 +224,6 @@ public class mainController {
         textefieldMailMonCompte.setPromptText(bdd.getMailCommercial(activeSession.getId()));
         textefieldVilleMonCompte.setPromptText(bdd.getVilleCommercial(activeSession.getId()));
 
-
-
     }
 
 
@@ -246,11 +231,7 @@ public class mainController {
     @FXML
     void btnClientsPressed(ActionEvent event) throws SQLException {
 
-        rdvPannel.setVisible(false);
-        clientsPanel.setVisible(false);
-        planningPanel.setVisible(false);
-        monComptePanel.setVisible(false);
-        clientsPanel.setVisible(true);
+        affichagePanel(false,false,true,false,false);
         ListeClientsPanelClients.getItems().clear();
         activeSession.setListeClients(bdd.getListeClients(activeSession.getId()));
 
@@ -261,58 +242,41 @@ public class mainController {
 
         }
 
-
-
-
-
-
-
-
     }
+
+
 
     @FXML
     void btnAddClientsPressed(ActionEvent event) {
-
-        rdvPannel.setVisible(false);
-        clientsPanel.setVisible(false);
-        planningPanel.setVisible(false);
-        addClientsPanel.setVisible(true);
-        monComptePanel.setVisible(false);
+        affichagePanel(false,false,false,true,false);
         textFieldNom.clear();
         textFieldPrenom.clear();
         textFieldRaisonSociale.clear();
         textFieldMail.clear();
         textFieldNumtel.clear();
-
-
-
     }
+
+
+
+
+
     @FXML
     void btnPlanningSemainePressed(ActionEvent event) {
-
-        rdvPannel.setVisible(false);
-        clientsPanel.setVisible(false);
-        planningPanel.setVisible(true);
-        monComptePanel.setVisible(false);
-        addClientsPanel.setVisible(false);
-
+        affichagePanel(true,false,false,false,false);
     }
+
+
+
+
 
     @FXML
     void btnRdvPressed(ActionEvent event) {
-
-        rdvPannel.setVisible(true);
-        clientsPanel.setVisible(false);
-        planningPanel.setVisible(false);
-        addClientsPanel.setVisible(false);
-        monComptePanel.setVisible(false);
-
+        affichagePanel(false,true,false,false,false);
     }
 
-    @FXML
-    void closeButtonAction(ActionEvent event){
-        exit();
-    }
+
+
+
 
     @FXML
     private void exit(){
@@ -320,6 +284,10 @@ public class mainController {
         Stage stage = (Stage) btn_exitMain.getScene().getWindow();
         stage.close();
     }
+
+
+
+
 
 
     @FXML
@@ -334,12 +302,12 @@ public class mainController {
             setNumeroSemaine(52);
             datesSemaineIntilialisation(numeroSemaine);
             labelNumeroSemaineDynamique.setText("" + numeroSemaine);
-
         }
-
-
-
     }
+
+
+
+
 
     @FXML
     void flecheIncrementerPressed(MouseEvent event) {
@@ -354,20 +322,29 @@ public class mainController {
             setNumeroSemaine(1);
             datesSemaineIntilialisation(numeroSemaine);
             labelNumeroSemaineDynamique.setText("" + numeroSemaine);
-
         }
     }
 
 
 
+
+
+    void affichagePanel (boolean planning, boolean rdv,boolean clients, boolean addClient, boolean monCompte ){
+
+        rdvPannel.setVisible(rdv);
+        clientsPanel.setVisible(clients);
+        planningPanel.setVisible(planning);
+        addClientsPanel.setVisible(addClient);
+        monComptePanel.setVisible(monCompte);
+
+    }
+
+
+
+
+
     @FXML
     void addRdvPressed(ActionEvent event) throws SQLException {
-
-        cell00.setStyle("-fx-background-color:  #650D73;");
-
-
-
-
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdv.fxml"));
@@ -377,21 +354,59 @@ public class mainController {
             stage.show();
             ((rdvController)fxmlLoader.getController()).setActiveSession(this.activeSession);
             ((rdvController)fxmlLoader.getController()).addRdvInit();
-
-
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
 
     }
 
+
+
+
     public LocalDate getDateActuelle(){
         return java.time.LocalDate.now();
     }
+
+
+
 
     public int getSemaineActuelle(){
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
         int weekNumber = getDateActuelle().get(weekFields.weekOfWeekBasedYear());
         return weekNumber;
     }
+
+
+
+
+    public int getNumeroSemaine() {
+        return numeroSemaine;
+    }
+
+
+
+    public void setNumeroSemaine(int numeroSemaine) {
+        this.numeroSemaine = numeroSemaine;
+    }
+
+
+
+    public Commercial getActiveSession() {
+        return activeSession;
+    }
+
+
+
+    public void setActiveSession(Commercial activeSession) {
+        this.activeSession = activeSession;
+    }
+
+
+
+
+
+
+
+
+
 }
