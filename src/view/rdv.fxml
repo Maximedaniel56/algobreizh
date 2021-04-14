@@ -27,6 +27,10 @@
       <DatePicker fx:id="datePicker" layoutX="154.0" layoutY="133.0" />
       <ComboBox fx:id="selecteurCreneau" layoutX="137.0" layoutY="292.0" prefHeight="43.0" prefWidth="208.0" />
       <ComboBox fx:id="selecteurClients" layoutX="165.0" layoutY="220.0" prefWidth="150.0" />
-      <Pane fx:id="paneTest" layoutX="37.0" layoutY="145.0" prefHeight="137.0" prefWidth="97.0" style="-fx-background-color: red;" />
+      <Label fx:id="labelErreurRdv" layoutX="100.0" layoutY="354.0" prefHeight="34.0" prefWidth="280.0" textFill="RED">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

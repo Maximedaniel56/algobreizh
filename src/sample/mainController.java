@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 
 import javax.swing.text.AttributeSet;
 import javax.swing.text.Style;
+import java.awt.event.WindowAdapter;
 import java.sql.SQLException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -133,10 +134,106 @@ public class mainController {
         labelNumeroSemaineDynamique.setText(""+numeroSemaine);
         datesSemaineIntilialisation(numeroSemaine);
         System.out.println("Id de session : "+activeSession.getId());
+        activeSession.setListeRdv(bdd.getListeRdv(id));
+        rdvSemaineInitialisation();
+
 
     }
 
 
+
+    public void rdvSemaineInitialisation(){
+        final long calendarWeek = numeroSemaine;
+        System.out.println(numeroSemaine);
+
+        for (rdv rdv : activeSession.getListeRdv()){
+            System.out.println(rdv);
+            LocalDate date =  rdv.getDate().toLocalDate();
+            LocalDate desiredDate = LocalDate.now().with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, calendarWeek).with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+
+            if(date.equals(desiredDate)){
+                if(rdv.getCreneau()==1){
+                    cell00.setStyle("-fx-background-color: #46c646;");
+                }
+                if(rdv.getCreneau()==2){
+                    cell10.setStyle("-fx-background-color: #46c646;");
+                }
+                if(rdv.getCreneau()==3){
+                    cell20.setStyle("-fx-background-color: #46c646;");
+                }
+                if(rdv.getCreneau()==4){
+                    cell30.setStyle("-fx-background-color: #46c646;");
+                }
+
+            }
+
+            if(date.equals(desiredDate.plusDays(1))){
+                if(rdv.getCreneau()==1){
+                    cell01.setStyle("-fx-background-color: #46c646;");
+                }
+                if(rdv.getCreneau()==2){
+                    cell11.setStyle("-fx-background-color: #46c646;");
+                }
+                if(rdv.getCreneau()==3){
+                    cell21.setStyle("-fx-background-color: #46c646;");
+                }
+                if(rdv.getCreneau()==4){
+                    cell31.setStyle("-fx-background-color: #46c646;");
+                }
+
+            }
+
+            if(date.equals(desiredDate.plusDays(2))){
+                if(rdv.getCreneau()==1){
+                    cell02.setStyle("-fx-background-color: #46c646;");
+                }
+                if(rdv.getCreneau()==2){
+                    cell12.setStyle("-fx-background-color: #46c646;");
+                }
+                if(rdv.getCreneau()==3){
+                    cell22.setStyle("-fx-background-color: #46c646;");
+                }
+                if(rdv.getCreneau()==4){
+                    cell32.setStyle("-fx-background-color: #46c646;");
+                }
+
+            }
+
+            if(date.equals(desiredDate.plusDays(3))){
+                if(rdv.getCreneau()==1){
+                    cell03.setStyle("-fx-background-color: #46c646;");
+                }
+                if(rdv.getCreneau()==2){
+                    cell13.setStyle("-fx-background-color: #46c646;");
+                }
+                if(rdv.getCreneau()==3){
+                    cell23.setStyle("-fx-background-color: #46c646;");
+                }
+                if(rdv.getCreneau()==4){
+                    cell33.setStyle("-fx-background-color: #46c646;");
+                }
+
+            }
+
+            if(date.equals(desiredDate.plusDays(4))){
+                if(rdv.getCreneau()==1){
+                    cell04.setStyle("-fx-background-color: #46c646;");
+                }
+                if(rdv.getCreneau()==2){
+                    cell14.setStyle("-fx-background-color: #46c646;");
+                }
+                if(rdv.getCreneau()==3){
+                    cell24.setStyle("-fx-background-color: #46c646;");
+                }
+                if(rdv.getCreneau()==4){
+                    cell34.setStyle("-fx-background-color: #46c646;");
+                }
+
+            }
+
+        }
+
+    }
 
 
 
@@ -170,10 +267,11 @@ public class mainController {
     @FXML
     void BoutonValiderAddClient_pressed(ActionEvent event) {
 
-        Client client = new Client(textFieldPrenom.getText(),textFieldPrenom.getText(), textFieldNom.getText(), textFieldMail.getText(),textFieldNumtel.getAnchor());
-        activeSession.getListeClients().add(client);
+
 
         bdd.createClient(activeSession.getId(),textFieldNom,textFieldPrenom,textFieldRaisonSociale,textFieldMail,textFieldNumtel);
+        Client client = new Client(textFieldPrenom.getText(),textFieldPrenom.getText(), textFieldNom.getText(), textFieldMail.getText(),textFieldNumtel.getAnchor(),bdd.getIdLastClient());
+        activeSession.getListeClients().add(client);
         textFieldNom.clear();
         textFieldPrenom.clear();
         textFieldRaisonSociale.clear();
@@ -263,6 +361,7 @@ public class mainController {
     @FXML
     void btnPlanningSemainePressed(ActionEvent event) {
         affichagePanel(true,false,false,false,false);
+        rdvSemaineInitialisation();
     }
 
 
@@ -297,6 +396,7 @@ public class mainController {
             datesSemaineIntilialisation(numeroSemaine - 1);
             numeroSemaine = numeroSemaine - 1;
             labelNumeroSemaineDynamique.setText("" + numeroSemaine);
+            rdvSemaineInitialisation();
         }
         else{
             setNumeroSemaine(52);
@@ -317,6 +417,7 @@ public class mainController {
             datesSemaineIntilialisation(numeroSemaine + 1);
             numeroSemaine = numeroSemaine + 1;
             labelNumeroSemaineDynamique.setText("" + numeroSemaine);
+            rdvSemaineInitialisation();
         }
         else{
             setNumeroSemaine(1);
@@ -354,11 +455,15 @@ public class mainController {
             stage.show();
             ((rdvController)fxmlLoader.getController()).setActiveSession(this.activeSession);
             ((rdvController)fxmlLoader.getController()).addRdvInit();
+
+
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
 
     }
+
+
 
 
 

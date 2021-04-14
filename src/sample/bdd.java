@@ -12,7 +12,11 @@ import javafx.scene.control.TextField;
 public class bdd extends loginController {
 
 
-    public static void createRendezVous(Date date, Client client, int creneau){
+    public static void createRendezVous(int idClient, Date date, int creneau, int idCommercial){
+
+        StringBuilder requete = new StringBuilder();
+        requete.append("INSERT INTO rdv (fkClient,date,creneau,fkCommercial) VALUES ('"+idClient+"','"+date+"','"+creneau+"','"+idCommercial+"')");
+        ResultSet res =execute (requete.toString());
 
 
     }
@@ -21,7 +25,7 @@ public class bdd extends loginController {
     public static ArrayList<Client> getListeClients(int id) throws SQLException {
 
         StringBuilder requete = new StringBuilder();
-        requete.append("Select * from Client Where idFkCOmmercial = "+id);
+        requete.append("Select * from Client Where idFkCommercial = "+id);
         ResultSet res = execute(requete.toString());
         ArrayList liste = new ArrayList();
         while (res.next()){
@@ -41,6 +45,28 @@ public class bdd extends loginController {
         return liste;
     }
 
+
+    public static ArrayList<rdv> getListeRdv(int id) throws SQLException {
+
+        StringBuilder requete = new StringBuilder();
+        requete.append("Select * from rdv Where FkCommercial = "+id);
+        ResultSet res = execute(requete.toString());
+        ArrayList liste = new ArrayList();
+        while (res.next()){
+
+            rdv rdv=new rdv(res.getDate("date"),res.getInt("creneau"),res.getInt("fkClient"));
+            liste.add(rdv);
+        }
+
+
+        return liste;
+    }
+
+
+
+
+
+
     public static void createAccount(TextField identifiant,TextField email, PasswordField mdp){
 
 
@@ -51,6 +77,9 @@ public class bdd extends loginController {
 
 
     }
+
+
+
 
     public static void createClient(int id,TextField Prenom,TextField Nom, TextField raisonSociale,TextField mail, TextField Num){
 
@@ -133,6 +162,12 @@ public class bdd extends loginController {
         return 0;
 
     }
+
+
+
+
+
+
 
     public static String getPrenomCommercial(int id) {
 
@@ -290,6 +325,26 @@ public class bdd extends loginController {
 
     }
 
+    public static int getIdLastClient() {
+
+        try {
+
+            StringBuilder requete = new StringBuilder();
+            requete.append("SELECT id FROM client ORDER BY id DESC");
+            ResultSet res = execute(requete.toString());
+            res.next();
+
+
+            System.out.println(res.getInt("id"));
+            return res.getInt("id");
+
+        } catch(Exception e){
+
+        }
+
+        return -1;
+
+    }
 
 
 

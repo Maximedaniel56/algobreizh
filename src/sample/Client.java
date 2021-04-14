@@ -16,12 +16,13 @@ public class Client {
 
     }
 
-    public Client(String raisonSociale, String Prenom, String Nom, String mail, int numeroTel) {
+    public Client(String raisonSociale, String Prenom, String Nom, String mail, int numeroTel, int id) {
         this.raisonSociale = raisonSociale;
         this.Prenom = Prenom;
         this.Nom = Nom;
         this.mail = mail;
         this.numeroTel = numeroTel;
+        this.id=id;
     }
 
     public String getPrenom() {
@@ -98,13 +99,8 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client{" +
-                "raisonSociale='" + raisonSociale + '\'' +
-                ", Prenom='" + Prenom + '\'' +
-                ", Nom='" + Nom + '\'' +
-                ", mail='" + mail + '\'' +
-                ", numeroTel=" + numeroTel +
-                '}';
+        return  Prenom+"  "+Nom+"  "+raisonSociale;
+
     }
 }
 
