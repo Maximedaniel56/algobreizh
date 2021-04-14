@@ -396,6 +396,7 @@ public class mainController {
             datesSemaineIntilialisation(numeroSemaine - 1);
             numeroSemaine = numeroSemaine - 1;
             labelNumeroSemaineDynamique.setText("" + numeroSemaine);
+            clearCells();
             rdvSemaineInitialisation();
         }
         else{
@@ -417,6 +418,7 @@ public class mainController {
             datesSemaineIntilialisation(numeroSemaine + 1);
             numeroSemaine = numeroSemaine + 1;
             labelNumeroSemaineDynamique.setText("" + numeroSemaine);
+            clearCells();
             rdvSemaineInitialisation();
         }
         else{
@@ -464,7 +466,32 @@ public class mainController {
     }
 
 
+    void clearCells(){
 
+        cell00.setStyle("-fx-background-color:  #D1D1D1;");
+        cell01.setStyle("-fx-background-color:  #D1D1D1;");
+        cell02.setStyle("-fx-background-color:  #D1D1D1;");
+        cell03.setStyle("-fx-background-color:  #D1D1D1;");
+        cell04.setStyle("-fx-background-color:  #D1D1D1;");
+        cell10.setStyle("-fx-background-color:  #D1D1D1;");
+        cell11.setStyle("-fx-background-color:  #D1D1D1;");
+        cell12.setStyle("-fx-background-color:  #D1D1D1;");
+        cell13.setStyle("-fx-background-color:  #D1D1D1;");
+        cell14.setStyle("-fx-background-color:  #D1D1D1;");
+        cell20.setStyle("-fx-background-color:  #D1D1D1;");
+        cell21.setStyle("-fx-background-color:  #D1D1D1;");
+        cell22.setStyle("-fx-background-color:  #D1D1D1;");
+        cell23.setStyle("-fx-background-color:  #D1D1D1;");
+        cell24.setStyle("-fx-background-color:  #D1D1D1;");
+        cell30.setStyle("-fx-background-color:  #D1D1D1;");
+        cell31.setStyle("-fx-background-color:  #D1D1D1;");
+        cell32.setStyle("-fx-background-color:  #D1D1D1;");
+        cell33.setStyle("-fx-background-color:  #D1D1D1;");
+        cell34.setStyle("-fx-background-color:  #D1D1D1;");
+
+
+
+    }
 
 
 
