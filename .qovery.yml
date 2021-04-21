@@ -1,0 +1,15 @@
+---
+application:
+  name: "algobreizh"
+  project: "algobreizh"
+  organization: "QoveryCommunity"
+databases:
+- type: "MYSQL"
+  name: "algobreizh"
+  version: "5.7"
+routers:
+- name: "main-algobreizh"
+  routes:
+  - application_name: "algobreizh"
+    paths:
+    - "/*"
