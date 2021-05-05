@@ -20,7 +20,7 @@ import java.sql.SQLException;
 import java.time.ZoneId;
 
 
-public class rdvController {
+public class rdvController implements myFXController{
 
 
     private Commercial activeSession;
@@ -120,7 +120,6 @@ public class rdvController {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/main.fxml"));
                     System.out.println(new rdv(date,creneau,selecteurClients.getValue().getId(),textAreaAddRdv.getText()));
                     activeSession.getListeRdv().add(new rdv(date,creneau,selecteurClients.getValue().getId(),textAreaAddRdv.getText()));
-                    //((mainController)fxmlLoader.getController()).getActiveSession().setListeRdv(this.activeSession.getListeRdv());
                     bdd.createRendezVous(selecteurClients.getValue().getId(),date,creneau,activeSession.getId(),textAreaAddRdv.getText());
                     exit();
 
@@ -145,4 +144,8 @@ public class rdvController {
 
     }
 
+    @Override
+    public Commercial getReturn() {
+        return activeSession;
+    }
 }

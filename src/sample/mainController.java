@@ -276,17 +276,100 @@ public class mainController {
 
             if(date.equals(desiredDate.plusDays(1))){
                 if(rdv.getCreneau()==1){
-                    System.out.println("dfsfqfqsdsddddddddddddddddddddd");
                     cell01.setStyle("-fx-background-color: #46c646;");
+                    labelrdv01.setText(""+bdd.getPrenomClient(rdv.getIdClient())+" "+bdd.getNomClient(rdv.getIdClient())+"\n"+bdd.getRaisonSociale(rdv.getIdClient()));
+
+                    cell01.setOnMouseClicked((MouseEvent e) -> {
+
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            Parent root1 = (Parent) fxmlLoader.load();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(root1));
+                            stage.show();
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
+                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
+
+
+                        } catch (Exception a) {
+                            System.out.println(a.getMessage());
+                        }
+
+                    });
                 }
                 if(rdv.getCreneau()==2){
                     cell11.setStyle("-fx-background-color: #46c646;");
+                    labelrdv11.setText(""+bdd.getPrenomClient(rdv.getIdClient())+" "+bdd.getNomClient(rdv.getIdClient())+"\n"+bdd.getRaisonSociale(rdv.getIdClient()));
+
+                    cell11.setOnMouseClicked((MouseEvent e) -> {
+
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            Parent root1 = (Parent) fxmlLoader.load();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(root1));
+                            stage.show();
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
+                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
+
+
+                        } catch (Exception a) {
+                            System.out.println(a.getMessage());
+                        }
+
+                    });
                 }
                 if(rdv.getCreneau()==3){
                     cell21.setStyle("-fx-background-color: #46c646;");
+                    labelrdv21.setText(""+bdd.getPrenomClient(rdv.getIdClient())+" "+bdd.getNomClient(rdv.getIdClient())+"\n"+bdd.getRaisonSociale(rdv.getIdClient()));
+
+                    cell21.setOnMouseClicked((MouseEvent e) -> {
+
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            Parent root1 = (Parent) fxmlLoader.load();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(root1));
+                            stage.show();
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
+                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
+
+
+                        } catch (Exception a) {
+                            System.out.println(a.getMessage());
+                        }
+
+                    });
                 }
                 if(rdv.getCreneau()==4){
                     cell31.setStyle("-fx-background-color: #46c646;");
+                    labelrdv31.setText(""+bdd.getPrenomClient(rdv.getIdClient())+" "+bdd.getNomClient(rdv.getIdClient())+"\n"+bdd.getRaisonSociale(rdv.getIdClient()));
+
+                    cell31.setOnMouseClicked((MouseEvent e) -> {
+
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            Parent root1 = (Parent) fxmlLoader.load();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(root1));
+                            stage.show();
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
+                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
+
+
+                        } catch (Exception a) {
+                            System.out.println(a.getMessage());
+                        }
+
+                    });
                 }
 
             }
@@ -294,15 +377,99 @@ public class mainController {
             if(date.equals(desiredDate.plusDays(2))){
                 if(rdv.getCreneau()==1){
                     cell02.setStyle("-fx-background-color: #46c646;");
+                    labelrdv02.setText(""+bdd.getPrenomClient(rdv.getIdClient())+" "+bdd.getNomClient(rdv.getIdClient())+"\n"+bdd.getRaisonSociale(rdv.getIdClient()));
+
+                    cell02.setOnMouseClicked((MouseEvent e) -> {
+
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            Parent root1 = (Parent) fxmlLoader.load();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(root1));
+                            stage.show();
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
+                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
+
+
+                        } catch (Exception a) {
+                            System.out.println(a.getMessage());
+                        }
+
+                    });
                 }
                 if(rdv.getCreneau()==2){
                     cell12.setStyle("-fx-background-color: #46c646;");
+                    labelrdv12.setText(""+bdd.getPrenomClient(rdv.getIdClient())+" "+bdd.getNomClient(rdv.getIdClient())+"\n"+bdd.getRaisonSociale(rdv.getIdClient()));
+
+                    cell12.setOnMouseClicked((MouseEvent e) -> {
+
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            Parent root1 = (Parent) fxmlLoader.load();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(root1));
+                            stage.show();
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
+                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
+
+
+                        } catch (Exception a) {
+                            System.out.println(a.getMessage());
+                        }
+
+                    });
                 }
                 if(rdv.getCreneau()==3){
                     cell22.setStyle("-fx-background-color: #46c646;");
+                    labelrdv22.setText(""+bdd.getPrenomClient(rdv.getIdClient())+" "+bdd.getNomClient(rdv.getIdClient())+"\n"+bdd.getRaisonSociale(rdv.getIdClient()));
+
+                    cell22.setOnMouseClicked((MouseEvent e) -> {
+
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            Parent root1 = (Parent) fxmlLoader.load();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(root1));
+                            stage.show();
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
+                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
+
+
+                        } catch (Exception a) {
+                            System.out.println(a.getMessage());
+                        }
+
+                    });
                 }
                 if(rdv.getCreneau()==4){
                     cell32.setStyle("-fx-background-color: #46c646;");
+                    labelrdv32.setText(""+bdd.getPrenomClient(rdv.getIdClient())+" "+bdd.getNomClient(rdv.getIdClient())+"\n"+bdd.getRaisonSociale(rdv.getIdClient()));
+
+                    cell32.setOnMouseClicked((MouseEvent e) -> {
+
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            Parent root1 = (Parent) fxmlLoader.load();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(root1));
+                            stage.show();
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
+                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
+
+
+                        } catch (Exception a) {
+                            System.out.println(a.getMessage());
+                        }
+
+                    });
                 }
 
             }
@@ -310,15 +477,99 @@ public class mainController {
             if(date.equals(desiredDate.plusDays(3))){
                 if(rdv.getCreneau()==1){
                     cell03.setStyle("-fx-background-color: #46c646;");
+                    labelrdv03.setText(""+bdd.getPrenomClient(rdv.getIdClient())+" "+bdd.getNomClient(rdv.getIdClient())+"\n"+bdd.getRaisonSociale(rdv.getIdClient()));
+
+                    cell03.setOnMouseClicked((MouseEvent e) -> {
+
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            Parent root1 = (Parent) fxmlLoader.load();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(root1));
+                            stage.show();
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
+                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
+
+
+                        } catch (Exception a) {
+                            System.out.println(a.getMessage());
+                        }
+
+                    });
                 }
                 if(rdv.getCreneau()==2){
                     cell13.setStyle("-fx-background-color: #46c646;");
+                    labelrdv13.setText(""+bdd.getPrenomClient(rdv.getIdClient())+" "+bdd.getNomClient(rdv.getIdClient())+"\n"+bdd.getRaisonSociale(rdv.getIdClient()));
+
+                    cell13.setOnMouseClicked((MouseEvent e) -> {
+
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            Parent root1 = (Parent) fxmlLoader.load();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(root1));
+                            stage.show();
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
+                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
+
+
+                        } catch (Exception a) {
+                            System.out.println(a.getMessage());
+                        }
+
+                    });
                 }
                 if(rdv.getCreneau()==3){
                     cell23.setStyle("-fx-background-color: #46c646;");
+                    labelrdv23.setText(""+bdd.getPrenomClient(rdv.getIdClient())+" "+bdd.getNomClient(rdv.getIdClient())+"\n"+bdd.getRaisonSociale(rdv.getIdClient()));
+
+                    cell23.setOnMouseClicked((MouseEvent e) -> {
+
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            Parent root1 = (Parent) fxmlLoader.load();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(root1));
+                            stage.show();
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
+                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
+
+
+                        } catch (Exception a) {
+                            System.out.println(a.getMessage());
+                        }
+
+                    });
                 }
                 if(rdv.getCreneau()==4){
                     cell33.setStyle("-fx-background-color: #46c646;");
+                    labelrdv33.setText(""+bdd.getPrenomClient(rdv.getIdClient())+" "+bdd.getNomClient(rdv.getIdClient())+"\n"+bdd.getRaisonSociale(rdv.getIdClient()));
+
+                    cell33.setOnMouseClicked((MouseEvent e) -> {
+
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            Parent root1 = (Parent) fxmlLoader.load();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(root1));
+                            stage.show();
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
+                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
+
+
+                        } catch (Exception a) {
+                            System.out.println(a.getMessage());
+                        }
+
+                    });
                 }
 
             }
@@ -326,15 +577,99 @@ public class mainController {
             if(date.equals(desiredDate.plusDays(4))){
                 if(rdv.getCreneau()==1){
                     cell04.setStyle("-fx-background-color: #46c646;");
+                    labelrdv04.setText(""+bdd.getPrenomClient(rdv.getIdClient())+" "+bdd.getNomClient(rdv.getIdClient())+"\n"+bdd.getRaisonSociale(rdv.getIdClient()));
+
+                    cell04.setOnMouseClicked((MouseEvent e) -> {
+
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            Parent root1 = (Parent) fxmlLoader.load();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(root1));
+                            stage.show();
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
+                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
+
+
+                        } catch (Exception a) {
+                            System.out.println(a.getMessage());
+                        }
+
+                    });
                 }
                 if(rdv.getCreneau()==2){
                     cell14.setStyle("-fx-background-color: #46c646;");
+                    labelrdv14.setText(""+bdd.getPrenomClient(rdv.getIdClient())+" "+bdd.getNomClient(rdv.getIdClient())+"\n"+bdd.getRaisonSociale(rdv.getIdClient()));
+
+                    cell14.setOnMouseClicked((MouseEvent e) -> {
+
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            Parent root1 = (Parent) fxmlLoader.load();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(root1));
+                            stage.show();
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
+                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
+
+
+                        } catch (Exception a) {
+                            System.out.println(a.getMessage());
+                        }
+
+                    });
                 }
                 if(rdv.getCreneau()==3){
                     cell24.setStyle("-fx-background-color: #46c646;");
+                    labelrdv24.setText(""+bdd.getPrenomClient(rdv.getIdClient())+" "+bdd.getNomClient(rdv.getIdClient())+"\n"+bdd.getRaisonSociale(rdv.getIdClient()));
+
+                    cell24.setOnMouseClicked((MouseEvent e) -> {
+
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            Parent root1 = (Parent) fxmlLoader.load();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(root1));
+                            stage.show();
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
+                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
+
+
+                        } catch (Exception a) {
+                            System.out.println(a.getMessage());
+                        }
+
+                    });
                 }
                 if(rdv.getCreneau()==4){
                     cell34.setStyle("-fx-background-color: #46c646;");
+                    labelrdv34.setText(""+bdd.getPrenomClient(rdv.getIdClient())+" "+bdd.getNomClient(rdv.getIdClient())+"\n"+bdd.getRaisonSociale(rdv.getIdClient()));
+
+                    cell34.setOnMouseClicked((MouseEvent e) -> {
+
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            Parent root1 = (Parent) fxmlLoader.load();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(root1));
+                            stage.show();
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
+                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
+                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
+
+
+                        } catch (Exception a) {
+                            System.out.println(a.getMessage());
+                        }
+
+                    });
                 }
 
             }
@@ -560,11 +895,13 @@ public class mainController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdv.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
+            myStage stage = new myStage();
             stage.setScene(new Scene(root1));
-            stage.show();
             ((rdvController)fxmlLoader.getController()).setActiveSession(this.activeSession);
             ((rdvController)fxmlLoader.getController()).addRdvInit();
+            this.activeSession=stage.showAndReturn(((rdvController)fxmlLoader.getController()));
+            rdvSemaineInitialisation();
+
 
 
         } catch (Exception e){
