@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -24,12 +25,33 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </JFXButton>
-      <DatePicker fx:id="datePicker" layoutX="154.0" layoutY="133.0" />
-      <ComboBox fx:id="selecteurCreneau" layoutX="137.0" layoutY="292.0" prefHeight="43.0" prefWidth="208.0" />
-      <ComboBox fx:id="selecteurClients" layoutX="165.0" layoutY="220.0" prefWidth="150.0" />
+      <DatePicker fx:id="datePicker" layoutX="155.0" layoutY="110.0" />
+      <ComboBox fx:id="selecteurCreneau" layoutX="136.0" layoutY="224.0" prefHeight="43.0" prefWidth="208.0" />
+      <ComboBox fx:id="selecteurClients" layoutX="165.0" layoutY="162.0" prefWidth="150.0" />
       <Label fx:id="labelErreurRdv" layoutX="100.0" layoutY="354.0" prefHeight="34.0" prefWidth="280.0" textFill="RED">
          <font>
             <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <JFXTextArea fx:id="textAreaAddRdv" layoutX="52.0" layoutY="324.0" prefHeight="58.0" prefWidth="378.0" promptText="Veuillez saisir votre commentaire ici ..." />
+      <Label alignment="CENTER" layoutX="176.0" layoutY="197.0" prefHeight="27.0" prefWidth="131.0" text="Créneau " textFill="#8d8d8d">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="177.0" layoutY="135.0" prefHeight="27.0" prefWidth="131.0" text="Client" textFill="#8d8d8d">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="176.0" layoutY="75.0" prefHeight="27.0" prefWidth="131.0" text="Date" textFill="#8d8d8d">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="177.0" layoutY="286.0" prefHeight="27.0" prefWidth="131.0" text="Commentaire" textFill="#8d8d8d">
+         <font>
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
    </children>

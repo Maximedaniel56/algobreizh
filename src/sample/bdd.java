@@ -12,10 +12,10 @@ import javafx.scene.control.TextField;
 public class bdd extends loginController {
 
 
-    public static void createRendezVous(int idClient, Date date, int creneau, int idCommercial){
+    public static void createRendezVous(int idClient, Date date, int creneau, int idCommercial, String commentaire){
 
         StringBuilder requete = new StringBuilder();
-        requete.append("INSERT INTO rdv (fkClient,date,creneau,fkCommercial) VALUES ('"+idClient+"','"+date+"','"+creneau+"','"+idCommercial+"')");
+        requete.append("INSERT INTO rdv (fkClient,date,creneau,fkCommercial,commentaire) VALUES ('"+idClient+"','"+date+"','"+creneau+"','"+idCommercial+"','"+commentaire+"')");
         ResultSet res =execute (requete.toString());
 
 
@@ -65,7 +65,7 @@ public class bdd extends loginController {
         ArrayList liste = new ArrayList();
         while (res.next()){
 
-            rdv rdv=new rdv(res.getDate("date"),res.getInt("creneau"),res.getInt("fkClient"));
+            rdv rdv=new rdv(res.getDate("date"),res.getInt("creneau"),res.getInt("fkClient"),res.getString("commentaire"));
             liste.add(rdv);
         }
 
@@ -180,6 +180,7 @@ public class bdd extends loginController {
 
 
 
+
     public static String getPrenomCommercial(int id) {
 
         try {
@@ -188,14 +189,72 @@ public class bdd extends loginController {
             requete.append("SELECT prenom from commercial where id = '"+id+"'");
             ResultSet res = execute(requete.toString());
             res.next();
-
             return res.getString("prenom");
 
+
         } catch(Exception e){
-
+            System.out.println(e);
         }
+        return ("null");
 
-        return "null";
+
+    }
+
+    public static String getPrenomClient(int id) {
+
+        try {
+
+            StringBuilder requete = new StringBuilder();
+            requete.append("SELECT prenom from client where id = '"+id+"'");
+            ResultSet res = execute(requete.toString());
+            res.next();
+            return res.getString("prenom");
+
+
+        } catch(Exception e){
+            System.out.println(e);
+        }
+        return ("null");
+
+
+    }
+
+
+    public static String getCommentaireRdv(int idClient, int idCommercial, int creneau, Date date) {
+
+        try {
+
+            StringBuilder requete = new StringBuilder();
+            requete.append("SELECT * FROM `rdv` WHERE fkClient = "+idClient+" and fkCommercial = "+idCommercial+" and creneau = "+creneau+" and date = '"+date+"'");
+            ResultSet res = execute(requete.toString());
+            res.next();
+            return res.getString("commentaire");
+
+
+        } catch(Exception e){
+            System.out.println(e);
+        }
+        return ("null");
+
+
+    }
+
+    public static String getRaisonSociale(int id) {
+
+        try {
+
+            StringBuilder requete = new StringBuilder();
+            requete.append("SELECT raisonSociale from client where id = '"+id+"'");
+            ResultSet res = execute(requete.toString());
+            res.next();
+            return res.getString("raisonSociale");
+
+
+        } catch(Exception e){
+            System.out.println(e);
+        }
+        return ("null");
+
 
     }
 
@@ -226,6 +285,26 @@ public class bdd extends loginController {
 
             StringBuilder requete = new StringBuilder();
             requete.append("SELECT nom from commercial where id = '"+id+"'");
+            ResultSet res = execute(requete.toString());
+            res.next();
+
+
+            return res.getString("nom");
+
+        } catch(Exception e){
+
+        }
+
+        return "null";
+
+    }
+
+    public static String getNomClient(int id) {
+
+        try {
+
+            StringBuilder requete = new StringBuilder();
+            requete.append("SELECT nom from client where id = '"+id+"'");
             ResultSet res = execute(requete.toString());
             res.next();
 

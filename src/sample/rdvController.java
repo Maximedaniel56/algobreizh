@@ -1,6 +1,7 @@
 package sample;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,6 +36,9 @@ public class rdvController {
     private DatePicker datePicker;
     @FXML
     private JFXButton boutonValiderAjoutRdv;
+    @FXML
+    private JFXTextArea textAreaAddRdv;
+
     private int creneau;
 
 
@@ -110,14 +114,14 @@ public class rdvController {
                         creneau=4;
                     }
 
-
+                    if (textAreaAddRdv.getText().isEmpty()){textAreaAddRdv.setText("NULL");}
 
 
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/main.fxml"));
-                    System.out.println(new rdv(date,creneau,selecteurClients.getValue().getId()));
-                    activeSession.getListeRdv().add(new rdv(date,creneau,selecteurClients.getValue().getId()));
+                    System.out.println(new rdv(date,creneau,selecteurClients.getValue().getId(),textAreaAddRdv.getText()));
+                    activeSession.getListeRdv().add(new rdv(date,creneau,selecteurClients.getValue().getId(),textAreaAddRdv.getText()));
                     //((mainController)fxmlLoader.getController()).getActiveSession().setListeRdv(this.activeSession.getListeRdv());
-                    bdd.createRendezVous(selecteurClients.getValue().getId(),date,creneau,activeSession.getId());
+                    bdd.createRendezVous(selecteurClients.getValue().getId(),date,creneau,activeSession.getId(),textAreaAddRdv.getText());
                     exit();
 
 

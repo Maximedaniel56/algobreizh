@@ -267,83 +267,223 @@
                   <Pane fx:id="cell00" layoutX="150.0" layoutY="150.0" prefHeight="149.0" prefWidth="180.0" style="-fx-background-color: #D1D1D1;" styleClass="cell" stylesheets="@Style.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Pane>
+                     </cursor>
+                     <children>
+                        <Label fx:id="labelrdv00" alignment="CENTER" ellipsisString="" layoutY="35.0" prefHeight="79.0" prefWidth="180.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
                   <Pane fx:id="cell01" layoutX="340.0" layoutY="150.0" prefHeight="149.0" prefWidth="180.0" style="-fx-background-color: #D1D1D1;" styleClass="cell" stylesheets="@Style.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Pane>
+                     </cursor>
+                     <children>
+                        <Label fx:id="labelrdv01" alignment="CENTER" ellipsisString="" layoutY="35.0" prefHeight="79.0" prefWidth="180.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
                   <Pane fx:id="cell02" layoutX="530.0" layoutY="150.0" prefHeight="149.0" prefWidth="180.0" style="-fx-background-color: #D1D1D1;" styleClass="cell" stylesheets="@Style.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Pane>
+                     </cursor>
+                     <children>
+                        <Label fx:id="labelrdv02" alignment="CENTER" ellipsisString="" layoutY="35.0" prefHeight="79.0" prefWidth="180.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
                   <Pane fx:id="cell03" layoutX="720.0" layoutY="150.0" prefHeight="149.0" prefWidth="180.0" style="-fx-background-color: #D1D1D1;" styleClass="cell" stylesheets="@Style.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Pane>
+                     </cursor>
+                     <children>
+                        <Label fx:id="labelrdv03" alignment="CENTER" ellipsisString="" layoutY="35.0" prefHeight="79.0" prefWidth="180.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
                   <Pane fx:id="cell04" layoutX="910.0" layoutY="150.0" prefHeight="149.0" prefWidth="180.0" style="-fx-background-color: #D1D1D1;" styleClass="cell" stylesheets="@Style.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Pane>
+                     </cursor>
+                     <children>
+                        <Label fx:id="labelrdv04" alignment="CENTER" ellipsisString="" layoutY="35.0" prefHeight="79.0" prefWidth="180.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
                   <Pane fx:id="cell10" layoutX="150.0" layoutY="310.0" prefHeight="149.0" prefWidth="180.0" style="-fx-background-color: #D1D1D1;" styleClass="cell" stylesheets="@Style.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Pane>
+                     </cursor>
+                     <children>
+                        <Label fx:id="labelrdv10" alignment="CENTER" ellipsisString="" layoutY="35.0" prefHeight="79.0" prefWidth="180.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
                   <Pane fx:id="cell11" layoutX="340.0" layoutY="310.0" prefHeight="149.0" prefWidth="180.0" style="-fx-background-color: #D1D1D1;" styleClass="cell" stylesheets="@Style.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Pane>
+                     </cursor>
+                     <children>
+                        <Label fx:id="labelrdv11" alignment="CENTER" ellipsisString="" layoutY="35.0" prefHeight="79.0" prefWidth="180.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
                   <Pane fx:id="cell12" layoutX="530.0" layoutY="310.0" prefHeight="149.0" prefWidth="180.0" style="-fx-background-color: #D1D1D1;" styleClass="cell" stylesheets="@Style.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Pane>
+                     </cursor>
+                     <children>
+                        <Label fx:id="labelrdv12" alignment="CENTER" ellipsisString="" layoutY="35.0" prefHeight="79.0" prefWidth="180.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
                   <Pane fx:id="cell13" layoutX="720.0" layoutY="310.0" prefHeight="149.0" prefWidth="180.0" style="-fx-background-color: #D1D1D1;" styleClass="cell" stylesheets="@Style.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Pane>
+                     </cursor>
+                     <children>
+                        <Label fx:id="labelrdv13" alignment="CENTER" ellipsisString="" layoutY="35.0" prefHeight="79.0" prefWidth="180.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
                   <Pane fx:id="cell14" layoutX="910.0" layoutY="310.0" prefHeight="149.0" prefWidth="180.0" style="-fx-background-color: #D1D1D1;" styleClass="cell" stylesheets="@Style.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Pane>
+                     </cursor>
+                     <children>
+                        <Label fx:id="labelrdv14" alignment="CENTER" ellipsisString="" layoutY="35.0" prefHeight="79.0" prefWidth="180.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
                   <Pane fx:id="cell20" layoutX="150.0" layoutY="470.0" prefHeight="149.0" prefWidth="180.0" style="-fx-background-color: #D1D1D1;" styleClass="cell" stylesheets="@Style.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Pane>
+                     </cursor>
+                     <children>
+                        <Label fx:id="labelrdv20" alignment="CENTER" ellipsisString="" layoutY="35.0" prefHeight="79.0" prefWidth="180.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
                   <Pane fx:id="cell21" layoutX="340.0" layoutY="470.0" prefHeight="149.0" prefWidth="180.0" style="-fx-background-color: #D1D1D1;" styleClass="cell" stylesheets="@Style.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Pane>
+                     </cursor>
+                     <children>
+                        <Label fx:id="labelrdv21" alignment="CENTER" ellipsisString="" layoutY="35.0" prefHeight="79.0" prefWidth="180.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
                   <Pane fx:id="cell22" layoutX="530.0" layoutY="470.0" prefHeight="149.0" prefWidth="180.0" style="-fx-background-color: #D1D1D1;" styleClass="cell" stylesheets="@Style.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Pane>
+                     </cursor>
+                     <children>
+                        <Label fx:id="labelrdv22" alignment="CENTER" ellipsisString="" layoutY="35.0" prefHeight="79.0" prefWidth="180.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
                   <Pane fx:id="cell23" layoutX="720.0" layoutY="470.0" prefHeight="149.0" prefWidth="180.0" style="-fx-background-color: #D1D1D1;" styleClass="cell" stylesheets="@Style.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Pane>
+                     </cursor>
+                     <children>
+                        <Label fx:id="labelrdv23" alignment="CENTER" ellipsisString="" layoutY="35.0" prefHeight="79.0" prefWidth="180.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
                   <Pane fx:id="cell24" layoutX="910.0" layoutY="470.0" prefHeight="149.0" prefWidth="180.0" style="-fx-background-color: #D1D1D1;" styleClass="cell" stylesheets="@Style.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Pane>
+                     </cursor>
+                     <children>
+                        <Label fx:id="labelrdv24" alignment="CENTER" ellipsisString="" layoutY="35.0" prefHeight="79.0" prefWidth="180.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
                   <Pane fx:id="cell30" layoutX="150.0" layoutY="630.0" prefHeight="149.0" prefWidth="180.0" style="-fx-background-color: #D1D1D1;" styleClass="cell" stylesheets="@Style.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Pane>
+                     </cursor>
+                     <children>
+                        <Label fx:id="labelrdv30" alignment="CENTER" ellipsisString="" layoutY="35.0" prefHeight="79.0" prefWidth="180.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
                   <Pane fx:id="cell31" layoutX="340.0" layoutY="630.0" prefHeight="149.0" prefWidth="180.0" style="-fx-background-color: #D1D1D1;" styleClass="cell" stylesheets="@Style.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Pane>
+                     </cursor>
+                     <children>
+                        <Label fx:id="labelrdv31" alignment="CENTER" ellipsisString="" layoutY="35.0" prefHeight="79.0" prefWidth="180.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
                   <Pane fx:id="cell32" layoutX="530.0" layoutY="630.0" prefHeight="149.0" prefWidth="180.0" style="-fx-background-color: #D1D1D1;" styleClass="cell" stylesheets="@Style.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Pane>
+                     </cursor>
+                     <children>
+                        <Label fx:id="labelrdv32" alignment="CENTER" ellipsisString="" layoutY="35.0" prefHeight="79.0" prefWidth="180.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
                   <Pane fx:id="cell33" layoutX="720.0" layoutY="630.0" prefHeight="149.0" prefWidth="180.0" style="-fx-background-color: #D1D1D1;" styleClass="cell" stylesheets="@Style.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Pane>
+                     </cursor>
+                     <children>
+                        <Label fx:id="labelrdv33" alignment="CENTER" ellipsisString="" layoutY="35.0" prefHeight="79.0" prefWidth="180.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
                   <Pane fx:id="cell34" layoutX="910.0" layoutY="630.0" prefHeight="149.0" prefWidth="180.0" style="-fx-background-color: #D1D1D1;" styleClass="cell" stylesheets="@Style.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Pane>
+                     </cursor>
+                     <children>
+                        <Label fx:id="labelrdv34" alignment="CENTER" ellipsisString="" layoutY="35.0" prefHeight="79.0" prefWidth="180.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
                   <Button fx:id="addRdv" layoutX="13.0" layoutY="14.0" mnemonicParsing="false" onAction="#addRdvPressed" prefHeight="86.0" prefWidth="120.0" style="-fx-background-color: #46c646;" styleClass="simplehover" stylesheets="@Style.css" text="+" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="59.0" />

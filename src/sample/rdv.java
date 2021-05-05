@@ -7,11 +7,13 @@ public class rdv {
     private Date date;
     private int creneau;
     private int idClient;
+    private String commentaire;
 
-    public rdv(Date date, int creneau, int id) {
+    public rdv(Date date, int creneau, int id, String commentaire) {
         this.date = date;
         this.creneau = creneau;
         this.idClient=id;
+        this.commentaire=commentaire;
     }
 
     public Date getDate() {
@@ -20,6 +22,14 @@ public class rdv {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getCommentaire() {
+        return commentaire;
+    }
+
+    public void setCommentaire(String commentaire) {
+        this.commentaire = commentaire;
     }
 
     public int getCreneau() {
