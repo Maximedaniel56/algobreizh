@@ -352,26 +352,31 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label fx:id="labelNumeroSemaineFixe" layoutX="440.0" layoutY="6.0" prefHeight="42.0" prefWidth="160.0" text="Semaine N°" textFill="#838383">
+                  <Label fx:id="labelNumeroSemaineFixe" layoutX="810.0" layoutY="7.0" prefHeight="42.0" prefWidth="160.0" text="Semaine N°" textFill="#838383">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelNumeroSemaineDynamique" layoutX="620.0" layoutY="6.0" prefHeight="42.0" prefWidth="34.0" textFill="#838383">
+                  <Label fx:id="labelNumeroSemaineDynamique" layoutX="986.0" layoutY="7.0" prefHeight="42.0" prefWidth="34.0" textFill="#838383">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="flecheDecrementer" fitHeight="35.0" fitWidth="34.0" layoutX="587.0" layoutY="10.0" onMouseClicked="#flecheDecrementerPressed" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="flecheDecrementer" fitHeight="35.0" fitWidth="34.0" layoutX="953.0" layoutY="11.0" onMouseClicked="#flecheDecrementerPressed" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../ressources/flecheGauche.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="flecheIncrementer" fitHeight="35.0" fitWidth="34.0" layoutX="654.0" layoutY="10.0" onMouseClicked="#flecheIncrementerPressed" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="flecheIncrementer" fitHeight="35.0" fitWidth="34.0" layoutX="1020.0" layoutY="11.0" onMouseClicked="#flecheIncrementerPressed" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../ressources/flecheDroite.png" />
                      </image>
                   </ImageView>
+                  <Label fx:id="dateJour" layoutX="256.0" layoutY="11.0" prefHeight="35.0" prefWidth="454.0" textFill="#838383">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </children></Pane>
@@ -388,7 +393,7 @@
       </Pane>
       <Pane id="menuPanel" layoutX="-6.0" layoutY="131.0" prefHeight="834.0" prefWidth="493.0" style="-fx-background-color: #420D73;">
          <children>
-            <Button fx:id="btnPlanningSemaine" layoutX="112.0" layoutY="131.0" mnemonicParsing="false" onAction="#btnPlanningSemainePressed" prefHeight="94.0" prefWidth="380.0"  styleClass="mainButtons" stylesheets="@Style.css" text="Planing de la semaine" textFill="WHITE">
+            <Button fx:id="btnPlanningSemaine" layoutX="112.0" layoutY="131.0" mnemonicParsing="false" onAction="#btnPlanningSemainePressed" prefHeight="94.0" prefWidth="380.0" styleClass="mainButtons" stylesheets="@Style.css" text="Planing de la semaine" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="32.0" />
                </font>

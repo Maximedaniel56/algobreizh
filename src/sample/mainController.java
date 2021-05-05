@@ -24,6 +24,7 @@ import java.awt.event.WindowAdapter;
 import java.sql.SQLException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.IsoFields;
 import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.WeekFields;
@@ -44,7 +45,8 @@ public class mainController {
     private JFXTextField textefieldNomMonCompte;
     @FXML
     private JFXListView<Client> ListeClientsPanelClients;
-
+    @FXML
+    private Label dateJour;
 
     @FXML
     private JFXTextField textefieldMailMonCompte;
@@ -121,6 +123,9 @@ public class mainController {
 
     @FXML
     public void initialisation(int id) throws SQLException {
+
+        String dateFrancaise=LocalDate.now().format(DateTimeFormatter.ofPattern("EEEE, dd MMMM, yyyy",Locale.FRENCH));
+        dateJour.setText(dateFrancaise);
         labelNumeroSemaineDynamique.setText("gfsf");
         affichagePanel(true,false,false,false,false);
         activeSession = new Commercial(bdd.getPrenomCommercial(id), bdd.getNomCommercial(id),bdd.getVilleCommercial(id),bdd.getMailCommercial(id), id);

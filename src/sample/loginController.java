@@ -159,8 +159,7 @@ public class loginController extends mainController{
 
                 labelErreur.setTextFill(Color.RED);labelErreur.setText("mail déjà utilisé");}
             else if (bdd.checkMailExist(inscription_email.getText())==0&&bdd.checkLoginExist(inscription_identifiant.getText())==0){
-                System.out.println(bdd.checkMailExist(inscription_email.getText()));
-                System.out.println(bdd.checkLoginExist(inscription_identifiant.getText()));
+
 
 
 
@@ -173,8 +172,7 @@ public class loginController extends mainController{
             else {
             labelErreur.setTextFill(Color.RED);
             labelErreur.setText("Les mots de passe ne correspondent pas"); }
-        System.out.println(inscription_mdp.getCharacters());
-        System.out.println(inscription_mdp2.getCharacters());
+
 
 
 
