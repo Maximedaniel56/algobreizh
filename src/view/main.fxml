@@ -19,17 +19,6 @@
    <children>
       <Pane id="planningPanel" layoutX="493.0" layoutY="131.0" prefHeight="834.0" prefWidth="1122.0" style="-fx-background-color: linear-gradient(to right top, #ffffff, #f7f7f7, #eeeef0, #e6e6e8, #dedee1);;">
          <children>
-            <Pane fx:id="rdvPannel" prefHeight="834.0" prefWidth="1122.0" style="-fx-background-color: linear-gradient(to right top, #ffffff, #f7f7f7, #eeeef0, #e6e6e8, #dedee1);;" />
-            <Pane fx:id="clientsPanel" prefHeight="834.0" prefWidth="1122.0" style="-fx-background-color: linear-gradient(to right top, #ffffff, #f7f7f7, #eeeef0, #e6e6e8, #dedee1);;">
-               <children>
-                  <Label layoutX="95.0" layoutY="45.0" prefHeight="114.0" prefWidth="380.0" text="Liste des clients " textFill="#838383">
-                     <font>
-                        <Font name="System Bold" size="46.0" />
-                     </font>
-                  </Label>
-                  <JFXListView fx:id="ListeClientsPanelClients" layoutX="95.0" layoutY="159.0" prefHeight="497.0" prefWidth="536.0" />
-               </children>
-            </Pane>
             <Pane fx:id="addClientsPanel" prefHeight="834.0" prefWidth="1122.0" style="-fx-background-color: linear-gradient(to right top, #ffffff, #f7f7f7, #eeeef0, #e6e6e8, #dedee1);;">
                <children>
                   <Label layoutX="208.0" layoutY="93.0" prefHeight="53.0" prefWidth="675.0" text="Veuillez saisir les informations du client" textFill="#575757">
@@ -515,6 +504,79 @@
                   <Label fx:id="dateJour" layoutX="256.0" layoutY="11.0" prefHeight="35.0" prefWidth="454.0" textFill="#838383">
                      <font>
                         <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="rdvPannel" prefHeight="834.0" prefWidth="1122.0" style="-fx-background-color: linear-gradient(to right top, #ffffff, #f7f7f7, #eeeef0, #e6e6e8, #dedee1);;">
+               <children>
+                  <Label layoutX="62.0" layoutY="110.0" prefHeight="114.0" prefWidth="690.0" text="Clients à visiter en priorité :" textFill="#838383">
+                     <font>
+                        <Font name="System Bold" size="46.0" />
+                     </font>
+                  </Label>
+               </children></Pane>
+            <Pane fx:id="clientsPanel" prefHeight="834.0" prefWidth="1122.0" style="-fx-background-color: linear-gradient(to right top, #ffffff, #f7f7f7, #eeeef0, #e6e6e8, #dedee1);;">
+               <children>
+                  <Label layoutX="95.0" layoutY="45.0" prefHeight="114.0" prefWidth="380.0" text="Liste des clients " textFill="#838383">
+                     <font>
+                        <Font name="System Bold" size="46.0" />
+                     </font>
+                  </Label>
+                  <JFXListView fx:id="ListeClientsPanelClients" layoutX="182.0" layoutY="159.0" prefHeight="497.0" prefWidth="180.0" />
+                  <Label alignment="CENTER" layoutX="626.0" layoutY="45.0" prefHeight="114.0" prefWidth="380.0" text="Informations" textFill="#838383">
+                     <font>
+                        <Font name="System Bold" size="46.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="483.0" layoutY="213.0" prefHeight="79.0" prefWidth="279.0" text="Prenom" textFill="#420d73">
+                     <font>
+                        <Font name="System Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="483.0" layoutY="329.0" prefHeight="79.0" prefWidth="279.0" text="Raison sociale" textFill="#420d73">
+                     <font>
+                        <Font name="System Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="483.0" layoutY="395.0" prefHeight="79.0" prefWidth="279.0" text="Adresse e-mail" textFill="#420d73">
+                     <font>
+                        <Font name="System Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="483.0" layoutY="272.0" prefHeight="79.0" prefWidth="279.0" text="Nom" textFill="#420d73">
+                     <font>
+                        <Font name="System Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="483.0" layoutY="458.0" prefHeight="79.0" prefWidth="288.0" text="Numero téléphone" textFill="#420d73">
+                     <font>
+                        <Font name="System Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelInfoPrenom" alignment="CENTER" layoutX="762.0" layoutY="213.0" prefHeight="79.0" prefWidth="279.0" text="--" textFill="#838383">
+                     <font>
+                        <Font name="System Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelInfoNom" alignment="CENTER" layoutX="762.0" layoutY="272.0" prefHeight="79.0" prefWidth="279.0" text="--" textFill="#838383">
+                     <font>
+                        <Font name="System Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelInfoRaisonSociale" alignment="CENTER" layoutX="762.0" layoutY="329.0" prefHeight="79.0" prefWidth="279.0" text="--" textFill="#838383">
+                     <font>
+                        <Font name="System Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelInfoMail" alignment="CENTER" layoutX="762.0" layoutY="395.0" prefHeight="79.0" prefWidth="279.0" text="--" textFill="#838383">
+                     <font>
+                        <Font name="System Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelInfoTel" alignment="CENTER" layoutX="762.0" layoutY="458.0" prefHeight="79.0" prefWidth="279.0" text="--" textFill="#838383">
+                     <font>
+                        <Font name="System Bold" size="29.0" />
                      </font>
                   </Label>
                </children>

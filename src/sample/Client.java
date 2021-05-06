@@ -1,16 +1,26 @@
 package sample;
 
+import java.sql.Date;
+
 public class Client {
 
     private String raisonSociale;
     private String Prenom;
     private String Nom;
     private String mail;
-    private int numeroTel;
+    private Date dernierRdv;
+    private float numeroTel;
     private int id;
     private int idFkCommercial;
 
 
+    public Date getDernierRdv() {
+        return dernierRdv;
+    }
+
+    public void setDernierRdv(Date dernierRdv) {
+        this.dernierRdv = dernierRdv;
+    }
 
     public Client() {
 
@@ -89,17 +99,17 @@ public class Client {
         this.mail = mail;
     }
 
-    public int getNumeroTel() {
+    public float getNumeroTel() {
         return numeroTel;
     }
 
-    public void setNumeroTel(int numeroTel) {
+    public void setNumeroTel(float numeroTel) {
         this.numeroTel = numeroTel;
     }
 
     @Override
     public String toString() {
-        return  Prenom+"  "+Nom+"  "+raisonSociale;
+        return  Prenom+"  "+Nom;
 
     }
 }

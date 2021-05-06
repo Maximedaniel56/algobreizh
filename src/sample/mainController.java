@@ -25,7 +25,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.IsoFields;
 import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.WeekFields;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -51,6 +50,20 @@ public class mainController {
 
     @FXML
     private JFXTextField textefieldVilleMonCompte;
+    @FXML
+    private Label labelInfoPrenom;
+
+    @FXML
+    private Label labelInfoNom;
+
+    @FXML
+    private Label labelInfoRaisonSociale;
+
+    @FXML
+    private Label labelInfoMail;
+
+    @FXML
+    private Label labelInfoTel;
 
     @FXML
     private JFXButton boutonValiderMonCompte;
@@ -146,6 +159,7 @@ public class mainController {
         rdvSemaineInitialisation();
         initCells();
         initLabels();
+        System.out.println(bdd.getListeClients(activeSession.getId()));
 
 
     }
@@ -712,7 +726,7 @@ public class mainController {
 
 
 
-        bdd.createClient(activeSession.getId(),textFieldNom,textFieldPrenom,textFieldRaisonSociale,textFieldMail,textFieldNumtel);
+        bdd.createClient(activeSession.getId(),textFieldPrenom,textFieldNom,textFieldRaisonSociale,textFieldMail,textFieldNumtel);
         Client client = new Client(textFieldPrenom.getText(),textFieldPrenom.getText(), textFieldNom.getText(), textFieldMail.getText(),textFieldNumtel.getAnchor(),bdd.getIdLastClient());
         activeSession.getListeClients().add(client);
         textFieldNom.clear();
@@ -767,6 +781,21 @@ public class mainController {
 
     }
 
+    public void handle(MouseEvent event) {
+        labelInfoPrenom.setText(ListeClientsPanelClients.getSelectionModel().getSelectedItem().getPrenom());
+        labelInfoNom.setText(ListeClientsPanelClients.getSelectionModel().getSelectedItem().getNom());
+        labelInfoMail.setText(ListeClientsPanelClients.getSelectionModel().getSelectedItem().getMail());
+        labelInfoRaisonSociale.setText(ListeClientsPanelClients.getSelectionModel().getSelectedItem().getRaisonSociale());
+        labelInfoTel.setText(toString(ListeClientsPanelClients.getSelectionModel().getSelectedItem().getNumeroTel()));
+
+    }
+
+    private String toString(float numeroTel) {
+        String s = String.valueOf(numeroTel);
+
+        return s;
+    }
+
 
 
     @FXML
@@ -782,6 +811,8 @@ public class mainController {
             ListeClientsPanelClients.getItems().add(client);
 
         }
+        ListeClientsPanelClients.setOnMouseClicked(this::handle);
+
 
     }
 

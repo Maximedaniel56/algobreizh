@@ -12,6 +12,7 @@ public class Commercial {
     private String motdepasse;
     private String identifiant;
     private ArrayList<Client> listeClients;
+    private ArrayList<Client> clientsPrioritaires;
     private ArrayList<rdv> listeRdv;
 
 
@@ -27,6 +28,14 @@ public class Commercial {
 
 
 
+    }
+
+    public ArrayList<Client> getClientsPrioritaires() {
+        return clientsPrioritaires;
+    }
+
+    public void setClientsPrioritaires(ArrayList<Client> clientsPrioritaires) {
+        this.clientsPrioritaires = clientsPrioritaires;
     }
 
     public int getId() {

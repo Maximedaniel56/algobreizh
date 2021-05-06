@@ -84,7 +84,7 @@ public class rdvController implements myFXController{
 
 
     @FXML
-    void boutonValiderAjoutRdvPressed(ActionEvent event){
+    void boutonValiderAjoutRdvPressed(ActionEvent event) throws SQLException {
 
 
 
@@ -117,11 +117,19 @@ public class rdvController implements myFXController{
                     if (textAreaAddRdv.getText().isEmpty()){textAreaAddRdv.setText("NULL");}
 
 
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/main.fxml"));
-                    System.out.println(new rdv(date,creneau,selecteurClients.getValue().getId(),textAreaAddRdv.getText()));
-                    activeSession.getListeRdv().add(new rdv(date,creneau,selecteurClients.getValue().getId(),textAreaAddRdv.getText()));
-                    bdd.createRendezVous(selecteurClients.getValue().getId(),date,creneau,activeSession.getId(),textAreaAddRdv.getText());
-                    exit();
+                    if (bdd.checkDateDispo(date,creneau,activeSession.getId())) {
+
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/main.fxml"));
+                        System.out.println(new rdv(date, creneau, selecteurClients.getValue().getId(), textAreaAddRdv.getText()));
+                        activeSession.getListeRdv().add(new rdv(date, creneau, selecteurClients.getValue().getId(), textAreaAddRdv.getText()));
+                        bdd.createRendezVous(selecteurClients.getValue().getId(), date, creneau, activeSession.getId(), textAreaAddRdv.getText());
+                        exit();
+                    }
+
+                    else{
+                        labelErreurRdv.setText("créneau indisponible");
+
+                    }
 
 
 

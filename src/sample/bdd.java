@@ -23,17 +23,31 @@ public class bdd extends loginController {
 
     }
 
+    public static boolean checkDateDispo(Date date, int creneau, int idCommercial) throws SQLException {
 
-    public static void getLastRdv(int idClient,int idCommercial){
-
-     /*   StringBuilder requete = new StringBuilder();
-        requete.append("SELECT * FROM `rdv` where fkClient = "+idClient+" and fkCommercial = "+idCommercial+" order by date desc limit 1");
+        StringBuilder requete = new StringBuilder();
+        requete.append("select * from rdv where fkcommercial = "+idCommercial+" and date ='"+date+"' and creneau ="+creneau+"");
         ResultSet res =execute (requete.toString());
-*/
+        if (res.next()==false){
+                return true;
+        }
+
+        else {
+            return false;
+        }
     }
 
 
-    public static ArrayList<Client> getListeClients(int id) throws SQLException {
+    /*public static void getLastRdv(int idCommercial){
+
+       StringBuilder requete = new StringBuilder();
+        requete.append("select client.id, MAX(rdv.date) as datemax from client left join rdv on fkclient = client.id where fkcommercial="+idCommercial+" or idFkCommercial ="+idCommercial+" group by client.id ORDER BY datemax ASC");
+        ResultSet res =execute (requete.toString());
+
+    */
+
+
+    public static ArrayList<Client> getListeClients2(int id) throws SQLException {
 
         StringBuilder requete = new StringBuilder();
         requete.append("Select * from Client Where idFkCommercial = "+id);
@@ -55,6 +69,35 @@ public class bdd extends loginController {
 
         return liste;
     }
+
+
+    public static ArrayList<Client> getListeClients(int id) throws SQLException {
+
+        StringBuilder requete = new StringBuilder();
+        requete.append("select *, MAX(rdv.date) as datemax from client left join rdv on fkclient = client.id where fkcommercial="+id+" or idFkCommercial ="+id+" group by client.id");
+        ResultSet res = execute(requete.toString());
+        ArrayList liste = new ArrayList();
+        while (res.next()){
+
+            Client clientTmp=new Client();
+            clientTmp.setId(res.getInt("id"));
+            clientTmp.setIdFkCommercial(id);
+            clientTmp.setContactPrenom(res.getString("prenom"));
+            clientTmp.setContactNom(res.getString("nom"));
+            clientTmp.setRaisonSociale(res.getString("raisonSociale"));
+            clientTmp.setMail(res.getString("mail"));
+            clientTmp.setDernierRdv(res.getDate("datemax"));
+
+            liste.add(clientTmp);
+        }
+
+
+        return liste;
+    }
+
+
+
+
 
 
     public static ArrayList<rdv> getListeRdv(int id) throws SQLException {

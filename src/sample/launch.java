@@ -36,33 +36,6 @@ public class launch extends Application {
         launch(args);
 
 
-
-		/*Client max = new Client();
-		max.setPrenom("Maxime");
-		max.setNom("daniel");
-
-		Outils.createClient(max);
-
-
-        String requete = "SELECT * FROM client";
-
-        ResultSet resultat = bdd.execute(requete);
-        try {
-            resultat.next();
-            System.out.println(resultat.getString("prenom"));
-            System.out.println(resultat.getString("nom"));
-
-
-
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-        }
-
-    */
-
-
-
     }
 
 }

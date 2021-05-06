@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.rdvController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.rdvController">
    <children>
       <Pane prefHeight="75.0" prefWidth="481.0" style="-fx-background-color: #420D73;">
          <children>
@@ -28,7 +28,7 @@
       <DatePicker fx:id="datePicker" layoutX="155.0" layoutY="110.0" />
       <ComboBox fx:id="selecteurCreneau" layoutX="136.0" layoutY="224.0" prefHeight="43.0" prefWidth="208.0" />
       <ComboBox fx:id="selecteurClients" layoutX="165.0" layoutY="162.0" prefWidth="150.0" />
-      <Label fx:id="labelErreurRdv" layoutX="100.0" layoutY="354.0" prefHeight="34.0" prefWidth="280.0" textFill="RED">
+      <Label fx:id="labelErreurRdv" alignment="CENTER" layoutX="103.0" layoutY="470.0" prefHeight="34.0" prefWidth="275.0" textFill="RED">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
