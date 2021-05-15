@@ -47,23 +47,15 @@ public class bdd extends loginController {
     */
 
 
-    public static ArrayList<Client> getListeClients2(int id) throws SQLException {
+    public static ArrayList<Integer> getListeIdClientsTries(int id) throws SQLException {
 
         StringBuilder requete = new StringBuilder();
-        requete.append("Select * from Client Where idFkCommercial = "+id);
+        requete.append("select client.id, MAX(rdv.date) from client left join rdv on fkclient = client.id where fkcommercial="+id+" group by client.id ORDER BY rdv.date ASC");
         ResultSet res = execute(requete.toString());
         ArrayList liste = new ArrayList();
         while (res.next()){
 
-            Client clientTmp=new Client();
-            clientTmp.setId(res.getInt("id"));
-            clientTmp.setContactPrenom(res.getString("Prenom"));
-            clientTmp.setContactNom(res.getString("nom"));
-            clientTmp.setRaisonSociale(res.getString("raisonSociale"));
-            clientTmp.setRaisonSociale(res.getString("raisonSociale"));
-            clientTmp.setIdFkCommercial(res.getInt("idFkCommercial"));
-
-            liste.add(clientTmp);
+            liste.add(res.getInt("id"));
         }
 
 

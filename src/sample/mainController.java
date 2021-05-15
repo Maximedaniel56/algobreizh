@@ -1,22 +1,24 @@
 package sample;
 
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.sql.SQLException;
 import java.time.DayOfWeek;
@@ -25,6 +27,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.IsoFields;
 import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.WeekFields;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -127,6 +130,20 @@ public class mainController {
     private Label jeudiDate;
     @FXML
     private Label vendrediDate;
+    @FXML
+    private TableView<Client> TableauClients;
+
+    @FXML
+    private TableColumn<Client, String> tableauClients_ColonnePrenom;
+
+    @FXML
+    private TableColumn<Client, String> tableauClients_ColonneNom;
+
+    @FXML
+    private TableColumn<Client, String> tableauClients_ColonneRaisonSociale;
+
+    @FXML
+    private TableColumn<Client, String> tableauClients_ColonneDernierRdv;
     private List<Pane> listeCellules;
     private List<Label> listeLabels;
 
@@ -147,6 +164,7 @@ public class mainController {
         affichagePanel(true,false,false,false,false);
         activeSession = new Commercial(bdd.getPrenomCommercial(id), bdd.getNomCommercial(id),bdd.getVilleCommercial(id),bdd.getMailCommercial(id), id);
         activeSession.setListeClients(bdd.getListeClients(id));
+
         labelBienvenueDynamique.setText(activeSession.getPrenom());
         btnAddClients.setCursor(Cursor.HAND);
         btnClients.setCursor(Cursor.HAND);
@@ -159,19 +177,65 @@ public class mainController {
         rdvSemaineInitialisation();
         initCells();
         initLabels();
-        System.out.println(bdd.getListeClients(activeSession.getId()));
+
+        activeSession.setClientsPrioritaires(bdd.getListeClients(activeSession.getId()));
+       /* JFXTreeTableColumn<Client, String> coloneNom = new JFXTreeTableColumn<>("Nom");
+        coloneNom.setPrefWidth(150);
+        coloneNom.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Client, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Client, String> clientStringCellDataFeatures) {
+                return null;
+            }
+        });
+        ObservableList<Client> liste = FXCollections.observableArrayList();
+        final TreeItem<Client> root = new RecursiveTreeItem<Client>(bdd.getListeClients(), RecursiveTreeObject::getChildren);
+        */
+        initialiserListeClientsTries();
+        initialiserTableauClients();
 
 
     }
 
+    public void initialiserListeClientsTries() throws SQLException {
 
+        ArrayList<Integer> liste = new ArrayList();
+        liste.addAll(bdd.getListeIdClientsTries(activeSession.getId()));
+        System.out.println(liste.size());
+        activeSession.getClientsPrioritaires().clear();
+        for (int i=0; i<liste.size(); i++) {
 
-    public void checkRdv(){
+            for(Client client : activeSession.getListeClients()){
+                if (liste.get(i)==client.getId()){
+                    activeSession.getClientsPrioritaires().add(client);
+                    System.out.println(client.getId()+" "+client.getDernierRdv());
+                }
+            }
+        }
+
+        System.out.println(activeSession.getClientsPrioritaires());
 
 
     }
 
+    public void initialiserTableauClients(){
 
+
+
+        ObservableList<Client> liste = FXCollections.observableArrayList(activeSession.getClientsPrioritaires());
+
+        tableauClients_ColonnePrenom.setCellValueFactory(new PropertyValueFactory<>("Prenom"));
+
+        tableauClients_ColonneNom.setCellValueFactory(new PropertyValueFactory<>("Nom"));
+
+        tableauClients_ColonneRaisonSociale.setCellValueFactory(new PropertyValueFactory<>("raisonSociale"));
+
+        tableauClients_ColonneDernierRdv.setCellValueFactory(new PropertyValueFactory<>("dernierRdv"));
+
+        TableauClients.setItems(liste);
+
+        //TableauClients.getColumns().addAll(tableauClients_ColonnePrenom,tableauClients_ColonneNom,tableauClients_ColonneRaisonSociale,tableauClients_ColonneDernierRdv);
+
+    }
 
 
     public void rdvSemaineInitialisation(){
@@ -722,13 +786,14 @@ public class mainController {
 
 
     @FXML
-    void BoutonValiderAddClient_pressed(ActionEvent event) {
+    void BoutonValiderAddClient_pressed(ActionEvent event) throws SQLException {
 
 
 
         bdd.createClient(activeSession.getId(),textFieldPrenom,textFieldNom,textFieldRaisonSociale,textFieldMail,textFieldNumtel);
         Client client = new Client(textFieldPrenom.getText(),textFieldPrenom.getText(), textFieldNom.getText(), textFieldMail.getText(),textFieldNumtel.getAnchor(),bdd.getIdLastClient());
         activeSession.getListeClients().add(client);
+        initialiserListeClientsTries();
         textFieldNom.clear();
         textFieldPrenom.clear();
         textFieldRaisonSociale.clear();
@@ -843,8 +908,10 @@ public class mainController {
 
 
     @FXML
-    void btnRdvPressed(ActionEvent event) {
+    void btnRdvPressed(ActionEvent event) throws SQLException {
         affichagePanel(false,true,false,false,false);
+        initialiserListeClientsTries();
+        initialiserTableauClients();
     }
 
 
