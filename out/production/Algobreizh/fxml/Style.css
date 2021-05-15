@@ -1,0 +1,25 @@
+.mainButtons:hover{
+    -fx-background-color: #490D81;
+    -fx-border-width: 0px 20px 0px 0px;
+}
+
+.mainButtons{
+    -fx-background-color:  #420D73;
+
+}
+
+
+.cell:hover{
+    -fx-background-color: #4a0d83;
+    -fx-border-color:  linear-gradient(to right top, #ffffff, #f7f7f7, #eeeef0, #e6e6e8, #dedee1);
+    -fx-border-width: 3px 3px 3px 3px;
+}
+
+.simplehover:hover{
+    -fx-border-color:  linear-gradient(to right top, #ffffff, #f7f7f7, #eeeef0, #e6e6e8, #dedee1);
+    -fx-border-width: 3px 3px 3px 3px;
+
+}
+
+
+

@@ -200,7 +200,7 @@ public class loginController extends mainController{
 
 
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/main.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
                 Stage stage = new Stage();
                 Scene scene = new Scene(root1);

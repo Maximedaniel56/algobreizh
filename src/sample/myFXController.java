@@ -4,8 +4,6 @@ public interface myFXController {
 
 public Commercial getReturn();
 
-
-
 }
 
 

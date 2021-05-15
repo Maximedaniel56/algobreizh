@@ -191,7 +191,7 @@ public class mainController {
                         cell00.setOnMouseClicked((MouseEvent e) -> {
 
                             try {
-                                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("/fxml/rdvResume.fxml"));
                                 Parent root1 = (Parent) fxmlLoader.load();
                                 Stage stage = new Stage();
                                 stage.setScene(new Scene(root1));
@@ -222,7 +222,7 @@ public class mainController {
                     cell10.setOnMouseClicked((MouseEvent e) -> {
 
                         try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("/fxml/rdvResume.fxml"));
                             Parent root1 = (Parent) fxmlLoader.load();
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root1));
@@ -245,7 +245,7 @@ public class mainController {
                     cell20.setOnMouseClicked((MouseEvent e) -> {
 
                         try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
                             Parent root1 = (Parent) fxmlLoader.load();
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root1));
@@ -268,7 +268,7 @@ public class mainController {
                     cell00.setOnMouseClicked((MouseEvent e) -> {
 
                         try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("/fxml/rdvResume.fxml"));
                             Parent root1 = (Parent) fxmlLoader.load();
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root1));
@@ -296,7 +296,7 @@ public class mainController {
                     cell01.setOnMouseClicked((MouseEvent e) -> {
 
                         try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("/fxml/rdvResume.fxml"));
                             Parent root1 = (Parent) fxmlLoader.load();
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root1));
@@ -320,7 +320,7 @@ public class mainController {
                     cell11.setOnMouseClicked((MouseEvent e) -> {
 
                         try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
                             Parent root1 = (Parent) fxmlLoader.load();
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root1));
@@ -344,7 +344,7 @@ public class mainController {
                     cell21.setOnMouseClicked((MouseEvent e) -> {
 
                         try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
                             Parent root1 = (Parent) fxmlLoader.load();
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root1));
@@ -368,7 +368,7 @@ public class mainController {
                     cell31.setOnMouseClicked((MouseEvent e) -> {
 
                         try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
                             Parent root1 = (Parent) fxmlLoader.load();
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root1));
@@ -396,7 +396,7 @@ public class mainController {
                     cell02.setOnMouseClicked((MouseEvent e) -> {
 
                         try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
                             Parent root1 = (Parent) fxmlLoader.load();
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root1));
@@ -420,7 +420,7 @@ public class mainController {
                     cell12.setOnMouseClicked((MouseEvent e) -> {
 
                         try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
                             Parent root1 = (Parent) fxmlLoader.load();
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root1));
@@ -444,7 +444,7 @@ public class mainController {
                     cell22.setOnMouseClicked((MouseEvent e) -> {
 
                         try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
                             Parent root1 = (Parent) fxmlLoader.load();
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root1));
@@ -468,7 +468,7 @@ public class mainController {
                     cell32.setOnMouseClicked((MouseEvent e) -> {
 
                         try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
                             Parent root1 = (Parent) fxmlLoader.load();
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root1));
@@ -496,7 +496,7 @@ public class mainController {
                     cell03.setOnMouseClicked((MouseEvent e) -> {
 
                         try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
                             Parent root1 = (Parent) fxmlLoader.load();
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root1));
@@ -520,7 +520,7 @@ public class mainController {
                     cell13.setOnMouseClicked((MouseEvent e) -> {
 
                         try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
                             Parent root1 = (Parent) fxmlLoader.load();
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root1));
@@ -544,7 +544,7 @@ public class mainController {
                     cell23.setOnMouseClicked((MouseEvent e) -> {
 
                         try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
                             Parent root1 = (Parent) fxmlLoader.load();
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root1));
@@ -568,7 +568,7 @@ public class mainController {
                     cell33.setOnMouseClicked((MouseEvent e) -> {
 
                         try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
                             Parent root1 = (Parent) fxmlLoader.load();
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root1));
@@ -596,7 +596,7 @@ public class mainController {
                     cell04.setOnMouseClicked((MouseEvent e) -> {
 
                         try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
                             Parent root1 = (Parent) fxmlLoader.load();
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root1));
@@ -620,7 +620,7 @@ public class mainController {
                     cell14.setOnMouseClicked((MouseEvent e) -> {
 
                         try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
                             Parent root1 = (Parent) fxmlLoader.load();
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root1));
@@ -644,7 +644,7 @@ public class mainController {
                     cell24.setOnMouseClicked((MouseEvent e) -> {
 
                         try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
                             Parent root1 = (Parent) fxmlLoader.load();
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root1));
@@ -668,7 +668,7 @@ public class mainController {
                     cell34.setOnMouseClicked((MouseEvent e) -> {
 
                         try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdvResume.fxml"));
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
                             Parent root1 = (Parent) fxmlLoader.load();
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root1));
@@ -924,7 +924,7 @@ public class mainController {
     void addRdvPressed(ActionEvent event) throws SQLException {
 
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/rdv.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdv.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             myStage stage = new myStage();
             stage.setScene(new Scene(root1));

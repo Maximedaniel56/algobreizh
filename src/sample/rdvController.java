@@ -119,7 +119,7 @@ public class rdvController implements myFXController{
 
                     if (bdd.checkDateDispo(date,creneau,activeSession.getId())) {
 
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/main.fxml"));
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("/fxml/main.fxml"));
                         System.out.println(new rdv(date, creneau, selecteurClients.getValue().getId(), textAreaAddRdv.getText()));
                         activeSession.getListeRdv().add(new rdv(date, creneau, selecteurClients.getValue().getId(), textAreaAddRdv.getText()));
                         bdd.createRendezVous(selecteurClients.getValue().getId(), date, creneau, activeSession.getId(), textAreaAddRdv.getText());

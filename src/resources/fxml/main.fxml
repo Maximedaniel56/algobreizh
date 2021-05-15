@@ -493,12 +493,12 @@
                   </Label>
                   <ImageView fx:id="flecheDecrementer" fitHeight="35.0" fitWidth="34.0" layoutX="953.0" layoutY="11.0" onMouseClicked="#flecheDecrementerPressed" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../ressources/flecheGauche.png" />
+                        <Image url="@/img/flecheGauche.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="flecheIncrementer" fitHeight="35.0" fitWidth="34.0" layoutX="1020.0" layoutY="11.0" onMouseClicked="#flecheIncrementerPressed" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../ressources/flecheDroite.png" />
+                        <Image url="@/img/flecheDroite.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="dateJour" layoutX="256.0" layoutY="11.0" prefHeight="35.0" prefWidth="454.0" textFill="#838383">
@@ -607,12 +607,12 @@
             </Button>
             <ImageView fitHeight="79.0" fitWidth="89.0" layoutX="9.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../ressources/planning.png" />
+                  <Image url="@/img/planning.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="79.0" fitWidth="89.0" layoutX="9.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../ressources/rdv.png" />
+                  <Image url="@/img/rdv.png" />
                </image>
             </ImageView>
             <Button fx:id="btnClients" layoutX="137.0" layoutY="346.0" mnemonicParsing="false" onAction="#btnClientsPressed" prefHeight="94.0" prefWidth="352.0" styleClass="mainButtons" stylesheets="@Style.css" text="Mes clients" textFill="WHITE">
@@ -622,7 +622,7 @@
             </Button>
             <ImageView fitHeight="101.0" fitWidth="89.0" layoutX="4.0" layoutY="349.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../ressources/clients.png" />
+                  <Image url="@/img/clients.png" />
                </image>
             </ImageView>
             <Button fx:id="btnAddClients" layoutX="138.0" layoutY="441.0" mnemonicParsing="false" onAction="#btnAddClientsPressed" prefHeight="94.0" prefWidth="352.0" styleClass="mainButtons" stylesheets="@Style.css" text="Ajouter client" textFill="WHITE">
@@ -632,7 +632,7 @@
             </Button>
             <ImageView fitHeight="114.0" fitWidth="101.0" layoutX="-2.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../ressources/addClients.png" />
+                  <Image url="@/img/addClients.png" />
                </image>
             </ImageView>
             <Button fx:id="btnMonCompte" layoutX="136.0" layoutY="535.0" mnemonicParsing="false" onAction="#btnMonComptePressed" prefHeight="94.0" prefWidth="352.0" styleClass="mainButtons" stylesheets="@Style.css" text="Mon compte" textFill="WHITE">
@@ -645,7 +645,7 @@
             </Button>
             <ImageView fitHeight="79.0" fitWidth="79.0" layoutX="9.0" layoutY="543.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../ressources/settings.png" />
+                  <Image url="@/img/settings.png" />
                </image>
             </ImageView>
          </children></Pane>
