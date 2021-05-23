@@ -1,10 +1,10 @@
-package sample;
+package modele;
 
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
 import java.sql.Date;
 
-public class Client extends RecursiveTreeObject<Client> {
+public class client extends RecursiveTreeObject<client> {
 
     private String raisonSociale;
     private String Prenom;
@@ -24,11 +24,11 @@ public class Client extends RecursiveTreeObject<Client> {
         this.dernierRdv = dernierRdv;
     }
 
-    public Client() {
+    public client() {
 
     }
 
-    public Client(String raisonSociale, String Prenom, String Nom, String mail, int numeroTel, int id) {
+    public client(String raisonSociale, String Prenom, String Nom, String mail, int numeroTel, int id) {
         this.raisonSociale = raisonSociale;
         this.Prenom = Prenom;
         this.Nom = Nom;

@@ -1,9 +1,7 @@
-package sample;
+package controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,22 +10,24 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import modele.client;
+import modele.commercial;
+import modele.bdd;
+import modele.rdv;
 
 import java.sql.Date;
 import java.sql.SQLException;
-import java.time.ZoneId;
 
 
 public class rdvController implements myFXController{
 
 
-    private Commercial activeSession;
+    private commercial activeSession;
     @FXML
     private Pane paneTest;
     @FXML
-    private ComboBox<Client> selecteurClients;
+    private ComboBox<client> selecteurClients;
     @FXML
     private ComboBox<String> selecteurCreneau;
     @FXML
@@ -42,11 +42,11 @@ public class rdvController implements myFXController{
     private int creneau;
 
 
-    public Commercial getActiveSession() {
+    public commercial getActiveSession() {
         return activeSession;
     }
 
-    public void setActiveSession(Commercial activeSession) {
+    public void setActiveSession(commercial activeSession) {
         this.activeSession = activeSession;
     }
 
@@ -59,7 +59,7 @@ public class rdvController implements myFXController{
 
 
 
-        for (Client client : activeSession.getListeClients()){
+        for (modele.client client : activeSession.getListeClients()){
 
             selecteurClients.getItems().add(client);
 
@@ -153,7 +153,7 @@ public class rdvController implements myFXController{
     }
 
     @Override
-    public Commercial getReturn() {
+    public commercial getReturn() {
         return activeSession;
     }
 }

@@ -1,10 +1,8 @@
-package sample;
+package controllers;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.FadeTransition;
-import javafx.animation.PauseTransition;
 import javafx.animation.TranslateTransition;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,16 +13,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.*;
 import javafx.scene.layout.AnchorPane;
-
-import javax.swing.event.DocumentEvent;
-import java.sql.SQLException;
-import java.util.concurrent.TimeUnit;
+import modele.bdd;
 
 public class loginController extends mainController{
 

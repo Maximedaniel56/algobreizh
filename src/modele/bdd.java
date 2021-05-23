@@ -1,10 +1,9 @@
-package sample;
+package modele;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
-import com.mysql.cj.protocol.Resultset;
+import controllers.loginController;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -63,7 +62,7 @@ public class bdd extends loginController {
     }
 
 
-    public static ArrayList<Client> getListeClients(int id) throws SQLException {
+    public static ArrayList<client> getListeClients(int id) throws SQLException {
 
         StringBuilder requete = new StringBuilder();
         requete.append("select *, MAX(rdv.date) as datemax from client left join rdv on fkclient = client.id where fkcommercial="+id+" or idFkCommercial ="+id+" group by client.id");
@@ -71,14 +70,19 @@ public class bdd extends loginController {
         ArrayList liste = new ArrayList();
         while (res.next()){
 
-            Client clientTmp=new Client();
+            client clientTmp=new client();
             clientTmp.setId(res.getInt("id"));
             clientTmp.setIdFkCommercial(id);
             clientTmp.setContactPrenom(res.getString("prenom"));
             clientTmp.setContactNom(res.getString("nom"));
             clientTmp.setRaisonSociale(res.getString("raisonSociale"));
             clientTmp.setMail(res.getString("mail"));
-            clientTmp.setDernierRdv(res.getDate("datemax"));
+            if (res.getDate("datemax") != null){
+                clientTmp.setDernierRdv(res.getDate("datemax"));
+            }
+            else{
+                clientTmp.setDernierRdv(new Date(000));
+            }
 
             liste.add(clientTmp);
         }
@@ -472,12 +476,12 @@ public class bdd extends loginController {
     }
 
 
-
-
-
-
-
-
+    /**
+     *
+     * @param requete
+     *
+     * @return
+     */
 
     public static ResultSet execute(String requete) {
         Connection connexion;

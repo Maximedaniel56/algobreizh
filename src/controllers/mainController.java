@@ -1,14 +1,13 @@
-package sample;
+package controllers;
 
 
 import com.jfoenix.controls.*;
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,8 +16,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.util.Callback;
+import modele.*;
 
 import java.sql.SQLException;
 import java.time.DayOfWeek;
@@ -44,7 +44,7 @@ public class mainController {
     @FXML
     private JFXTextField textefieldNomMonCompte;
     @FXML
-    private JFXListView<Client> ListeClientsPanelClients;
+    private JFXListView<client> ListeClientsPanelClients;
     @FXML
     private Label dateJour;
 
@@ -67,6 +67,9 @@ public class mainController {
 
     @FXML
     private Label labelInfoTel;
+    @FXML
+    private Label labelErreurAddClient;
+
 
     @FXML
     private JFXButton boutonValiderMonCompte;
@@ -131,24 +134,24 @@ public class mainController {
     @FXML
     private Label vendrediDate;
     @FXML
-    private TableView<Client> TableauClients;
+    private TableView<client> TableauClients;
 
     @FXML
-    private TableColumn<Client, String> tableauClients_ColonnePrenom;
+    private TableColumn<client, String> tableauClients_ColonnePrenom;
 
     @FXML
-    private TableColumn<Client, String> tableauClients_ColonneNom;
+    private TableColumn<client, String> tableauClients_ColonneNom;
 
     @FXML
-    private TableColumn<Client, String> tableauClients_ColonneRaisonSociale;
+    private TableColumn<client, String> tableauClients_ColonneRaisonSociale;
 
     @FXML
-    private TableColumn<Client, String> tableauClients_ColonneDernierRdv;
+    private TableColumn<client, String> tableauClients_ColonneDernierRdv;
     private List<Pane> listeCellules;
     private List<Label> listeLabels;
 
     private int numeroSemaine;
-    private Commercial activeSession;
+    private commercial activeSession;
     boolean test=false;
 
 
@@ -162,9 +165,8 @@ public class mainController {
         dateJour.setText(dateFrancaise);
         labelNumeroSemaineDynamique.setText("gfsf");
         affichagePanel(true,false,false,false,false);
-        activeSession = new Commercial(bdd.getPrenomCommercial(id), bdd.getNomCommercial(id),bdd.getVilleCommercial(id),bdd.getMailCommercial(id), id);
+        activeSession = new commercial(bdd.getPrenomCommercial(id), bdd.getNomCommercial(id),bdd.getVilleCommercial(id),bdd.getMailCommercial(id), id);
         activeSession.setListeClients(bdd.getListeClients(id));
-
         labelBienvenueDynamique.setText(activeSession.getPrenom());
         btnAddClients.setCursor(Cursor.HAND);
         btnClients.setCursor(Cursor.HAND);
@@ -200,28 +202,26 @@ public class mainController {
 
         ArrayList<Integer> liste = new ArrayList();
         liste.addAll(bdd.getListeIdClientsTries(activeSession.getId()));
-        System.out.println(liste.size());
         activeSession.getClientsPrioritaires().clear();
         for (int i=0; i<liste.size(); i++) {
 
-            for(Client client : activeSession.getListeClients()){
+            for(modele.client client : activeSession.getListeClients()){
                 if (liste.get(i)==client.getId()){
                     activeSession.getClientsPrioritaires().add(client);
-                    System.out.println(client.getId()+" "+client.getDernierRdv());
                 }
             }
         }
 
-        System.out.println(activeSession.getClientsPrioritaires());
-
 
     }
+
+
 
     public void initialiserTableauClients(){
 
 
 
-        ObservableList<Client> liste = FXCollections.observableArrayList(activeSession.getClientsPrioritaires());
+        ObservableList<client> liste = FXCollections.observableArrayList(activeSession.getListeClients());
 
         tableauClients_ColonnePrenom.setCellValueFactory(new PropertyValueFactory<>("Prenom"));
 
@@ -230,19 +230,17 @@ public class mainController {
         tableauClients_ColonneRaisonSociale.setCellValueFactory(new PropertyValueFactory<>("raisonSociale"));
 
         tableauClients_ColonneDernierRdv.setCellValueFactory(new PropertyValueFactory<>("dernierRdv"));
+        tableauClients_ColonneDernierRdv.setSortType(TableColumn.SortType.ASCENDING);
 
         TableauClients.setItems(liste);
-
-        //TableauClients.getColumns().addAll(tableauClients_ColonnePrenom,tableauClients_ColonneNom,tableauClients_ColonneRaisonSociale,tableauClients_ColonneDernierRdv);
+        TableauClients.getSortOrder().add(tableauClients_ColonneDernierRdv);
 
     }
 
-
     public void rdvSemaineInitialisation(){
         final long calendarWeek = numeroSemaine;
-        System.out.println(numeroSemaine);
         cell00.setOnMouseClicked(null);
-        for (rdv rdv : activeSession.getListeRdv()){
+        for (modele.rdv rdv : activeSession.getListeRdv()){
             LocalDate date =  rdv.getDate().toLocalDate();
             LocalDate desiredDate = LocalDate.now().with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, calendarWeek).with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
 
@@ -788,17 +786,32 @@ public class mainController {
     @FXML
     void BoutonValiderAddClient_pressed(ActionEvent event) throws SQLException {
 
+        labelErreurAddClient.setAlignment(Pos.CENTER);
+        if(textFieldPrenom.getText().isEmpty()){ labelErreurAddClient.setText("Veuillez entrer un prénom"); }
+        else{
+            if(textFieldNom.getText().isEmpty()){ labelErreurAddClient.setText("Veuillez entrer un Nom");}
+            else{
+                if(textFieldRaisonSociale.getText().isEmpty()){ labelErreurAddClient.setText("Veuillez entrer une raison sociale");}
+                else{
+                    if(textFieldNumtel.getLength()!=10){ labelErreurAddClient.setText("Le numéro de téléphone doit contenir 10 chiffres");}
+                    else{
+                        bdd.createClient(activeSession.getId(),textFieldPrenom,textFieldNom,textFieldRaisonSociale,textFieldMail,textFieldNumtel);
+                        client client = new client(textFieldPrenom.getText(),textFieldPrenom.getText(), textFieldNom.getText(), textFieldMail.getText(),textFieldNumtel.getAnchor(),bdd.getIdLastClient());
+                        activeSession.getListeClients().add(client);
+                        initialiserListeClientsTries();
+                        textFieldNom.clear();
+                        textFieldPrenom.clear();
+                        textFieldRaisonSociale.clear();
+                        textFieldMail.clear();
+                        textFieldNumtel.clear();
+                        labelErreurAddClient.setTextFill(Color.GREEN);
+                        labelErreurAddClient.setText("Client ajouté");
+                    }
+                }
+            }
+        }
 
 
-        bdd.createClient(activeSession.getId(),textFieldPrenom,textFieldNom,textFieldRaisonSociale,textFieldMail,textFieldNumtel);
-        Client client = new Client(textFieldPrenom.getText(),textFieldPrenom.getText(), textFieldNom.getText(), textFieldMail.getText(),textFieldNumtel.getAnchor(),bdd.getIdLastClient());
-        activeSession.getListeClients().add(client);
-        initialiserListeClientsTries();
-        textFieldNom.clear();
-        textFieldPrenom.clear();
-        textFieldRaisonSociale.clear();
-        textFieldMail.clear();
-        textFieldNumtel.clear();
 
     }
 
@@ -871,7 +884,7 @@ public class mainController {
         activeSession.setListeClients(bdd.getListeClients(activeSession.getId()));
 
 
-        for (Client client : activeSession.getListeClients()){
+        for (modele.client client : activeSession.getListeClients()){
 
             ListeClientsPanelClients.getItems().add(client);
 
@@ -1060,13 +1073,13 @@ public class mainController {
 
 
 
-    public Commercial getActiveSession() {
+    public commercial getActiveSession() {
         return activeSession;
     }
 
 
 
-    public void setActiveSession(Commercial activeSession) {
+    public void setActiveSession(commercial activeSession) {
         this.activeSession = activeSession;
     }
 

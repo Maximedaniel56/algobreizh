@@ -1,8 +1,8 @@
-package sample;
+package modele;
 
 import java.util.ArrayList;
 
-public class Commercial {
+public class commercial {
 
     private int id;
     private String prenom;
@@ -11,12 +11,12 @@ public class Commercial {
     private String email;
     private String motdepasse;
     private String identifiant;
-    private ArrayList<Client> listeClients;
-    private ArrayList<Client> clientsPrioritaires;
+    private ArrayList<client> listeClients;
+    private ArrayList<client> clientsPrioritaires;
     private ArrayList<rdv> listeRdv;
 
 
-    public Commercial(String prenom, String nom, String ville, String mail, int id) {
+    public commercial(String prenom, String nom, String ville, String mail, int id) {
         this.email = mail;
         this.prenom = prenom;
         this.nom = nom;
@@ -30,11 +30,11 @@ public class Commercial {
 
     }
 
-    public ArrayList<Client> getClientsPrioritaires() {
+    public ArrayList<client> getClientsPrioritaires() {
         return clientsPrioritaires;
     }
 
-    public void setClientsPrioritaires(ArrayList<Client> clientsPrioritaires) {
+    public void setClientsPrioritaires(ArrayList<client> clientsPrioritaires) {
         this.clientsPrioritaires = clientsPrioritaires;
     }
 
@@ -46,11 +46,11 @@ public class Commercial {
         this.id = id;
     }
 
-    public ArrayList<Client> getListeClients() {
+    public ArrayList<client> getListeClients() {
         return listeClients;
     }
 
-    public void setListeClients(ArrayList<Client> listeClients) {
+    public void setListeClients(ArrayList<client> listeClients) {
         this.listeClients = listeClients;
     }
 
