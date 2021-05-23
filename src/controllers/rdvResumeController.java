@@ -26,6 +26,8 @@ public class rdvResumeController {
     @FXML
     private JFXTextArea textAreaCommentaire;
 
+
+
     @FXML
     public Label getRdvResumePrenom() {
         return rdvResumePrenom;

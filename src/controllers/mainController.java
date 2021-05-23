@@ -155,8 +155,19 @@ public class mainController {
     boolean test=false;
 
 
-
-
+    /**
+     * Initialise un ensemble de données à la connexion :
+     *  - Récupère la date du jour, le numéro de semaine courant et initialise ces données pour que le planning de la semaine s'affiche et soit rempli
+     *  - Affiche le pannel "planning" par défaut à l'ouverture
+     *  - Initialise l'objet Client en récupérant sur la bdd toutes les données qui lui sont associées  (dont sa liste de clients)
+     *  - Initialise quelques détails d'ergonimie et d'interface
+     *  - Initialise le tableau des clients à visiter
+     *  - Initialise la liste des clients
+     *
+     *
+     * @param id ID récupéré lors de la connection, correspondant à l'id du compte connecté
+     * @throws SQLException
+     */
 
     @FXML
     public void initialisation(int id) throws SQLException {
@@ -179,25 +190,17 @@ public class mainController {
         rdvSemaineInitialisation();
         initCells();
         initLabels();
-
         activeSession.setClientsPrioritaires(bdd.getListeClients(activeSession.getId()));
-       /* JFXTreeTableColumn<Client, String> coloneNom = new JFXTreeTableColumn<>("Nom");
-        coloneNom.setPrefWidth(150);
-        coloneNom.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Client, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Client, String> clientStringCellDataFeatures) {
-                return null;
-            }
-        });
-        ObservableList<Client> liste = FXCollections.observableArrayList();
-        final TreeItem<Client> root = new RecursiveTreeItem<Client>(bdd.getListeClients(), RecursiveTreeObject::getChildren);
-        */
         initialiserListeClientsTries();
         initialiserTableauClients();
 
 
     }
 
+    /**
+     * Initialise la liste des clients triée par la date de dernière visite (fonctionne mais non utilisée)
+     * @throws SQLException
+     */
     public void initialiserListeClientsTries() throws SQLException {
 
         ArrayList<Integer> liste = new ArrayList();
@@ -215,7 +218,9 @@ public class mainController {
 
     }
 
-
+    /**
+     * Initialise les colonnes du tableau de clients dans l'onglet "visites recommandées"
+     */
 
     public void initialiserTableauClients(){
 
@@ -237,6 +242,13 @@ public class mainController {
 
     }
 
+
+    /**
+     * Initialise le planning de la semaine affiché
+     * met en évidence chaque case correspondant à un rendez-vous et la rend cliquable.
+     * Le clic sur la case (créneau) associée à un rdv ouvre une nouvelle fenêtre avec toutes les informations du rdv en question
+     *
+     */
     public void rdvSemaineInitialisation(){
         final long calendarWeek = numeroSemaine;
         cell00.setOnMouseClicked(null);
@@ -755,8 +767,10 @@ public class mainController {
     }
 
 
-
-
+    /**
+     * Ferme Algobreizh
+     * @param event
+     */
     @FXML
     void closeButtonAction(ActionEvent event){
         exit();
@@ -764,7 +778,10 @@ public class mainController {
 
 
 
-
+    /**
+     * Actualise la date au dessus de chaque jour de la semaine en fonction du numéro de semaine
+     * @param week
+     */
 
     public void datesSemaineIntilialisation(int week){
 
@@ -781,7 +798,11 @@ public class mainController {
     }
 
 
-
+    /**
+     * Verifie les champs rentrés et crée un client, à la fois en local et à la fois sur la bdd
+     * @param event
+     * @throws SQLException
+     */
 
     @FXML
     void BoutonValiderAddClient_pressed(ActionEvent event) throws SQLException {
@@ -815,7 +836,10 @@ public class mainController {
 
     }
 
-
+    /**
+     * Initialise les données relatives au compte commercial connecté
+     * @param event
+     */
 
     @FXML
     void btnMonComptePressed(ActionEvent event) {
@@ -829,23 +853,31 @@ public class mainController {
     }
 
 
-
+    /**
+     * Vérifie chaque champs, s'il contient une valeur, alors cette valeur remplace l'ancienne valeur.
+     * Par défaut, chaque champs est vide, un promptext affiche toutefois les données actuelles.
+     * @param event
+     */
     @FXML
     void boutonValiderMonComptePressed(ActionEvent event) {
         if(!textefieldPrenomMonCompte.getText().isEmpty()){
             bdd.setPrenomCommercial(activeSession.getId(),textefieldPrenomMonCompte.getText());
+            activeSession.setPrenom(textefieldPrenomMonCompte.getText());
         }
 
         if(!textefieldNomMonCompte.getText().isEmpty()){
             bdd.setNomCommercial(activeSession.getId(),textefieldNomMonCompte.getText());
+            activeSession.setNom(textefieldNomMonCompte.getText());
         }
 
         if(!textefieldMailMonCompte.getText().isEmpty()){
             bdd.setEmailCommercial(activeSession.getId(),textefieldMailMonCompte.getText());
+            activeSession.setEmail(textefieldMailMonCompte.getText());
         }
 
         if(!textefieldVilleMonCompte.getText().isEmpty()){
             bdd.setVilleCommercial(activeSession.getId(),textefieldVilleMonCompte.getText());
+            activeSession.setVille(textefieldVilleMonCompte.getText());
         }
 
         textefieldPrenomMonCompte.clear();
@@ -874,7 +906,11 @@ public class mainController {
         return s;
     }
 
-
+    /**
+     * Initialise la liste des clients
+     * @param event
+     * @throws SQLException
+     */
 
     @FXML
     void btnClientsPressed(ActionEvent event) throws SQLException {
@@ -895,7 +931,10 @@ public class mainController {
     }
 
 
-
+    /**
+     * Affiche l'onglet "ajouter client"
+     * @param event
+     */
     @FXML
     void btnAddClientsPressed(ActionEvent event) {
         affichagePanel(false,false,false,true,false);
@@ -907,8 +946,10 @@ public class mainController {
     }
 
 
-
-
+    /**
+     * Affiche l'onglet "planning de la semaine"
+     * @param event
+     */
 
     @FXML
     void btnPlanningSemainePressed(ActionEvent event) {
@@ -917,8 +958,11 @@ public class mainController {
     }
 
 
-
-
+    /**
+     * Affiche l'onglet "visites recommandées"
+     * @param event
+     * @throws SQLException
+     */
 
     @FXML
     void btnRdvPressed(ActionEvent event) throws SQLException {
@@ -928,9 +972,9 @@ public class mainController {
     }
 
 
-
-
-
+    /**
+     * Ferme algobreizh
+     */
     @FXML
     private void exit(){
 
@@ -939,9 +983,10 @@ public class mainController {
     }
 
 
-
-
-
+    /**
+     * Décrémente la semaine courante de 1 sur le planning
+     * @param event
+     */
 
     @FXML
     void flecheDecrementerPressed(MouseEvent event) {
@@ -961,8 +1006,10 @@ public class mainController {
     }
 
 
-
-
+    /**
+     * incrémente la semaine courante de 1 sur le planning
+     * @param event
+     */
 
     @FXML
     void flecheIncrementerPressed(MouseEvent event) {
@@ -983,8 +1030,14 @@ public class mainController {
     }
 
 
-
-
+    /**
+     * Permet de choisir quel onglet s'affiche
+     * @param planning onglet planning de la semaine
+     * @param rdv onglet visites recommandées
+     * @param clients onglet mes clients
+     * @param addClient onglet ajouter client
+     * @param monCompte onglet mon compte
+     */
 
     void affichagePanel (boolean planning, boolean rdv,boolean clients, boolean addClient, boolean monCompte ){
 
@@ -997,8 +1050,11 @@ public class mainController {
     }
 
 
-
-
+    /**
+     * Ouvre une nouvelle fenêtre pour créer un nouveau rendez-vous
+     * @param event
+     * @throws SQLException
+     */
 
     @FXML
     void addRdvPressed(ActionEvent event) throws SQLException {
@@ -1021,7 +1077,9 @@ public class mainController {
 
     }
 
-
+    /**
+     * Reinitialise toutes les cellules du planning
+     */
     void clearCells(){
 
 
@@ -1036,22 +1094,34 @@ public class mainController {
 
     }
 
-
+    /**
+     * Permet d'obtenir la date du jour au format LocalDate
+     * @return
+     */
 
     public LocalDate getDateActuelle(){
         return java.time.LocalDate.now();
     }
 
+    /**
+     * initialise la liste de toutes les cellules du planning
+     */
 
     public void initCells(){
         listeCellules=Arrays.asList(cell00,cell01,cell02,cell03,cell04,cell10,cell11,cell12,cell13,cell14,cell20,cell21,cell22,cell23,cell24,cell30,cell31,cell32,cell33,cell34);
     }
 
+    /**
+     * Initialise la liste des labels associés à chaque cellule du planning
+     */
     public void initLabels(){
         listeLabels=Arrays.asList(labelrdv00, labelrdv01,labelrdv02,labelrdv03,labelrdv04,labelrdv10,labelrdv11,labelrdv12,labelrdv13,labelrdv14,labelrdv20,labelrdv21,labelrdv22,labelrdv23,labelrdv24,labelrdv30,labelrdv31,labelrdv32,labelrdv33,labelrdv34);
     }
 
-
+    /**
+     * Retourne le numéro de semaine courant
+     * @return
+     */
     public int getSemaineActuelle(){
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
         int weekNumber = getDateActuelle().get(weekFields.weekOfWeekBasedYear());

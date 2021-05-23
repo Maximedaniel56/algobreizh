@@ -50,6 +50,12 @@ public class rdvController implements myFXController{
         this.activeSession = activeSession;
     }
 
+    /**
+     * Initialise certaines données de la nouvelle fenêtre permettant d'ajouter un rdv :
+     * Initialise la liste des clients et le label affichant les erreurs
+     * @throws SQLException
+     */
+
     @FXML
     void addRdvInit() throws SQLException {
 
@@ -72,6 +78,9 @@ public class rdvController implements myFXController{
 
     }
 
+    /**
+     * ferme la fenêtre
+     */
     @FXML
     private void exit(){
 
@@ -80,9 +89,11 @@ public class rdvController implements myFXController{
     }
 
 
-
-
-
+    /**
+     * Vérifie que le créneau est disponible, si oui le rdv est envoyé en bdd, dans l'objet commercial et la fenêtre fermée
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void boutonValiderAjoutRdvPressed(ActionEvent event) throws SQLException {
 

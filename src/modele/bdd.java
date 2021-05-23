@@ -10,7 +10,14 @@ import javafx.scene.control.TextField;
 
 public class bdd extends loginController {
 
-
+    /**
+     * Crée un rdv en bdd
+     * @param idClient
+     * @param date date
+     * @param creneau demi-demi journée (8/10h - 10/12h - 13/15h - 15/17h)
+     * @param idCommercial
+     * @param commentaire commentaire associé au rendez-vous
+     */
     public static void createRendezVous(int idClient, Date date, int creneau, int idCommercial, String commentaire){
 
         StringBuilder requete = new StringBuilder();
@@ -22,6 +29,14 @@ public class bdd extends loginController {
 
     }
 
+    /**
+     * Vérifie si un créneau est disponible pour un commercial. Retourne vrai si le créneau est libre, faux le cas contraire
+     * @param date date
+     * @param creneau demi-demi journée (8/10h - 10/12h - 13/15h - 15/17h)
+     * @param idCommercial
+     * @return
+     * @throws SQLException
+     */
     public static boolean checkDateDispo(Date date, int creneau, int idCommercial) throws SQLException {
 
         StringBuilder requete = new StringBuilder();
@@ -45,7 +60,12 @@ public class bdd extends loginController {
 
     */
 
-
+    /**
+     * Retourne une arraylist d'id des clients avec qui l'id commercial passé en paramètre a rendez-vous, liste triée par date de rdv de manière croissante.
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     public static ArrayList<Integer> getListeIdClientsTries(int id) throws SQLException {
 
         StringBuilder requete = new StringBuilder();
@@ -61,7 +81,12 @@ public class bdd extends loginController {
         return liste;
     }
 
-
+    /**
+     * Retourne une arraylist de tous les clients associés à un id commercial
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     public static ArrayList<client> getListeClients(int id) throws SQLException {
 
         StringBuilder requete = new StringBuilder();
@@ -92,9 +117,12 @@ public class bdd extends loginController {
     }
 
 
-
-
-
+    /**
+     * retourne une arraylist de rdv de tous les rendezèvous associés à un id commercial
+     * @param id
+     * @return
+     * @throws SQLException
+     */
 
     public static ArrayList<rdv> getListeRdv(int id) throws SQLException {
 
@@ -113,9 +141,12 @@ public class bdd extends loginController {
     }
 
 
-
-
-
+    /**
+     * creer un compte commercial en bdd
+     * @param identifiant
+     * @param email
+     * @param mdp
+     */
 
     public static void createAccount(TextField identifiant,TextField email, PasswordField mdp){
 
@@ -129,7 +160,15 @@ public class bdd extends loginController {
     }
 
 
-
+    /**
+     * Creer un client en bdd
+     * @param id
+     * @param Prenom
+     * @param Nom
+     * @param raisonSociale
+     * @param mail
+     * @param Num
+     */
 
     public static void createClient(int id,TextField Prenom,TextField Nom, TextField raisonSociale,TextField mail, TextField Num){
 
@@ -143,7 +182,11 @@ public class bdd extends loginController {
     }
 
 
-
+    /**
+     * Retourne l'id d'un identifiant si il existe, retourne 0 sinon
+     * @param identifiant
+     * @return
+     */
 
     public static int checkLoginExist(String identifiant) {
 
@@ -167,7 +210,11 @@ public class bdd extends loginController {
     }
 
 
-
+    /**
+     * Retourne l'id d'une adresse e-mail si elle existe, retourne 0 sinon
+     * @param mail
+     * @return
+     */
     public static int checkMailExist(String mail){
         try {
 
@@ -189,8 +236,14 @@ public class bdd extends loginController {
     }
 
 
-
-
+    /**
+     * Permet de se connecter à algobreizh, Si le couple identifiant/mot de passe existe, retourne l'id obtenu et connecte le compte associé à l'id en question
+     * Si le couple n'existe pas, retourne 0
+     * @param ident
+     * @param mdp
+     *
+     * @return
+     */
 
     public static int login(TextField ident, PasswordField mdp) {
 
@@ -214,11 +267,11 @@ public class bdd extends loginController {
     }
 
 
-
-
-
-
-
+    /**
+     * Retourne le nom associé à un id commercial
+     * @param id
+     * @return
+     */
 
     public static String getPrenomCommercial(int id) {
 
@@ -239,6 +292,11 @@ public class bdd extends loginController {
 
     }
 
+    /**
+     * Retourne le prénom associé à un id client
+     * @param id
+     * @return
+     */
     public static String getPrenomClient(int id) {
 
         try {
@@ -259,25 +317,12 @@ public class bdd extends loginController {
     }
 
 
-    public static String getCommentaireRdv(int idClient, int idCommercial, int creneau, Date date) {
 
-        try {
-
-            StringBuilder requete = new StringBuilder();
-            requete.append("SELECT * FROM `rdv` WHERE fkClient = "+idClient+" and fkCommercial = "+idCommercial+" and creneau = "+creneau+" and date = '"+date+"'");
-            ResultSet res = execute(requete.toString());
-            res.next();
-            return res.getString("commentaire");
-
-
-        } catch(Exception e){
-            System.out.println(e);
-        }
-        return ("null");
-
-
-    }
-
+    /**
+     * Retourne la raison sociale associée à un id client
+     * @param id
+     * @return
+     */
     public static String getRaisonSociale(int id) {
 
         try {
@@ -297,7 +342,11 @@ public class bdd extends loginController {
 
     }
 
-
+    /**
+     * Applique à un compte commercial le prenom entré en paramètres
+     * @param id
+     * @param prenom
+     */
     public static void setPrenomCommercial(int id, String prenom) {
 
         try {
@@ -316,7 +365,11 @@ public class bdd extends loginController {
 
     }
 
-
+    /**
+     * Retourne le nom associé à un id commercial
+     * @param id
+     * @return
+     */
 
     public static String getNomCommercial(int id) {
 
@@ -338,6 +391,12 @@ public class bdd extends loginController {
 
     }
 
+    /**
+     * Retourne le nom associé à un id client
+     * @param id
+     * @return
+     */
+
     public static String getNomClient(int id) {
 
         try {
@@ -358,6 +417,11 @@ public class bdd extends loginController {
 
     }
 
+    /**
+     * Applique à un compte commercial le nom entré en paramètres
+     * @param id
+     * @param nom
+     */
     public static void setNomCommercial(int id, String nom) {
 
         try {
@@ -376,6 +440,11 @@ public class bdd extends loginController {
 
     }
 
+    /**
+     * Retourne la ville associée à un id commercial
+     * @param id
+     * @return
+     */
     public static String getVilleCommercial(int id) {
 
         try {
@@ -396,6 +465,11 @@ public class bdd extends loginController {
 
     }
 
+    /**
+     * Applique à un compte commercial une ville entrée en paramètres
+     * @param id
+     * @param ville
+     */
     public static void setVilleCommercial(int id, String ville) {
 
         try {
@@ -414,7 +488,11 @@ public class bdd extends loginController {
 
     }
 
-
+    /**
+     * Retourne le mail associé à un id commercial
+     * @param id
+     * @return
+     */
     public static String getMailCommercial(int id) {
 
         try {
@@ -436,6 +514,12 @@ public class bdd extends loginController {
 
     }
 
+    /**
+     * Applique à un compte commercial l'adresse email entree en paramètres
+     * @param id
+     * @param mail
+     */
+
     public static void setEmailCommercial(int id, String mail) {
 
         try {
@@ -453,6 +537,11 @@ public class bdd extends loginController {
 
 
     }
+
+    /**
+     * Retourne l'id du dernier client créé
+     * @return retourne un id ou -1 si aucun résultat
+     */
 
     public static int getIdLastClient() {
 
@@ -477,10 +566,9 @@ public class bdd extends loginController {
 
 
     /**
-     *
-     * @param requete
-     *
-     * @return
+     * Méthode principale permettant la connexion et l'envoi de requêtes à la bdd
+     * @param requete Requète envoyée et executée
+     * @return retourne un objet ResultSet contenant le résultat de la requète SQL envoyée
      */
 
     public static ResultSet execute(String requete) {
