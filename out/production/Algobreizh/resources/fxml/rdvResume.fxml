@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -18,22 +17,22 @@
             </Label>
          </children>
       </Pane>
-      <JFXButton fx:id="boutonSupprimerRdv" layoutX="159.0" layoutY="402.0" onAction="#boutonValiderAjoutRdvPressed" prefHeight="58.0" prefWidth="163.0" style="-fx-background-radius: 10; -fx-background-color: red;" text="Supprimer" textFill="WHITE">
+      <JFXButton fx:id="boutonSupprimerRdv" layoutX="159.0" layoutY="402.0" onAction="#boutonSupprimerRdvPressed" prefHeight="58.0" prefWidth="163.0" style="-fx-background-radius: 10; -fx-background-color: red;" text="Supprimer" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </JFXButton>
-      <Label alignment="CENTER" layoutX="25.0" layoutY="150.0" prefHeight="53.0" prefWidth="197.0" text="Rendez-vous avec :" textFill="#575757">
+      <Label alignment="CENTER" layoutX="43.0" layoutY="124.0" prefHeight="53.0" prefWidth="64.0" text="Avec :" textFill="#575757">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Label layoutX="143.0" layoutY="81.0" prefHeight="53.0" prefWidth="33.0" text="Le" textFill="#575757">
+      <Label layoutX="43.0" layoutY="81.0" prefHeight="53.0" prefWidth="33.0" text="Le" textFill="#575757">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="25.0" layoutY="192.0" prefHeight="53.0" prefWidth="197.0" text="Société :" textFill="#575757">
+      <Label alignment="CENTER" layoutX="43.0" layoutY="166.0" prefHeight="53.0" prefWidth="87.0" text="Société :" textFill="#575757">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
@@ -43,25 +42,30 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Label fx:id="rdvResumePrenom" layoutX="240.0" layoutY="150.0" prefHeight="53.0" prefWidth="217.0" textFill="#575757">
+      <Label fx:id="rdvResumePrenom" layoutX="107.0" layoutY="129.0" prefHeight="43.0" prefWidth="217.0" textFill="#575757">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Label fx:id="rdvResumeSociete" layoutX="240.0" layoutY="192.0" prefHeight="53.0" prefWidth="217.0" textFill="#575757">
+      <Label fx:id="rdvResumeSociete" layoutX="132.0" layoutY="171.0" prefHeight="43.0" prefWidth="217.0" textFill="#575757">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Label fx:id="rdvResumeDate" layoutX="176.0" layoutY="81.0" prefHeight="53.0" prefWidth="269.0" textFill="#575757">
+      <Label fx:id="rdvResumeDate" layoutX="78.0" layoutY="90.0" prefHeight="35.0" prefWidth="163.0" textFill="#575757">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <JFXTextArea fx:id="textAreaCommentaire" layoutX="43.0" layoutY="283.0" prefHeight="114.0" prefWidth="400.0" promptText="Aucun commentaire" unFocusColor="WHITE">
+      <Label fx:id="rdvResumeCreneau" layoutX="285.0" layoutY="81.0" prefHeight="53.0" prefWidth="189.0" textFill="#575757">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="System Bold" size="21.0" />
          </font>
-      </JFXTextArea>
+      </Label>
+      <Label fx:id="textAreaCommentaire" layoutX="54.0" layoutY="277.0" prefHeight="107.0" prefWidth="377.0" style="-fx-background-color: #ebebeb; -fx-background-radius: 0.5em;" textFill="#575757">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
