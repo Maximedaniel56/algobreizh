@@ -105,32 +105,27 @@ public class rdvController implements myFXController{
             if(selecteurClients.getSelectionModel().isEmpty()==false){
                 if(selecteurCreneau.getSelectionModel().isEmpty()==false){
 
-                    if(selecteurCreneau.getValue().equals("Matin 8h-10h")){
-
-                        creneau=1;
+                    switch(selecteurCreneau.getValue()){
+                        case "Matin 8h-10h":
+                            creneau=1;
+                            break;
+                        case "Matin 10h-12h":
+                            creneau=2;
+                            break;
+                        case "Après-midi 13h-15h":
+                            creneau=3;
+                            break;
+                        case "Après-midi 15h-17h":
+                            creneau=4;
+                            break;
                     }
 
-                    if(selecteurCreneau.getValue().equals("Matin 10h-12h")){
-
-                        creneau=2;
-                    }
-
-                    if(selecteurCreneau.getValue().equals("Après-midi 13h-15h")){
-
-                        creneau=3;
-                    }
-
-                    if(selecteurCreneau.getValue().equals("Après-midi 15h-17h")){
-
-                        creneau=4;
-                    }
-
-                    if (textAreaAddRdv.getText().isEmpty()){textAreaAddRdv.setText("NULL");}
+                    if (textAreaAddRdv.getText().isEmpty()){textAreaAddRdv.setText("Aucun commentaire");}
 
 
                     if (bdd.checkDateDispo(date,creneau,activeSession.getId())) {
 
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("/fxml/main.fxml"));
+                        //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("/fxml/main.fxml"));
                         System.out.println(new rdv(date, creneau, selecteurClients.getValue().getId(), textAreaAddRdv.getText()));
                         activeSession.getListeRdv().add(new rdv(date, creneau, selecteurClients.getValue().getId(), textAreaAddRdv.getText()));
                         bdd.createRendezVous(selecteurClients.getValue().getId(), date, creneau, activeSession.getId(), textAreaAddRdv.getText());

@@ -11,7 +11,7 @@ public class client extends RecursiveTreeObject<client> {
     private String Nom;
     private String mail;
     private Date dernierRdv;
-    private float numeroTel;
+    private String numeroTel;
     private int id;
     private int idFkCommercial;
 
@@ -28,7 +28,7 @@ public class client extends RecursiveTreeObject<client> {
 
     }
 
-    public client(String raisonSociale, String Prenom, String Nom, String mail, int numeroTel, int id) {
+    public client(String raisonSociale, String Prenom, String Nom, String mail, String numeroTel, int id) {
         this.raisonSociale = raisonSociale;
         this.Prenom = Prenom;
         this.Nom = Nom;
@@ -101,11 +101,11 @@ public class client extends RecursiveTreeObject<client> {
         this.mail = mail;
     }
 
-    public float getNumeroTel() {
+    public String getNumeroTel() {
         return numeroTel;
     }
 
-    public void setNumeroTel(float numeroTel) {
+    public void setNumeroTel(String numeroTel) {
         this.numeroTel = numeroTel;
     }
 

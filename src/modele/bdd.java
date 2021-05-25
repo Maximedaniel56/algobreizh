@@ -1,6 +1,7 @@
 package modele;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import controllers.loginController;
@@ -102,6 +103,7 @@ public class bdd extends loginController {
             clientTmp.setContactNom(res.getString("nom"));
             clientTmp.setRaisonSociale(res.getString("raisonSociale"));
             clientTmp.setMail(res.getString("mail"));
+            clientTmp.setNumeroTel(res.getString("numeroTel"));
             if (res.getDate("datemax") != null){
                 clientTmp.setDernierRdv(res.getDate("datemax"));
             }
@@ -174,7 +176,7 @@ public class bdd extends loginController {
 
 
         StringBuilder requete = new StringBuilder();
-        requete.append("INSERT INTO CLIENT (idFkCOmmercial,prenom,nom,raisonSociale, mail, numeroTel) VALUES ('"+id+"','"+Prenom.getText()+"','"+Nom.getText()+"','"+raisonSociale.getText()+"','"+mail.getText()+"','"+Num.getAnchor()+"')");
+        requete.append("INSERT INTO CLIENT (idFkCOmmercial,prenom,nom,raisonSociale, mail, numeroTel) VALUES ('"+id+"','"+Prenom.getText()+"','"+Nom.getText()+"','"+raisonSociale.getText()+"','"+mail.getText()+"','"+Num.getText()+"')");
         execute(requete.toString());
         System.out.println("done");
 
@@ -317,6 +319,21 @@ public class bdd extends loginController {
     }
 
 
+
+    public static void supprimerRdv(int id, LocalDate date, int creneau){
+
+        try {
+
+            StringBuilder requete = new StringBuilder();
+            requete.append("DELETE FROM `rdv` WHERE fkCommercial = "+id+" and date = '"+date+"' and creneau = "+creneau);
+            ResultSet res = execute(requete.toString());
+
+
+
+        } catch(Exception e){
+            System.out.println(e);
+        }
+    }
 
     /**
      * Retourne la raison sociale associée à un id client

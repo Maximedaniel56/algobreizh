@@ -69,7 +69,7 @@ public class mainController {
     private Label labelInfoTel;
     @FXML
     private Label labelErreurAddClient;
-
+    private boolean confirmationSuppression;
 
     @FXML
     private JFXButton boutonValiderMonCompte;
@@ -242,6 +242,71 @@ public class mainController {
 
     }
 
+    /**
+     * Initialise la fenêtre de résumé d'un rendez-vous
+     * @param fxml
+     * @param date
+     * @param rdv
+     */
+
+    public void initialiseRdvResume(FXMLLoader fxml, LocalDate date, rdv rdv){
+
+        ((rdvResumeController) fxml.getController()).getRdvResumeDate().setText(rdv.getDate().toString());
+        ((rdvResumeController) fxml.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
+        ((rdvResumeController) fxml.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
+       // ((rdvResumeController) fxml.getController()).getRdvResumeCreneau().setText(toString(rdv.getCreneau()));
+        ((rdvResumeController) fxml.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
+        ((rdvResumeController) fxml.getController()).getTextAreaCommentaire().setAlignment(Pos.CENTER);
+        ((rdvResumeController) fxml.getController()).setRdvCourant(rdv);
+
+        switch(rdv.getCreneau()){
+            case 1:
+                ((rdvResumeController) fxml.getController()).getRdvResumeCreneau().setText("De 8h à 10h");
+                break;
+            case 2:
+                ((rdvResumeController) fxml.getController()).getRdvResumeCreneau().setText("De 10h à 12h");
+                break;
+            case 3:
+                ((rdvResumeController) fxml.getController()).getRdvResumeCreneau().setText("De 13h à 15h");
+                break;
+            case 4:
+                ((rdvResumeController) fxml.getController()).getRdvResumeCreneau().setText("De 15h à 17h");
+                break;
+        }
+    }
+
+    /**
+     * Permet de créer la fenêtre d'un résumé de rendez-vous, lui associe sa cellule et son Label pour lui permettre de le réinitialiser en cas de suppression du rdv.
+     * @param date
+     * @param rdv
+     * @param cellule
+     * @param label
+     */
+
+
+    public void creerFenetreResumeRdv(LocalDate date, rdv rdv,Pane cellule, Label label){
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            myStage stage = new myStage();
+            stage.setScene(new Scene(root1));
+            initialiseRdvResume(fxmlLoader, date,rdv);
+            ((rdvResumeController)fxmlLoader.getController()).setActiveSession(this.activeSession);
+            System.out.println(activeSession.getListeRdv());
+            this.activeSession=stage.showAndReturn(((rdvResumeController)fxmlLoader.getController()));
+            if (((rdvResumeController)fxmlLoader.getController()).isConfirmationSuppression()){
+                clearCell(cellule,label);
+            }
+
+
+        } catch (Exception a) {
+            System.out.println(a.getMessage());
+        }
+
+
+    }
+
 
     /**
      * Initialise le planning de la semaine affiché
@@ -249,6 +314,7 @@ public class mainController {
      * Le clic sur la case (créneau) associée à un rdv ouvre une nouvelle fenêtre avec toutes les informations du rdv en question
      *
      */
+
     public void rdvSemaineInitialisation(){
         final long calendarWeek = numeroSemaine;
         cell00.setOnMouseClicked(null);
@@ -261,31 +327,13 @@ public class mainController {
                 if(rdv.getCreneau()==1){
                     cell00.setStyle("-fx-background-color: #46c646;");
                     labelrdv00.setText(""+bdd.getPrenomClient(rdv.getIdClient())+" "+bdd.getNomClient(rdv.getIdClient())+"\n"+bdd.getRaisonSociale(rdv.getIdClient()));
-
-                        cell00.setOnMouseClicked((MouseEvent e) -> {
-
-                            try {
-                                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("/fxml/rdvResume.fxml"));
-                                Parent root1 = (Parent) fxmlLoader.load();
-                                Stage stage = new Stage();
-                                stage.setScene(new Scene(root1));
-                                stage.show();
-                                ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
-                                ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
-                                ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
-                                ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
-
-
-                            } catch (Exception a) {
-                                System.out.println(a.getMessage());
-                            }
+                    cell00.setOnMouseClicked((MouseEvent e) -> {
+                            creerFenetreResumeRdv(desiredDate,rdv,cell00,labelrdv00);
 
                         });
 
-
-
-
                 }
+
 
 
 
@@ -295,21 +343,7 @@ public class mainController {
 
                     cell10.setOnMouseClicked((MouseEvent e) -> {
 
-                        try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("/fxml/rdvResume.fxml"));
-                            Parent root1 = (Parent) fxmlLoader.load();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(root1));
-                            stage.show();
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
-                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
-
-
-                        } catch (Exception a) {
-                            System.out.println(a.getMessage());
-                        }
+                        creerFenetreResumeRdv(desiredDate,rdv,cell10,labelrdv10);
 
                     });
                 }
@@ -317,45 +351,16 @@ public class mainController {
                     cell20.setStyle("-fx-background-color: #46c646;");
                     labelrdv20.setText(""+bdd.getPrenomClient(rdv.getIdClient())+" "+bdd.getNomClient(rdv.getIdClient())+"\n"+bdd.getRaisonSociale(rdv.getIdClient()));
                     cell20.setOnMouseClicked((MouseEvent e) -> {
-
-                        try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
-                            Parent root1 = (Parent) fxmlLoader.load();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(root1));
-                            stage.show();
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
-                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
-
-
-                        } catch (Exception a) {
-                            System.out.println(a.getMessage());
-                        }
+                        creerFenetreResumeRdv(desiredDate,rdv,cell20,labelrdv20);
 
                     });
                 }
                 if(rdv.getCreneau()==4){
                     cell30.setStyle("-fx-background-color: #46c646;");
                     labelrdv30.setText(""+bdd.getPrenomClient(rdv.getIdClient())+" "+bdd.getNomClient(rdv.getIdClient())+"\n"+bdd.getRaisonSociale(rdv.getIdClient()));
-                    cell00.setOnMouseClicked((MouseEvent e) -> {
+                    cell30.setOnMouseClicked((MouseEvent e) -> {
 
-                        try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("/fxml/rdvResume.fxml"));
-                            Parent root1 = (Parent) fxmlLoader.load();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(root1));
-                            stage.show();
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
-                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
-
-
-                        } catch (Exception a) {
-                            System.out.println(a.getMessage());
-                        }
+                       creerFenetreResumeRdv(desiredDate,rdv,cell30,labelrdv30);
 
                     });
                 }
@@ -369,21 +374,7 @@ public class mainController {
 
                     cell01.setOnMouseClicked((MouseEvent e) -> {
 
-                        try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("/fxml/rdvResume.fxml"));
-                            Parent root1 = (Parent) fxmlLoader.load();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(root1));
-                            stage.show();
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
-                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
-
-
-                        } catch (Exception a) {
-                            System.out.println(a.getMessage());
-                        }
+                     creerFenetreResumeRdv(desiredDate,rdv,cell01,labelrdv01);
 
                     });
                 }
@@ -393,21 +384,7 @@ public class mainController {
 
                     cell11.setOnMouseClicked((MouseEvent e) -> {
 
-                        try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
-                            Parent root1 = (Parent) fxmlLoader.load();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(root1));
-                            stage.show();
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
-                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
-
-
-                        } catch (Exception a) {
-                            System.out.println(a.getMessage());
-                        }
+                      creerFenetreResumeRdv(desiredDate,rdv,cell11,labelrdv11);
 
                     });
                 }
@@ -417,21 +394,7 @@ public class mainController {
 
                     cell21.setOnMouseClicked((MouseEvent e) -> {
 
-                        try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
-                            Parent root1 = (Parent) fxmlLoader.load();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(root1));
-                            stage.show();
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
-                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
-
-
-                        } catch (Exception a) {
-                            System.out.println(a.getMessage());
-                        }
+                       creerFenetreResumeRdv(desiredDate,rdv,cell21,labelrdv21);
 
                     });
                 }
@@ -441,21 +404,7 @@ public class mainController {
 
                     cell31.setOnMouseClicked((MouseEvent e) -> {
 
-                        try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
-                            Parent root1 = (Parent) fxmlLoader.load();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(root1));
-                            stage.show();
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
-                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
-
-
-                        } catch (Exception a) {
-                            System.out.println(a.getMessage());
-                        }
+                       creerFenetreResumeRdv(desiredDate,rdv,cell31,labelrdv31);
 
                     });
                 }
@@ -469,21 +418,7 @@ public class mainController {
 
                     cell02.setOnMouseClicked((MouseEvent e) -> {
 
-                        try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
-                            Parent root1 = (Parent) fxmlLoader.load();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(root1));
-                            stage.show();
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
-                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
-
-
-                        } catch (Exception a) {
-                            System.out.println(a.getMessage());
-                        }
+                        creerFenetreResumeRdv(desiredDate,rdv,cell02,labelrdv02);
 
                     });
                 }
@@ -493,21 +428,7 @@ public class mainController {
 
                     cell12.setOnMouseClicked((MouseEvent e) -> {
 
-                        try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
-                            Parent root1 = (Parent) fxmlLoader.load();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(root1));
-                            stage.show();
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
-                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
-
-
-                        } catch (Exception a) {
-                            System.out.println(a.getMessage());
-                        }
+                       creerFenetreResumeRdv(desiredDate,rdv,cell12,labelrdv12);
 
                     });
                 }
@@ -517,21 +438,7 @@ public class mainController {
 
                     cell22.setOnMouseClicked((MouseEvent e) -> {
 
-                        try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
-                            Parent root1 = (Parent) fxmlLoader.load();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(root1));
-                            stage.show();
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
-                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
-
-
-                        } catch (Exception a) {
-                            System.out.println(a.getMessage());
-                        }
+                     creerFenetreResumeRdv(desiredDate,rdv,cell22,labelrdv22);
 
                     });
                 }
@@ -541,21 +448,7 @@ public class mainController {
 
                     cell32.setOnMouseClicked((MouseEvent e) -> {
 
-                        try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
-                            Parent root1 = (Parent) fxmlLoader.load();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(root1));
-                            stage.show();
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
-                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
-
-
-                        } catch (Exception a) {
-                            System.out.println(a.getMessage());
-                        }
+                     creerFenetreResumeRdv(desiredDate,rdv,cell32,labelrdv32);
 
                     });
                 }
@@ -569,21 +462,7 @@ public class mainController {
 
                     cell03.setOnMouseClicked((MouseEvent e) -> {
 
-                        try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
-                            Parent root1 = (Parent) fxmlLoader.load();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(root1));
-                            stage.show();
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
-                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
-
-
-                        } catch (Exception a) {
-                            System.out.println(a.getMessage());
-                        }
+                    creerFenetreResumeRdv(desiredDate,rdv,cell03,labelrdv03);
 
                     });
                 }
@@ -593,21 +472,7 @@ public class mainController {
 
                     cell13.setOnMouseClicked((MouseEvent e) -> {
 
-                        try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
-                            Parent root1 = (Parent) fxmlLoader.load();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(root1));
-                            stage.show();
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
-                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
-
-
-                        } catch (Exception a) {
-                            System.out.println(a.getMessage());
-                        }
+                      creerFenetreResumeRdv(desiredDate,rdv,cell13,labelrdv13);
 
                     });
                 }
@@ -617,21 +482,7 @@ public class mainController {
 
                     cell23.setOnMouseClicked((MouseEvent e) -> {
 
-                        try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
-                            Parent root1 = (Parent) fxmlLoader.load();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(root1));
-                            stage.show();
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
-                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
-
-
-                        } catch (Exception a) {
-                            System.out.println(a.getMessage());
-                        }
+                        creerFenetreResumeRdv(desiredDate,rdv,cell23,labelrdv23);
 
                     });
                 }
@@ -641,21 +492,7 @@ public class mainController {
 
                     cell33.setOnMouseClicked((MouseEvent e) -> {
 
-                        try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
-                            Parent root1 = (Parent) fxmlLoader.load();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(root1));
-                            stage.show();
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
-                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
-
-
-                        } catch (Exception a) {
-                            System.out.println(a.getMessage());
-                        }
+                        creerFenetreResumeRdv(desiredDate,rdv,cell33,labelrdv33);
 
                     });
                 }
@@ -669,21 +506,7 @@ public class mainController {
 
                     cell04.setOnMouseClicked((MouseEvent e) -> {
 
-                        try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
-                            Parent root1 = (Parent) fxmlLoader.load();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(root1));
-                            stage.show();
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
-                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
-
-
-                        } catch (Exception a) {
-                            System.out.println(a.getMessage());
-                        }
+                      creerFenetreResumeRdv(desiredDate,rdv,cell04,labelrdv04);
 
                     });
                 }
@@ -693,21 +516,7 @@ public class mainController {
 
                     cell14.setOnMouseClicked((MouseEvent e) -> {
 
-                        try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
-                            Parent root1 = (Parent) fxmlLoader.load();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(root1));
-                            stage.show();
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
-                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
-
-
-                        } catch (Exception a) {
-                            System.out.println(a.getMessage());
-                        }
+                       creerFenetreResumeRdv(desiredDate,rdv,cell14,labelrdv14);
 
                     });
                 }
@@ -717,21 +526,7 @@ public class mainController {
 
                     cell24.setOnMouseClicked((MouseEvent e) -> {
 
-                        try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
-                            Parent root1 = (Parent) fxmlLoader.load();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(root1));
-                            stage.show();
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
-                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
-
-
-                        } catch (Exception a) {
-                            System.out.println(a.getMessage());
-                        }
+                       creerFenetreResumeRdv(desiredDate,rdv,cell24,labelrdv24);
 
                     });
                 }
@@ -741,21 +536,7 @@ public class mainController {
 
                     cell34.setOnMouseClicked((MouseEvent e) -> {
 
-                        try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rdvResume.fxml"));
-                            Parent root1 = (Parent) fxmlLoader.load();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(root1));
-                            stage.show();
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeDate().setText(desiredDate.toString());
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumePrenom().setText(bdd.getPrenomClient(rdv.getIdClient()) + " " + bdd.getNomClient(rdv.getIdClient()));
-                            ((rdvResumeController) fxmlLoader.getController()).getRdvResumeSociete().setText((bdd.getRaisonSociale(rdv.getIdClient())));
-                            ((rdvResumeController) fxmlLoader.getController()).getTextAreaCommentaire().setText((rdv.getCommentaire()));
-
-
-                        } catch (Exception a) {
-                            System.out.println(a.getMessage());
-                        }
+                       creerFenetreResumeRdv(desiredDate,rdv,cell34,labelrdv34);
 
                     });
                 }
@@ -808,16 +589,17 @@ public class mainController {
     void BoutonValiderAddClient_pressed(ActionEvent event) throws SQLException {
 
         labelErreurAddClient.setAlignment(Pos.CENTER);
-        if(textFieldPrenom.getText().isEmpty()){ labelErreurAddClient.setText("Veuillez entrer un prénom"); }
+        if(textFieldPrenom.getText().isEmpty()){ labelErreurAddClient.setText("Client ajouté");labelErreurAddClient.setText("Veuillez entrer un prénom"); }
         else{
-            if(textFieldNom.getText().isEmpty()){ labelErreurAddClient.setText("Veuillez entrer un Nom");}
+            if(textFieldNom.getText().isEmpty()){ labelErreurAddClient.setText("Client ajouté");labelErreurAddClient.setText("Veuillez entrer un Nom");}
             else{
-                if(textFieldRaisonSociale.getText().isEmpty()){ labelErreurAddClient.setText("Veuillez entrer une raison sociale");}
+                if(textFieldRaisonSociale.getText().isEmpty()){ labelErreurAddClient.setText("Client ajouté");labelErreurAddClient.setText("Veuillez entrer une raison sociale");}
                 else{
-                    if(textFieldNumtel.getLength()!=10){ labelErreurAddClient.setText("Le numéro de téléphone doit contenir 10 chiffres");}
+                    if(textFieldNumtel.getLength()!=10){ labelErreurAddClient.setText("Client ajouté");labelErreurAddClient.setText("Le numéro de téléphone doit contenir 10 chiffres");}
                     else{
                         bdd.createClient(activeSession.getId(),textFieldPrenom,textFieldNom,textFieldRaisonSociale,textFieldMail,textFieldNumtel);
-                        client client = new client(textFieldPrenom.getText(),textFieldPrenom.getText(), textFieldNom.getText(), textFieldMail.getText(),textFieldNumtel.getAnchor(),bdd.getIdLastClient());
+                        client client = new client(textFieldPrenom.getText(),textFieldPrenom.getText(), textFieldNom.getText(), textFieldMail.getText(),textFieldNumtel.getText(),bdd.getIdLastClient());
+                        System.out.println(client.getNumeroTel());
                         activeSession.getListeClients().add(client);
                         initialiserListeClientsTries();
                         textFieldNom.clear();
@@ -896,11 +678,14 @@ public class mainController {
         labelInfoNom.setText(ListeClientsPanelClients.getSelectionModel().getSelectedItem().getNom());
         labelInfoMail.setText(ListeClientsPanelClients.getSelectionModel().getSelectedItem().getMail());
         labelInfoRaisonSociale.setText(ListeClientsPanelClients.getSelectionModel().getSelectedItem().getRaisonSociale());
-        labelInfoTel.setText(toString(ListeClientsPanelClients.getSelectionModel().getSelectedItem().getNumeroTel()));
+        labelInfoTel.setText(ListeClientsPanelClients.getSelectionModel().getSelectedItem().getNumeroTel());
+        System.out.println(ListeClientsPanelClients.getSelectionModel().getSelectedItem().getNumeroTel());
+        System.out.println(ListeClientsPanelClients.getSelectionModel().getSelectedItem().getContactPrenom());
+
 
     }
 
-    private String toString(float numeroTel) {
+    private String toString(String numeroTel) {
         String s = String.valueOf(numeroTel);
 
         return s;
@@ -1067,7 +852,9 @@ public class mainController {
             ((rdvController)fxmlLoader.getController()).setActiveSession(this.activeSession);
             ((rdvController)fxmlLoader.getController()).addRdvInit();
             this.activeSession=stage.showAndReturn(((rdvController)fxmlLoader.getController()));
+            System.out.println(activeSession.getListeRdv());
             rdvSemaineInitialisation();
+            System.out.println("rdv ajouté");
 
 
 
@@ -1091,6 +878,20 @@ public class mainController {
         for (Label labelrdv : listeLabels){
             labelrdv.setText("");
         }
+
+    }
+
+    /**
+     * Reinitialise la cellule rentrée en paramètres
+     */
+    void clearCell(Pane cellule, Label label){
+
+
+
+        cellule.setStyle("-fx-background-color:  #D1D1D1;");
+        cellule.setOnMouseClicked(null);
+        label.setText("");
+
 
     }
 
@@ -1152,13 +953,6 @@ public class mainController {
     public void setActiveSession(commercial activeSession) {
         this.activeSession = activeSession;
     }
-
-
-
-
-
-
-
 
 
 }
